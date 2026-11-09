@@ -1,0 +1,49 @@
+# Glossaire IA ↔ Biologie
+
+| Terme | Définition | Séance |
+|---|---|:---:|
+| **Accuracy (exactitude)** | proportion de prédictions correctes ; trompeuse si les classes sont déséquilibrées | 1 |
+| **ACP (PCA)** | réduction de dimension linéaire qui projette les données sur les axes de plus grande variance | 2 |
+| **AlphaFold 2** | réseau de neurones de DeepMind qui prédit la structure 3D d'une protéine à partir de sa séquence et d'un MSA | 5 |
+| **AlphaMissense** | modèle prédisant la pathogénicité des variants faux-sens humains | 5 |
+| **Apprentissage par transfert** | réutiliser un modèle pré-entraîné sur une grande tâche générique pour une tâche spécifique avec peu de données | 3, 4 |
+| **Apprentissage supervisé** | apprendre à partir d'exemples dont la réponse (étiquette) est connue | 1, 3 |
+| **Apprentissage non supervisé** | découvrir une structure dans des données **sans** étiquette (clustering, réduction de dimension) | 2, 4 |
+| **Auto-supervisé** | la supervision est construite à partir des données elles-mêmes (ex. deviner un acide aminé masqué) | 3 |
+| **AUC ROC** | aire sous la courbe ROC ; probabilité qu'un positif reçoive un score plus élevé qu'un négatif | 1 |
+| **Bagging** | entraîner plusieurs modèles sur des échantillons bootstrap et agréger leurs prédictions | 1 |
+| **Cellpose** | réseau de neurones généraliste de segmentation de cellules et de noyaux | 4 |
+| **Classe déséquilibrée** | une classe est beaucoup plus rare que l'autre (ex. 12 % de toxiques) | 1 |
+| **Clustering** | regroupement automatique d'objets similaires | 2 |
+| **CNN** | réseau de neurones convolutif : empilement de filtres de convolution appris, adapté aux images | 4 |
+| **Coévolution** | variation corrélée de deux positions au cours de l'évolution, souvent signe d'un contact 3D | 5 |
+| **Descripteur (feature)** | variable numérique décrivant un objet (masse, logP, nombre de cycles…) | 1 |
+| **Embedding** | vecteur appris qui représente un objet ; des objets similaires ont des vecteurs proches | 3 |
+| **ESM-2** | modèle de langage protéique de Meta AI (Transformer entraîné à deviner des acides aminés masqués) | 3, 5 |
+| **FASTA** | format texte standard des séquences (`>` en-tête, puis la séquence) | 3 |
+| **Faux négatif / faux positif** | positif prédit négatif (ex. toxique manqué) / négatif prédit positif (fausse alerte) | 1 |
+| **Feature importance** | contribution estimée de chaque variable aux prédictions d'un modèle | 1 |
+| **Gène marqueur** | gène spécifiquement exprimé dans une population cellulaire | 2 |
+| **Hyperparamètre** | réglage du modèle choisi par l'utilisateur (nombre d'arbres, K, profondeur…) | 1, 2 |
+| **Isolation Forest** | méthode de détection d'anomalies qui isole les points atypiques par des coupes aléatoires | 4 |
+| **K-Means** | algorithme de clustering qui minimise la distance des points au centre de leur groupe | 2 |
+| **k-mer** | sous-séquence de k lettres consécutives | 3 |
+| **Matrice de confusion** | tableau croisant classes réelles et prédites | 1, 3 |
+| **MSA** | alignement multiple de séquences homologues | 5 |
+| **PAE** | erreur d'alignement prédite par AlphaFold entre deux résidus (en Å) | 5 |
+| **pLDDT** | score de confiance local d'AlphaFold (0-100) par résidu | 5 |
+| **Précision / rappel** | part des positifs prédits qui sont vrais / part des vrais positifs retrouvés | 1 |
+| **QSAR** | relation quantitative structure–activité : prédire l'activité d'une molécule à partir de sa structure | 1 |
+| **Random Forest** | ensemble d'arbres de décision entraînés sur des sous-échantillons et des sous-ensembles de variables | 1 |
+| **RMSD** | écart quadratique moyen entre les atomes de deux structures superposées (en Å) | 5 |
+| **Segmentation d'instances** | attribuer chaque pixel à un objet individuel (cellule n°1, n°2…) | 4 |
+| **Silhouette** | score (−1 à 1) mesurant si un point est bien dans son cluster | 2 |
+| **SMILES** | écriture d'une molécule sous forme de texte (`CCO` = éthanol) | 1 |
+| **Sur-apprentissage (overfitting)** | le modèle mémorise les données d'apprentissage et généralise mal | 1 |
+| **Transformer** | architecture de réseau fondée sur l'attention, à la base des modèles de langage | 3 |
+| **U-Net** | réseau encodeur-décodeur avec connexions directes, standard en segmentation biomédicale | 4 |
+| **UMAP** | réduction de dimension non linéaire qui préserve les voisinages, pour visualiser en 2D | 2 |
+| **Validation croisée** | évaluer un modèle en alternant plusieurs découpages apprentissage/test | 3 |
+| **Watershed** | algorithme de « ligne de partage des eaux » pour séparer des objets qui se touchent | 4 |
+
+: Glossaire {.striped .hover}

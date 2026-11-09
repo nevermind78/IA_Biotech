@@ -1,0 +1,60 @@
+# Notebooks Colab et données
+
+Tous les notebooks s'ouvrent directement dans Google Colab grâce aux badges ci-dessous. Pensez à
+**enregistrer une copie dans votre Drive** (`Fichier → Enregistrer une copie dans Drive`) avant de
+commencer : vos modifications seront ainsi conservées.
+
+## Catalogue
+
+| Séance | Notebook | Ouvrir | Exécution | Durée |
+|:---:|---|:---:|:---:|:---:|
+| 0 | Prise en main de Colab et Python express <br>[télécharger](notebooks/S0_prise_en_main_colab.ipynb) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/nevermind78/IA_Biotech/blob/main/notebooks/S0_prise_en_main_colab.ipynb) | CPU | 45 min |
+| 1 | Toxicité des molécules et Random Forest <br>[télécharger](notebooks/S1_toxicite_random_forest.ipynb) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/nevermind78/IA_Biotech/blob/main/notebooks/S1_toxicite_random_forest.ipynb) | CPU | 2h |
+| 2 | Transcriptomique single-cell : ACP, UMAP, K-Means <br>[télécharger](notebooks/S2_transcriptomique_clustering.ipynb) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/nevermind78/IA_Biotech/blob/main/notebooks/S2_transcriptomique_clustering.ipynb) | CPU | 2h |
+| 3 | Séquences protéiques : k-mers vs ESM-2 <br>[télécharger](notebooks/S3_sequences_esm2.ipynb) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/nevermind78/IA_Biotech/blob/main/notebooks/S3_sequences_esm2.ipynb) | **GPU** conseillé | 2h |
+| 4 | Imagerie cellulaire : Otsu, Cellpose, rapport <br>[télécharger](notebooks/S4_imagerie_cellpose.ipynb) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/nevermind78/IA_Biotech/blob/main/notebooks/S4_imagerie_cellpose.ipynb) | **GPU** conseillé | 2h |
+| 5 | AlphaFold 2 (ColabFold), mutations, ESM-2 <br>[télécharger](notebooks/S5_alphafold_mutations.ipynb) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/nevermind78/IA_Biotech/blob/main/notebooks/S5_alphafold_mutations.ipynb) | **GPU** requis | 2h |
+
+: Notebooks du module {.striped .hover}
+
+## Jeux de données
+
+Tous les jeux de données sont **publics** et téléchargés automatiquement par les notebooks. Une copie
+de secours des plus petits est stockée dans le dossier [`data/`](https://github.com/nevermind78/IA_Biotech/tree/main/data)
+du dépôt.
+
+| Séance | Jeu de données | Source | Taille |
+|:---:|---|---|---|
+| 1 | **Tox21** (12 essais de toxicité, ~7 800 molécules) | [MoleculeNet / DeepChem](https://moleculenet.org) — NIH, EPA, FDA | 120 Ko |
+| 2 | **PBMC 3k** (RNA-seq single-cell) | [10x Genomics](https://www.10xgenomics.com/datasets) via Scanpy | 6 Mo |
+| 3 | **600 protéines humaines Swiss-Prot** (noyau, mitochondrie, membrane, sécrétées) | [UniProt](https://www.uniprot.org) — requête REST, copie dans `data/s3_localisation/` | 250 Ko |
+| 4 | **human_mitosis** (noyaux en fluorescence) | [scikit-image](https://scikit-image.org/docs/stable/api/skimage.data.html) | 250 Ko |
+| 4 (bonus) | **Malaria cell images** (27 558 globules rouges) | [NIH / NLM](https://lhncbc.nlm.nih.gov/LHC-research/LHC-projects/image-processing/malaria-datasheet.html) | 340 Mo |
+| 5 | **GB1** (PDB 1PGA), **hémoglobine β** (UniProt P68871), AlphaMissense | [RCSB PDB](https://www.rcsb.org), [AlphaFold DB](https://alphafold.ebi.ac.uk) | < 1 Mo |
+
+: Données utilisées {.striped}
+
+::: {.callout-note}
+## Reconstruire le jeu de la séance 3
+Les fichiers FASTA ont été obtenus par la requête UniProt suivante (exemple pour le noyau, en excluant
+les protéines aussi annotées dans le cytoplasme ou les trois autres compartiments), puis par un tirage
+aléatoire reproductible de 150 protéines par classe :
+
+```text
+reviewed:true AND organism_id:9606 AND length:[80 TO 600] AND cc_scl_term:SL-0191
+  NOT cc_scl_term:SL-0086 NOT cc_scl_term:SL-0173 NOT cc_scl_term:SL-0243 NOT cc_scl_term:SL-0039
+```
+:::
+
+## Exécuter les notebooks hors de Colab
+
+Les notebooks fonctionnent aussi avec **Jupyter** en local (les cellules propres à Colab sont
+ignorées). Installez les dépendances avec :
+
+```bash
+pip install pandas scikit-learn matplotlib seaborn plotly rdkit scanpy umap-learn \
+            biopython transformers torch torchvision cellpose py3Dmol requests
+```
+
+La prédiction **ColabFold** nécessite Linux et un GPU NVIDIA : en local, utilisez le moteur
+**ESMFold (API)** proposé dans le notebook de la séance 5.

@@ -1,0 +1,69 @@
+# Dépannage (FAQ)
+
+::: {.callout-tip collapse="true"}
+## « NameError: name '...' is not defined »
+Une cellule précédente n'a pas été exécutée (ou la session a redémarré). Faites
+`Exécution → Exécuter les cellules précédentes` (`Ctrl + F8`), ou `Exécution → Tout exécuter`.
+:::
+
+::: {.callout-tip collapse="true"}
+## « ModuleNotFoundError: No module named 'rdkit' » (ou scanpy, Bio, cellpose…)
+La cellule d'installation (`%pip install …`) en haut du notebook n'a pas été exécutée **dans cette
+session**. Exécutez-la, puis relancez la cellule qui a échoué. Si l'erreur persiste :
+`Exécution → Redémarrer la session`, puis réexécutez depuis le début.
+:::
+
+::: {.callout-tip collapse="true"}
+## Pas de GPU / « Vous ne pouvez pas vous connecter au GPU pour le moment »
+Le quota de GPU gratuit est limité et partagé. Solutions :
+
+- séance 3 : choisissez le modèle `esm2_t6_8M_UR50D`, qui tourne en quelques minutes sur CPU ;
+- séance 4 : Cellpose fonctionne sur CPU (≈ 1 minute par image) ;
+- séance 5 : choisissez `MOTEUR = "ESMFold (API, sans GPU)"`.
+
+Pensez à **désactiver le GPU** des notebooks qui n'en ont pas besoin (séances 0, 1 et 2).
+:::
+
+::: {.callout-tip collapse="true"}
+## Un téléchargement de données échoue
+Chaque notebook prévoit une **source de secours** (copie dans le dépôt GitHub ou requête directe à la
+base de données). Relancez la cellule ; si les deux sources échouent, vérifiez la connexion ou
+téléchargez le fichier depuis le dossier
+[`data/`](https://github.com/nevermind78/IA_Biotech/tree/main/data) et téléversez-le dans Colab
+(icône 📁 à gauche → téléverser).
+:::
+
+::: {.callout-tip collapse="true"}
+## Séance 5 : l'installation de ColabFold échoue ou ne se termine pas
+1. Vérifiez que le **GPU** est activé, puis consultez le fichier `install_colabfold.log` (icône 📁).
+2. Redémarrez la session et relancez la section 0.
+3. Plan B : `MOTEUR = "ESMFold (API, sans GPU)"` — toutes les analyses restent possibles.
+4. Plan C : prédisez avec le [notebook officiel ColabFold](https://colab.research.google.com/github/sokrypton/ColabFold/blob/main/AlphaFold2.ipynb), téléchargez le ZIP de résultats, puis téléversez le fichier `*_rank_001*.pdb` dans votre notebook.
+:::
+
+::: {.callout-tip collapse="true"}
+## Séance 5 : « too many requests » ou MSA très lent
+Le serveur MMseqs2 de ColabFold est **partagé** par tous les utilisateurs dans le monde. En classe,
+échelonnez les lancements entre binômes, ou utilisez `mode_msa="single_sequence"` pour un test rapide
+(prédiction de moins bonne qualité).
+:::
+
+::: {.callout-tip collapse="true"}
+## « CUDA out of memory »
+La mémoire du GPU est saturée : `Exécution → Redémarrer la session`, puis réduisez la taille des lots
+(`taille_lot=4` dans `embeddings_esm`, `lot=8` dans `carte_mutations`) ou choisissez un modèle plus petit.
+:::
+
+::: {.callout-tip collapse="true"}
+## La carte Plotly ou la vue 3D py3Dmol ne s'affiche pas
+Ré-exécutez la cellule. Si le problème persiste, rechargez la page du navigateur (le notebook reste
+ouvert) ou essayez un autre navigateur (Chrome / Firefox à jour). Les bloqueurs de scripts peuvent
+empêcher l'affichage.
+:::
+
+::: {.callout-tip collapse="true"}
+## J'ai perdu mon travail
+Les notebooks ouverts depuis un badge sont des **copies temporaires**. Prenez l'habitude de faire
+`Fichier → Enregistrer une copie dans Drive` **dès l'ouverture**. Les fichiers générés (CSV, figures)
+doivent être téléchargés avant la fin de la session.
+:::

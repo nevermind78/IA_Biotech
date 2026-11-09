@@ -1,0 +1,117 @@
+project:
+  type: book
+  output-dir: _site
+  resources:
+    - notebooks/*.ipynb
+    - data/**
+
+book:
+  title: "Intelligence Artificielle et Biotechnologie"
+  subtitle: "Module pratique de 10h — Learn by doing sur Google Colab"
+  author: "Abdallah Khemais"
+  date: today
+  date-format: "DD/MM/YYYY"
+  site-url: "https://nevermind78.github.io/IA_Biotech/"
+  repo-url: "https://github.com/nevermind78/IA_Biotech"
+  search: true
+
+  chapters:
+    - index.qmd
+    - part: "Ateliers pratiques (5 × 2h)"
+      chapters:
+        - seance1.qmd
+        - seance2.qmd
+        - seance3.qmd
+        - seance4.qmd
+        - seance5.qmd
+  appendices:
+    - annexe-colab.qmd
+    - notebooks.qmd
+    - evaluation.qmd
+    - glossaire.qmd
+    - depannage.qmd
+
+format:
+  html:
+    theme:
+      light: flatly
+      dark: darkly
+    css: styles.css
+    code-fold: false
+    code-tools: true
+    code-copy: true
+    toc: true
+    toc-depth: 3
+    number-sections: false
+    highlight-style: github
+    fig-align: center
+    include-in-header:
+      - text: |
+          <!-- Google Translate Widget -->
+          <div id="google_translate_element"></div>
+
+          <script type="text/javascript">
+          function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+              pageLanguage: 'fr',
+              includedLanguages: 'fr,en',
+              layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+              autoDisplay: false
+            }, 'google_translate_element');
+          }
+          </script>
+
+          <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+          <style>
+          #google_translate_element {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 9999;
+            background: white;
+            padding: 2px;
+            border-radius: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border: 1px solid #ddd;
+          }
+          .goog-te-gadget { font-size: 0 !important; }
+          .goog-te-gadget-simple {
+            background-color: transparent !important;
+            border: none !important;
+            padding: 0 !important;
+          }
+          .goog-te-menu-value span { color: #333 !important; font-size: 13px !important; }
+          .goog-te-menu-value {
+            color: #333 !important;
+            border: none !important;
+            background: transparent !important;
+            padding: 4px 10px !important;
+            border-radius: 15px !important;
+          }
+          .goog-te-banner-frame.skiptranslate { display: none !important; }
+          body { top: 0px !important; }
+          </style>
+
+execute:
+  echo: false
+  warning: false
+  message: false
+  cache: false
+  freeze: auto
+
+language:
+  title-block-author: "Enseignant"
+  title-block-published: "Dernière mise à jour"
+  callout-tip-title: "Astuce"
+  callout-note-title: "Note"
+  callout-warning-title: "Attention"
+  callout-important-title: "Important"
+  callout-caution-title: "Prudence"
+
+crossref:
+  chapters: true
+  fig-prefix: "Figure"
+  eq-prefix: "Équation"
+  tbl-prefix: "Tableau"
+  lst-prefix: "Listing"

@@ -1,0 +1,91 @@
+/* ---- Diagrammes Mermaid (repris du cours ML/DL) ---- */
+pre.sourceCode.mermaid {
+  display: none !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+div.mermaid {
+  display: block !important;
+  margin: 24px 0;
+  text-align: center;
+  overflow-x: auto;   /* un diagramme large défile au lieu d'être réduit */
+}
+
+/* Taille naturelle : le texte des diagrammes reste lisible (défilement si besoin) */
+div.mermaid svg {
+  width: max-content !important;
+  max-width: none !important;
+  height: auto !important;
+  max-height: none !important;
+}
+
+div.cell-output-display .mermaid {
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-radius: 5px;
+  border: 1px solid #dee2e6;
+}
+
+/* ---- Bouton "Ouvrir dans Colab" ---- */
+.colab-launch {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 1rem 0 1.5rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid rgba(249, 171, 0, 0.45);
+  border-left: 5px solid #f9ab00;
+  border-radius: 6px;
+  background: rgba(249, 171, 0, 0.07);
+}
+
+.colab-launch > p {
+  margin: 0;
+}
+
+.colab-launch > p:last-child {
+  flex: 1 1 260px;
+  font-size: 0.95rem;
+}
+
+.colab-launch img {
+  height: 28px;
+  margin: 0;
+}
+
+/* ---- Tableau de déroulé des ateliers ---- */
+table.deroule td:first-child,
+table.deroule th:first-child {
+  white-space: nowrap;
+  font-weight: 600;
+}
+
+/* ---- Pastilles de type d'activité ---- */
+.pill {
+  display: inline-block;
+  padding: 0.05rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+.pill-run   { background: #e3f2fd; color: #0d47a1; }  /* code fourni : exécuter */
+.pill-edit  { background: #fff3e0; color: #e65100; }  /* à modifier / compléter */
+.pill-think { background: #e8f5e9; color: #1b5e20; }  /* interpréter / discuter */
+
+[data-bs-theme="dark"] .pill-run,
+body.quarto-dark .pill-run   { background: #0d2a4a; color: #90caf9; }
+[data-bs-theme="dark"] .pill-edit,
+body.quarto-dark .pill-edit  { background: #4a2a05; color: #ffcc80; }
+[data-bs-theme="dark"] .pill-think,
+body.quarto-dark .pill-think { background: #12361a; color: #a5d6a7; }
+
+body.quarto-dark div.cell-output-display .mermaid {
+  background-color: #2b3035;
+  border-color: #495057;
+}

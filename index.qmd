@@ -1,0 +1,159 @@
+# Présentation du module {.unnumbered}
+
+## Informations générales
+
+::: {.callout-note icon=false}
+## Détails du module
+
+- **Intitulé** : Intelligence Artificielle et Biotechnologie
+- **Public** : élèves ingénieurs (biotechnologie, génie biologique, agroalimentaire, procédés…) **non spécialistes en informatique**
+- **Prérequis** : bases de Python (variables, listes, fonctions) — une [remise à niveau](annexe-colab.qmd) est fournie
+- **Volume horaire** : **10h** = 5 ateliers pratiques de 2h
+- **Format** : 100 % *learn by doing*, sur **Google Colab** (rien à installer : un navigateur et un compte Google suffisent)
+- **Enseignant** : Abdallah Khemais
+:::
+
+## L'approche : apprendre en faisant
+
+Chaque atelier suit le **même fil rouge** : on part d'un **problème biologique concret**, on charge un
+**jeu de données réel**, on **entraîne ou interroge un modèle d'IA**, puis on **interprète les résultats
+avec un regard de biologiste**.
+
+```{mermaid}
+flowchart TB
+    A["🧬 Problème biologique"] --> B["📂 Données réelles"]
+    B --> C["🤖 Modèle d'IA"]
+    C --> D["📊 Évaluation"]
+    D --> E["🔬 Interprétation"]
+    E -.->|"nouvelle question"| A
+```
+
+Les notebooks Colab sont **pré-remplis** :
+
+- **≈ 70 % de code fourni** que vous exécutez, lisez et analysez ;
+- **≈ 30 % de code à modifier** : paramètres (curseurs, menus) ou petites fonctions à compléter.
+
+| Pictogramme | Activité | Ce que vous faites |
+|:---:|---|---|
+| ▶️ | [Exécuter]{.pill .pill-run} | lancer une cellule de code fournie et lire le résultat |
+| ✍️ | [Modifier]{.pill .pill-edit} | changer un paramètre, compléter quelques lignes |
+| 🔎 | [Interpréter]{.pill .pill-think} | répondre à une question biologique ou méthodologique |
+| 💡 | Solution | cellule masquée (double-clic pour l'afficher) |
+
+: Légende utilisée dans tous les notebooks {.striped}
+
+::: {.callout-tip}
+## Pas besoin d'être informaticien·ne
+L'objectif n'est **pas** de devenir développeur, mais de savoir **utiliser, évaluer et critiquer** des
+outils d'IA appliqués à la biologie : choisir une méthode, vérifier qu'un modèle est fiable, et
+reconnaître ses limites.
+:::
+
+## Objectifs d'apprentissage
+
+Au terme de ce module, vous serez capable de :
+
+1. **Préparer** un jeu de données biologiques réel (nettoyage, normalisation, encodage) avec Pandas ;
+2. **Entraîner et évaluer** un modèle supervisé en choisissant les bonnes métriques (matrice de confusion, ROC-AUC, validation croisée) ;
+3. **Explorer** des données de grande dimension sans étiquettes (ACP, UMAP, clustering) et en extraire des biomarqueurs ;
+4. **Utiliser des modèles pré-entraînés** (ESM-2, Cellpose, AlphaFold 2) par apprentissage par transfert ;
+5. **Interpréter** biologiquement les sorties d'un modèle et en **identifier les limites** (biais, sur-apprentissage, boîte noire, besoin de validation expérimentale).
+
+## Programme des 5 ateliers
+
+| Séance | Problème biologique | Données réelles | Méthodes d'IA | Livrable |
+|---|---|---|---|---|
+| [**1**](seance1.qmd) · Premier modèle prédictif | Une molécule est-elle toxique ? | Tox21 (~8 000 molécules) | Pandas, descripteurs RDKit, **Random Forest** | pipeline + matrice de confusion + importance des variables |
+| [**2**](seance2.qmd) · Non supervisé & transcriptomique | Quels types de cellules dans un échantillon ? | RNA-seq single-cell PBMC 3k (2 700 cellules × 33 000 gènes) | **ACP, UMAP, K-Means** | carte interactive des clusters + biomarqueurs |
+| [**3**](seance3.qmd) · Séquences & modèles de langage | Où va une protéine dans la cellule ? | 600 protéines humaines Swiss-Prot (FASTA) | k-mers, **ESM-2** (Hugging Face), régression logistique | comparateur k-mers vs ESM-2 |
+| [**4**](seance4.qmd) · Vision par ordinateur | Compter et mesurer des cellules | Microscopie en fluorescence (noyaux) | Otsu/watershed, **Cellpose (CNN)**, transfer learning | script de segmentation + rapport quantitatif |
+| [**5**](seance5.qmd) · Structure & IA générative | Quel est l'impact d'une mutation ? | GB1, hémoglobine β, AlphaFold DB, PDB | **ColabFold (AlphaFold 2)**, py3Dmol, ESM-2 | mini-projet en binôme (présentation 3 min) |
+
+: Vue d'ensemble du module {.striped .hover}
+
+```{mermaid}
+flowchart LR
+    T["📋 Tableaux de descripteurs"] --> S1["<b>S1</b> · Random Forest"]
+    M["🧫 Matrices d'expression"] --> S2["<b>S2</b> · ACP / UMAP / K-Means"]
+    Q["🔤 Séquences ADN / protéines"] --> S3["<b>S3</b> · ESM-2"]
+    I["🔬 Images de microscopie"] --> S4["<b>S4</b> · Cellpose"]
+    P["🧩 Structures 3D"] --> S5["<b>S5</b> · AlphaFold 2"]
+    S3 -.->|"embeddings"| S5
+```
+
+## Organisation pratique
+
+::: {.panel-tabset}
+
+## Avant la séance 1
+
+1. Créez (ou vérifiez) votre **compte Google**.
+2. Faites le notebook d'auto-formation **[Prise en main de Colab et Python](annexe-colab.qmd)** (45 min).
+3. Testez l'ouverture d'un notebook via un badge [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/nevermind78/IA_Biotech/blob/main/notebooks/S0_prise_en_main_colab.ipynb).
+
+## Pendant chaque séance
+
+1. Ouvrez la page de la séance sur ce site et **lisez l'encadré théorique** (≈ 10 min, présenté par l'enseignant).
+2. Cliquez sur le badge **Open in Colab**, puis `Fichier → Enregistrer une copie dans Drive`.
+3. Pour les séances 3, 4 et 5 : `Exécution → Modifier le type d'exécution → GPU T4`.
+4. Avancez dans le notebook en suivant les pictogrammes ▶️ ✍️ 🔎.
+
+## Après chaque séance
+
+1. Vérifiez que toutes les cellules ont été exécutées et que les questions 🔎 ont une réponse.
+2. Déposez le **livrable** demandé (notebook partagé ou fichiers exportés) sur la plateforme du cours.
+3. Faites le petit **quiz « Testez-vous »** en fin de page.
+
+:::
+
+## Évaluation
+
+| Composante | Poids | Détails |
+|---|:---:|---|
+| **Livrables des séances 1 à 4** | 40 % | 4 × 10 % : notebook exécuté + réponses aux questions 🔎 |
+| **Mini-projet (séance 5)** | 40 % | présentation de 3 min en binôme + notebook |
+| **Participation et quiz** | 20 % | quiz « Testez-vous » et implication en atelier |
+
+: Modalités d'évaluation {.striped}
+
+La grille détaillée est disponible dans l'annexe [Évaluation et mini-projet](evaluation.qmd).
+
+## Stack technique
+
+| Outil | Rôle dans le module | Séances |
+|---|---|:---:|
+| **Google Colab** | environnement d'exécution gratuit (CPU/GPU) dans le navigateur | 1 – 5 |
+| **Pandas / NumPy** | manipulation de tableaux de données | 1 – 5 |
+| **Matplotlib / Seaborn / Plotly** | visualisation (statique et interactive) | 1 – 5 |
+| **Scikit-learn** | modèles classiques d'apprentissage automatique | 1 – 4 |
+| **RDKit** | chimie-informatique (molécules, descripteurs) | 1 |
+| **Scanpy / UMAP** | analyse single-cell, réduction de dimension | 2 |
+| **Biopython** | lecture de séquences (FASTA) et de structures (PDB) | 3, 5 |
+| **Hugging Face Transformers** | modèles de langage protéiques pré-entraînés (ESM-2) | 3, 5 |
+| **scikit-image / Cellpose** | traitement et segmentation d'images | 4 |
+| **ColabFold / py3Dmol** | prédiction (AlphaFold 2) et visualisation 3D de structures | 5 |
+
+: Bibliothèques utilisées {.striped}
+
+## Ressources
+
+### Ouvrages de référence
+
+1. **Ramsundar B., Eastman P., Walters P., Pande V. (2019)** — *Deep Learning for the Life Sciences*, O'Reilly.
+2. **Géron A. (2022)** — *Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow*, 3^e^ édition, O'Reilly.
+3. **Antao T. (2022)** — *Bioinformatics with Python Cookbook*, 3^e^ édition, Packt.
+
+### Bases de données utilisées
+
+- [Tox21 / MoleculeNet](https://moleculenet.org) — toxicologie ; [ChEMBL](https://www.ebi.ac.uk/chembl/) — bioactivité des molécules
+- [10x Genomics datasets](https://www.10xgenomics.com/datasets) — RNA-seq single-cell
+- [UniProt](https://www.uniprot.org) — séquences et annotations de protéines
+- [Broad Bioimage Benchmark Collection](https://bbbc.broadinstitute.org) — images de microscopie
+- [RCSB PDB](https://www.rcsb.org) et [AlphaFold DB](https://alphafold.ebi.ac.uk) — structures 3D expérimentales et prédites
+
+::: {.callout-tip}
+## Code source du cours
+Tous les supports (pages, notebooks, données de secours) sont disponibles sur
+[GitHub](https://github.com/nevermind78/IA_Biotech). Les notebooks peuvent aussi être
+[téléchargés](notebooks.qmd) pour être exécutés avec Jupyter en local.
+:::

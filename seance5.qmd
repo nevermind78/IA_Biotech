@@ -1,0 +1,319 @@
+# Séance 5 : IA générative, repliement protéique et mini-projet
+
+::: {.callout-note icon=false}
+## Informations de la séance
+- **Type** : Atelier pratique + **mini-projet en binôme (45 min)** — **GPU T4 obligatoire** pour ColabFold
+- **Durée** : 2h
+- **Problème biologique** : prédire la structure 3D d'une protéine mutée et évaluer l'impact fonctionnel d'une mutation ponctuelle
+- **Données** : domaine GB1 de la protéine G (PDB 1PGA), hémoglobine β (UniProt P68871), AlphaFold DB, AlphaMissense
+- **Outils** : **ColabFold** (AlphaFold 2 + MMseqs2), py3Dmol, Biopython, ESM-2 (Hugging Face) ; plan B : ESMFold (API)
+- **Livrable** : présentation de 3 minutes de l'impact observé d'une mutation et des limites du modèle
+:::
+
+::: {.colab-launch}
+<a href="https://colab.research.google.com/github/nevermind78/IA_Biotech/blob/main/notebooks/S5_alphafold_mutations.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Ouvrir dans Google Colab"></a>
+
+**Notebook de l'atelier** — ouvrez-le dans Colab, activez le **GPU T4** et lancez **immédiatement** la section 0 (installation de ColabFold en arrière-plan, 3 à 5 min). Version téléchargeable : [S5_alphafold_mutations.ipynb](notebooks/S5_alphafold_mutations.ipynb)
+:::
+
+## 1. Le problème biologique
+
+La **fonction** d'une protéine découle de sa **forme 3D** : la poche active d'une enzyme, la surface
+d'interaction d'un anticorps, le canal d'un transporteur. Une **mutation ponctuelle** (un seul acide
+aminé changé) peut :
+
+- **déstabiliser le repliement** (la protéine se déplie ou s'agrège) → perte de fonction, maladie génétique ;
+- **modifier une surface** d'interaction ou un site actif sans changer le repliement ;
+- **améliorer** une propriété : c'est la base de l'**ingénierie des protéines** (enzymes industrielles plus thermostables, anticorps plus affins).
+
+Déterminer une structure expérimentalement (cristallographie aux rayons X, RMN, cryo-microscopie
+électronique) prend des mois. **AlphaFold 2** la prédit en quelques minutes à partir de la séquence.
+
+## 2. Notions théoriques essentielles
+
+### 2.1 Du repliement à la structure
+
+| Niveau | Description |
+|---|---|
+| **Primaire** | la séquence d'acides aminés |
+| **Secondaire** | hélices α, feuillets β, boucles (liaisons H du squelette) |
+| **Tertiaire** | le repliement 3D d'une chaîne (cœur hydrophobe enfoui, surface polaire) |
+| **Quaternaire** | l'assemblage de plusieurs chaînes (ex. l'hémoglobine = 2 α + 2 β) |
+
+: Les niveaux de structure des protéines {.striped}
+
+**Anfinsen** (prix Nobel 1972) a montré que la séquence contient l'information nécessaire au
+repliement. Mais le nombre de conformations possibles est astronomique (**paradoxe de Levinthal**) :
+prédire la structure à partir de la séquence est resté un grand défi pendant 50 ans. Depuis 1994, la
+compétition **CASP** évalue les méthodes à l'aveugle sur des structures non publiées.
+
+### 2.2 AlphaFold 2 : les idées clés
+
+En 2020 (CASP14), **AlphaFold 2** (DeepMind) atteint une précision proche de l'expérience pour une
+grande partie des cibles. Demis Hassabis et John Jumper reçoivent le **prix Nobel de chimie 2024**
+(avec David Baker, pour la conception de protéines).
+
+**Idée n°1 — la coévolution.** Si deux résidus sont **en contact** dans la structure, une mutation de
+l'un est souvent **compensée** par une mutation de l'autre au cours de l'évolution. En alignant des
+milliers de séquences **homologues** (un **MSA**, *multiple sequence alignment*), on voit apparaître ces
+**mutations corrélées** : elles trahissent les contacts 3D.
+
+**Idée n°2 — une architecture qui raisonne en géométrie.** Le module **Evoformer** fait dialoguer une
+représentation du MSA et une représentation des **paires de résidus** (distances, orientations), avec des
+mises à jour « triangulaires » qui imposent une cohérence géométrique (si A est proche de B et B de C,
+alors A et C ne peuvent pas être très loin). Le **module de structure** construit ensuite les
+coordonnées 3D, et le tout est **recyclé** plusieurs fois.
+
+```{mermaid}
+flowchart TB
+    S["Séquence"] --> M["Homologues (MSA)"]
+    S --> T["Modèles (optionnel)"]
+    M --> E["<b>Evoformer</b><br/>MSA ⇄ paires"]
+    T --> E
+    E --> SM["Module de structure"]
+    SM -->|"recyclage × 3"| E
+    SM --> O["Structure + pLDDT + PAE"]
+```
+
+**ColabFold** (Mirdita *et al.*, 2022) rend AlphaFold 2 accessible dans Colab en remplaçant la recherche
+d'homologues (des heures sur des bases de plusieurs téraoctets) par le serveur **MMseqs2**, 20 à 30 fois
+plus rapide.
+
+### 2.3 Lire les scores de confiance
+
+| Score | Échelle | Signification |
+|---|---|---|
+| **pLDDT** | 0 – 100, **par résidu** | confiance locale : > 90 très haute, 70-90 bonne, 50-70 faible, < 50 très faible (souvent une **région désordonnée**) |
+| **PAE** | en Å, **par paire** de résidus | erreur attendue sur la position du résidu $j$ quand on superpose sur le résidu $i$ : renseigne sur la position **relative des domaines** |
+| **pTM** | 0 – 1, **global** | qualité estimée du repliement global (> 0,5 : repliement probablement correct) |
+
+: Les scores de confiance d'AlphaFold {.striped}
+
+::: {.callout-warning}
+## Un score de confiance n'est pas une mesure
+Le pLDDT est une **auto-évaluation** du modèle. Un pLDDT faible peut signaler une vraie région
+**intrinsèquement désordonnée** (ce qui est une information biologique !) ou simplement un manque
+d'homologues dans le MSA.
+:::
+
+### 2.4 Comparer deux structures : le RMSD
+
+Le **RMSD** (*root-mean-square deviation*) mesure l'écart moyen entre les positions de $N$ atomes
+correspondants (en général les carbones α), **après superposition optimale** (algorithme de Kabsch) :
+
+$$
+\text{RMSD} = \sqrt{\frac{1}{N}\sum_{i=1}^{N} \left\lVert \mathbf{x}_i - \mathbf{y}_i \right\rVert^2}
+$$
+
+Ordres de grandeur : < 1 Å quasi identique ; 1-2 Å très proche ; > 4 Å repliements différents.
+
+```{python}
+#| echo: true
+#| code-fold: true
+#| code-summary: "Code de la démonstration"
+import numpy as np
+
+def kabsch_rmsd(P, Q):
+    """RMSD après superposition optimale de Q sur P (centrage + rotation de Kabsch)."""
+    P, Q = P - P.mean(0), Q - Q.mean(0)
+    U, _, Vt = np.linalg.svd(Q.T @ P)
+    d = np.sign(np.linalg.det(U @ Vt))
+    R = U @ np.diag([1, 1, d]) @ Vt
+    return np.sqrt(((Q @ R - P) ** 2).sum(1).mean())
+
+rng = np.random.default_rng(0)
+P = rng.normal(size=(56, 3)) * 8                       # 56 « carbones alpha »
+angle = np.deg2rad(70)
+rotation = np.array([[np.cos(angle), -np.sin(angle), 0], [np.sin(angle), np.cos(angle), 0], [0, 0, 1]])
+Q = P @ rotation.T + [10, -5, 3] + rng.normal(scale=0.5, size=P.shape)   # tournée, déplacée, bruitée
+
+rmsd_brut = np.sqrt(((P - Q) ** 2).sum(1).mean())
+print(f"RMSD sans superposition : {rmsd_brut:5.2f} Å")
+print(f"RMSD après Kabsch      : {kabsch_rmsd(P, Q):5.2f} Å  (≈ le bruit ajouté)")
+```
+
+### 2.5 Mutations : notation et effets
+
+- **Notation** : `W43A` = le tryptophane (W) en position 43 devient une alanine (A). En nomenclature
+  clinique HGVS : `p.Trp43Ala`.
+- ⚠️ **Numérotation** : la mutation de la **drépanocytose** est historiquement notée **E6V** car la
+  méthionine initiale est retirée de la protéine mature ; dans la séquence UniProt (qui commence par
+  `M`), c'est la position **7** (`p.Glu7Val`).
+- **Effet sur la stabilité** : mesuré par $\Delta\Delta G$ (variation de l'énergie libre de dépliement).
+  Les mutations du **cœur hydrophobe** et les **prolines** dans les hélices/feuillets sont souvent très
+  déstabilisantes ; les mutations de **surface** sont souvent tolérées.
+
+::: {.callout-important}
+## AlphaFold n'a pas été conçu pour prédire l'effet des mutations
+AlphaFold 2 a appris à prédire la structure des **protéines naturelles, repliées et stables** de la PDB.
+Pour un mutant, il prédit très souvent **le même repliement** que la protéine sauvage, même si en
+réalité le mutant ne se replie plus. Plusieurs études ont montré que la structure prédite seule est un
+**mauvais indicateur** de la stabilité ou de la pathogénicité d'une mutation ponctuelle.
+:::
+
+### 2.6 Prédire l'effet d'une mutation avec un modèle de langage
+
+Les modèles de langage protéiques (séance 3) offrent un autre angle. Pour une mutation à la position
+$i$, on masque cette position et on compare les probabilités prédites :
+
+$$
+\text{score}(i, \text{sauvage} \to \text{muté}) = \log P(x_i = \text{muté} \mid \text{contexte}) - \log P(x_i = \text{sauvage} \mid \text{contexte})
+$$
+
+Un score **très négatif** signifie que l'évolution n'a « jamais » accepté cet acide aminé à cet endroit :
+la mutation est probablement **délétère**. Ce score **zéro-shot** (aucun entraînement sur des données
+de mutations) est corrélé aux mesures expérimentales de **balayage mutationnel profond** (*deep
+mutational scanning*). **AlphaMissense** (DeepMind, 2023) combine ce type d'approche avec la structure
+pour estimer la **pathogénicité** de tous les variants faux-sens humains.
+
+### 2.7 L'IA générative pour les protéines
+
+| Approche | Principe | Exemples |
+|---|---|---|
+| Modèles de langage **masqués** | deviner / échantillonner des acides aminés | ESM-2 |
+| Modèles de langage **autorégressifs** | écrire une séquence lettre par lettre, comme un chatbot | ProtGPT2, ProGen |
+| **Repliement inverse** | concevoir une séquence pour une structure donnée | ProteinMPNN |
+| **Diffusion** | générer de nouveaux squelettes 3D à partir de bruit | RFdiffusion |
+| Modèles **multimodaux** | séquence + structure + fonction, complexes avec ADN/ligands | ESM3, AlphaFold 3 |
+
+: Panorama de l'IA générative pour les protéines {.striped}
+
+Ces outils permettent de **concevoir** des protéines qui n'existent pas dans la nature (liants
+thérapeutiques, enzymes, vaccins). Les séquences générées doivent **toujours** être synthétisées et
+testées expérimentalement.
+
+### 2.8 Les limites à garder en tête
+
+- **Biais des données** : la PDB est enrichie en protéines solubles, stables, cristallisables ; les protéines sans homologues (MSA pauvre) sont moins bien prédites.
+- **Une seule conformation statique** : pas de dynamique, d'états multiples (ex. hémoglobine oxy/désoxy), d'environnement (membrane, pH, ligands, modifications post-traductionnelles) dans AlphaFold 2.
+- **Boîte noire** : le modèle ne « comprend » pas la physique, il reconnaît des motifs appris.
+- **Validation expérimentale indispensable** : stabilité thermique (DSF), dichroïsme circulaire, mesures d'activité, cristallographie…
+
+## 3. Déroulé de l'atelier
+
+| Temps | Partie du notebook | Activité |
+|---|---|---|
+| 0:00 – 0:05 | **Lancer l'installation de ColabFold** (§0), présentation du problème | [▶️ Exécuter]{.pill .pill-run} |
+| 0:05 – 0:20 | §1 AlphaFold DB : hémoglobine β en 3D, profil pLDDT | [▶️ Exécuter]{.pill .pill-run} [🔎 Q1]{.pill .pill-think} |
+| 0:20 – 0:45 | §2 Prédiction de GB1 avec ColabFold, PAE, RMSD vs cristallographie, exercice MSA | [▶️ Exécuter]{.pill .pill-run} [🔎 Q2]{.pill .pill-think} |
+| 0:45 – 1:05 | §3 Mutations : `muter()`, sauvage vs mutant, superposition 3D | [✍️ Modifier]{.pill .pill-edit} [🔎 Q3]{.pill .pill-think} |
+| 1:05 – 1:15 | §4 Paysage mutationnel ESM-2 | [▶️ Exécuter]{.pill .pill-run} [🔎 Q4]{.pill .pill-think} |
+| 1:15 – 1:45 | §5 **Mini-projet en binôme** : choix du sujet, prédictions, analyse, 3 diapositives | [✍️ Modifier]{.pill .pill-edit} |
+| 1:45 – 2:00 | **Présentations** (3 min par binôme) et discussion des limites | [🔎 Discuter]{.pill .pill-think} |
+
+: Déroulé indicatif (2h) {.striped .hover .deroule}
+
+::: {.callout-tip}
+## Plan B si ColabFold ne fonctionne pas
+Les mises à jour de Colab cassent parfois l'installation de ColabFold. Dans ce cas, choisissez
+`MOTEUR = "ESMFold (API, sans GPU)"` en haut du notebook : la prédiction passe par l'API publique
+d'**ESMFold** (Meta AI), qui prédit une structure en quelques secondes à partir d'un modèle de langage,
+sans MSA. Toutes les analyses (pLDDT, RMSD, mutations) fonctionnent de la même façon. Autre solution :
+utiliser le [notebook officiel ColabFold](https://colab.research.google.com/github/sokrypton/ColabFold/blob/main/AlphaFold2.ipynb)
+et téléverser les fichiers PDB obtenus.
+:::
+
+### Code clé à retenir
+
+```python
+# Prédiction ColabFold en ligne de commande (dans Colab)
+!colabfold_batch --num-models 1 --num-recycle 3 gb1.fasta resultats/
+
+# Lecture du pLDDT (colonne B-factor) et visualisation 3D
+from Bio.PDB import PDBParser
+import py3Dmol
+s = PDBParser(QUIET=True).get_structure("gb1", "resultats/gb1_unrelaxed_rank_001.pdb")
+plddt = [res["CA"].get_bfactor() for res in s.get_residues()]
+
+vue = py3Dmol.view(width=600, height=400)
+vue.addModel(open("resultats/gb1_unrelaxed_rank_001.pdb").read(), "pdb")
+vue.setStyle({"cartoon": {"color": "spectrum"}})
+vue.zoomTo(); vue.show()
+```
+
+## 4. Mini-projet en binôme (45 min)
+
+::: {.callout-important icon=false}
+## 🏁 Consigne
+Choisissez **une protéine** et **1 à 3 mutations**. Prédisez les structures **sauvage** et **mutante**,
+croisez avec le score **ESM-2** (et **AlphaMissense** pour une protéine humaine), puis présentez en
+**3 minutes** (3 diapositives maximum) :
+
+1. **La question** — la protéine, son rôle biologique, les mutations choisies et **pourquoi** ;
+2. **Les résultats** — pLDDT sauvage vs mutant, RMSD, une capture 3D, score ESM-2 / AlphaMissense ;
+3. **L'interprétation et les limites** — ce que l'on peut conclure, ce que l'on **ne peut pas**
+   conclure, et l'expérience que vous proposeriez pour **valider** *in vitro*.
+:::
+
+| Sujet | Protéine | Idées de mutations | Ce qu'il faut discuter |
+|---|---|---|---|
+| **A** | GB1 (56 aa), protéine modèle d'ingénierie | cœur `W43`, `F52`, `Y3` vs surface `K10`, `E19` | AlphaFold « voit »-il la déstabilisation du cœur ? |
+| **B** | Hémoglobine β (147 aa), drépanocytose | `E7V` (= E6V clinique) | une mutation pathogène… sans changement de repliement |
+| **C** | Ubiquitine (76 aa), signalisation cellulaire | `I44A` (surface d'interaction), `L67S` (cœur) | fonction ≠ stabilité |
+| **D** | Votre protéine (< 150 aa) | à justifier | pertinence biologique du choix |
+
+: Sujets proposés {.striped .hover}
+
+La grille d'évaluation détaillée est dans l'annexe [Évaluation et mini-projet](evaluation.qmd).
+
+::: {.callout-note collapse="true"}
+## Pistes d'analyse pour le sujet B (drépanocytose)
+Valeurs obtenues lors d'un essai (ESMFold + ESM-2 150M) :
+
+| | sauvage | mutant E7V |
+|---|---:|---:|
+| pLDDT moyen | 94,2 | 94,3 |
+| RMSD mutant vs sauvage | — | **0,01 Å** |
+| score ESM-2 | — | −1,4 (modéré) |
+| AlphaMissense | — | **0,22** (plutôt bénin) |
+
+- AlphaFold/ESMFold prédit un repliement **strictement identique** : la mutation est en **surface**.
+- AlphaMissense la classe comme **probablement bénigne** et le score ESM-2 est **modéré** : ces modèles estiment surtout l'impact sur le **repliement** et la **conservation évolutive**.
+- Or la maladie est réelle et grave : la valine hydrophobe exposée crée un « point collant » qui fait **polymériser** l'hémoglobine **désoxygénée** en fibres rigides, déformant les globules rouges en faucille.
+- **Leçon** : un mécanisme de **gain de fonction** impliquant plusieurs molécules (interactions intermoléculaires, état désoxy) est **hors de portée** d'un modèle qui prédit une seule chaîne dans un seul état. La validation expérimentale (et clinique) reste indispensable.
+:::
+
+## 5. Testez-vous
+
+::: {.callout-tip collapse="true"}
+## Q1. Pourquoi AlphaFold a-t-il besoin d'un alignement multiple de séquences ?
+Parce que les **mutations corrélées** entre positions au cours de l'évolution (coévolution) révèlent les
+résidus en **contact** dans la structure 3D. Sans MSA, la prédiction est en général bien moins bonne
+(sauf pour les modèles de langage comme ESMFold, qui ont « mémorisé » cette information évolutive).
+:::
+
+::: {.callout-tip collapse="true"}
+## Q2. Une région a un pLDDT de 35. Que peut-on en conclure ?
+Le modèle a **très peu confiance** dans la position de cette région. Elle est souvent **désordonnée**
+(flexible, sans structure fixe) ; elle ne doit pas être interprétée comme une structure précise.
+:::
+
+::: {.callout-tip collapse="true"}
+## Q3. Le mutant prédit a un RMSD de 0,3 Å par rapport à la protéine sauvage. La mutation est-elle sans effet ?
+Non : AlphaFold tend à prédire le **même repliement** pour des séquences proches. Une mutation peut
+déstabiliser la protéine, abolir une interaction ou une activité catalytique sans que la structure
+**prédite** ne change. Il faut d'autres indicateurs et une **validation expérimentale**.
+:::
+
+::: {.callout-tip collapse="true"}
+## Q4. Que signifie un score ESM-2 de −8 pour une mutation ?
+Que l'acide aminé muté est environ $e^{8} \approx 3\,000$ fois **moins probable** que l'acide aminé
+sauvage à cette position selon le modèle : cette substitution est très rare dans l'évolution, donc
+probablement **délétère**.
+:::
+
+::: {.callout-tip collapse="true"}
+## Q5. Citez trois limites d'AlphaFold 2.
+Par exemple : (1) une **seule conformation statique** ; (2) pas de ligands, d'ions, de membranes ni de
+modifications post-traductionnelles ; (3) mauvaise sensibilité aux **mutations ponctuelles** ;
+(4) dépendance à la profondeur du MSA ; (5) biais de la PDB ; (6) boîte noire.
+:::
+
+## 6. Pour aller plus loin
+
+- Jumper J. *et al.* (2021). *Highly accurate protein structure prediction with AlphaFold.* **Nature**, 596, 583-589.
+- Mirdita M. *et al.* (2022). *ColabFold: making protein folding accessible to all.* **Nature Methods**, 19, 679-682.
+- Meier J. *et al.* (2021). *Language models enable zero-shot prediction of the effects of mutations on protein function.* **NeurIPS**.
+- Cheng J. *et al.* (2023). *Accurate proteome-wide missense variant effect prediction with AlphaMissense.* **Science**, 381, eadg7492.
+- Buel G. R. & Walters K. J. (2022). *Can AlphaFold2 predict the impact of missense mutations on structure?* **Nature Structural & Molecular Biology**, 29, 1-2.
+- Ressources : [AlphaFold DB](https://alphafold.ebi.ac.uk) · [ColabFold](https://github.com/sokrypton/ColabFold) · [RCSB PDB — 1PGA](https://www.rcsb.org/structure/1PGA) · [py3Dmol](https://pypi.org/project/py3Dmol/)

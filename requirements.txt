@@ -1,0 +1,12 @@
+# Dépendances nécessaires au RENDU du site Quarto (figures des pages de cours).
+# Les notebooks Colab installent eux-mêmes leurs bibliothèques (RDKit, Scanpy, ESM-2, Cellpose, ColabFold…).
+jupyter
+nbformat
+nbclient
+numpy
+pandas
+matplotlib
+scipy
+scikit-learn
+scikit-image
+pyyaml

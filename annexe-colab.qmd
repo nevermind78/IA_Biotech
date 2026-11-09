@@ -1,0 +1,137 @@
+# Prise en main de Google Colab et Python express {#sec-colab}
+
+::: {.callout-note icon=false}
+## À faire avant la séance 1
+- **Durée** : 45 min en autonomie
+- **Objectif** : savoir exécuter un notebook, lire et modifier du code Python simple
+- **Livrable** : aucun — mais c'est indispensable pour profiter des ateliers !
+:::
+
+::: {.colab-launch}
+<a href="https://colab.research.google.com/github/nevermind78/IA_Biotech/blob/main/notebooks/S0_prise_en_main_colab.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Ouvrir dans Google Colab"></a>
+
+**Notebook d'auto-formation** — variables, séquences d'ADN, listes, dictionnaires, fonctions, Pandas, graphiques, formulaires Colab. Version téléchargeable : [S0_prise_en_main_colab.ipynb](notebooks/S0_prise_en_main_colab.ipynb)
+:::
+
+## Google Colab en bref
+
+**Google Colaboratory** est un service gratuit de Google qui exécute des notebooks Jupyter **dans le
+cloud** : pas d'installation, des bibliothèques scientifiques déjà présentes, et un accès à des **GPU**
+(cartes graphiques) indispensables au deep learning.
+
+| Action | Comment |
+|---|---|
+| Exécuter une cellule | `Maj + Entrée` (ou bouton ▶) |
+| Tout exécuter | `Exécution → Tout exécuter` (`Ctrl + F9`) |
+| Repartir de zéro | `Exécution → Redémarrer la session` |
+| Activer le GPU | `Exécution → Modifier le type d'exécution → GPU T4` |
+| Sauvegarder son travail | `Fichier → Enregistrer une copie dans Drive` |
+| Ajouter une cellule | boutons `+ Code` / `+ Texte` |
+| Afficher une solution masquée | double-clic sur la cellule « 💡 Solution » |
+
+: Les gestes essentiels dans Colab {.striped}
+
+::: {.callout-warning}
+## Colab est temporaire
+- Une session inactive est **coupée** au bout d'un certain temps ; une session dure au maximum quelques heures.
+- À la coupure, **les variables et les fichiers créés sont perdus** (pas le notebook enregistré dans Drive).
+- L'accès gratuit au GPU est **limité** : désactivez-le (`Modifier le type d'exécution → CPU`) quand vous n'en avez pas besoin.
+:::
+
+## Comment se lit un notebook de l'atelier
+
+```{mermaid}
+flowchart TB
+    A["📝 Cellule texte<br/>explique le problème"] --> B["▶️ Cellule de code fournie<br/>à exécuter et lire"]
+    B --> C["🔎 Question<br/>répondre dans la cellule texte"]
+    C --> D["✍️ Exercice<br/>paramètre ou quelques lignes"]
+    D --> E["💡 Solution masquée<br/>à exécuter dans tous les cas"]
+    E --> B
+```
+
+Les **formulaires Colab** permettent de modifier un paramètre sans toucher au code :
+
+```python
+N_ARBRES = 200   #@param {type:"slider", min:10, max:500, step:10}
+CIBLE = "NR-AhR" #@param ["NR-AhR", "SR-MMP", "SR-p53"]
+```
+
+Dans Colab, ces lignes s'affichent comme un **curseur** et un **menu déroulant** à droite de la cellule.
+Changez la valeur, puis **ré-exécutez la cellule** (et les suivantes qui en dépendent).
+
+## Aide-mémoire Python
+
+::: {.panel-tabset}
+
+## Types de base
+
+```python
+gene = "TP53"            # str  : texte
+longueur = 393           # int  : entier
+masse = 43.7             # float: décimal
+actif = True             # bool : True / False
+print(f"{gene} : {longueur} aa, {masse} kDa")   # f-string
+```
+
+## Séquences (str)
+
+```python
+adn = "ATGGCCATTGTA"
+len(adn)            # 12
+adn[:3]             # 'ATG'  (les 3 premiers)
+adn[-3:]            # 'GTA'  (les 3 derniers)
+adn.count("G")      # 3
+adn[::-1]           # séquence inversée
+```
+
+## Listes et boucles
+
+```python
+genes = ["BRCA1", "TP53", "EGFR"]
+genes.append("KRAS")
+for g in genes:
+    if g == "TP53":
+        print(g, "suppresseur de tumeur")
+codons = [adn[i:i+3] for i in range(0, len(adn), 3)]
+```
+
+## Dictionnaires et fonctions
+
+```python
+code = {"ATG": "M", "GCC": "A", "TAA": "*"}
+code["ATG"]               # 'M'
+code.get("NNN", "?")      # '?' si la clé n'existe pas
+
+def taux_gc(seq):
+    """Proportion de G et C dans une séquence."""
+    return (seq.count("G") + seq.count("C")) / len(seq)
+```
+
+## Pandas
+
+```python
+import pandas as pd
+df = pd.read_csv("donnees.csv")        # lire un fichier
+df.shape, df.head(), df.info()         # explorer
+df["colonne"]                          # une colonne
+df[df["expression"] > 5]               # filtrer des lignes
+df.dropna()                            # retirer les valeurs manquantes
+df.groupby("type")["expression"].mean()  # moyenne par groupe
+df.to_csv("resultat.csv", index=False) # enregistrer
+```
+
+:::
+
+## Les messages d'erreur les plus fréquents
+
+| Erreur | Cause probable | Solution |
+|---|---|---|
+| `NameError: name 'x' is not defined` | cellule qui définit `x` non exécutée, ou faute de frappe | exécuter les cellules précédentes dans l'ordre |
+| `ModuleNotFoundError: No module named ...` | bibliothèque non installée | exécuter la cellule `%pip install` en début de notebook |
+| `KeyError: 'colonne'` | nom de colonne ou de clé inexistant | vérifier l'orthographe avec `df.columns` |
+| `IndentationError` | décalage (espaces) incorrect | aligner le code avec 4 espaces |
+| `CUDA out of memory` | mémoire du GPU saturée | réduire la taille des lots, redémarrer la session |
+
+: Lire une erreur : regardez toujours la **dernière ligne** du message {.striped}
+
+Voir aussi l'annexe [Dépannage](depannage.qmd).

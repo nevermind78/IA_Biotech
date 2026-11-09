@@ -1,0 +1,69 @@
+# Évaluation et mini-projet
+
+## Répartition
+
+| Composante | Poids | Quand | Format |
+|---|:---:|---|---|
+| Livrable séance 1 — pipeline toxicité | 10 % | fin de séance 1 | notebook exécuté + figure |
+| Livrable séance 2 — carte des clusters | 10 % | fin de séance 2 | fichier HTML + CSV + réponses |
+| Livrable séance 3 — comparateur | 10 % | fin de séance 3 | figure + réponses |
+| Livrable séance 4 — rapport d'imagerie | 10 % | fin de séance 4 | archive ZIP + réponses |
+| **Mini-projet (séance 5)** | **40 %** | fin de séance 5 | présentation 3 min + notebook |
+| Participation et quiz « Testez-vous » | 20 % | continu | — |
+
+: Modalités d'évaluation {.striped .hover}
+
+## Grille d'un livrable de séance (sur 10)
+
+| Critère | Points | Attendu |
+|---|:---:|---|
+| **Exécution** | 3 | le notebook s'exécute sans erreur, les sorties sont présentes |
+| **Exercices ✍️** | 2 | les cellules « À vous » sont complétées (pas seulement la solution exécutée) |
+| **Questions 🔎** | 4 | réponses **rédigées**, justifiées par les résultats obtenus **et** par un argument biologique |
+| **Esprit critique** | 1 | au moins une limite ou une précaution d'interprétation identifiée |
+
+: Livrables des séances 1 à 4 {.striped}
+
+## Mini-projet : grille de la présentation (sur 20)
+
+| Critère | Points | Ce que l'on attend |
+|---|:---:|---|
+| **Question biologique** | 4 | protéine et mutation(s) clairement présentées, choix **justifié** (maladie, ingénierie, rôle structural…) |
+| **Démarche et résultats** | 5 | prédictions sauvage et mutant, pLDDT, RMSD, capture 3D lisible, score ESM-2 / AlphaMissense |
+| **Interprétation** | 4 | conclusion prudente, cohérente avec les résultats et avec la biologie de la protéine |
+| **Limites du modèle** | 4 | au moins **deux** limites pertinentes (biais de données, boîte noire, insensibilité aux mutations ponctuelles, conformation unique…) et une **expérience de validation** proposée |
+| **Communication** | 3 | 3 minutes respectées, 3 diapositives claires, les deux membres s'expriment |
+
+: Présentation du mini-projet {.striped}
+
+## Modèle de présentation (3 diapositives)
+
+::: {.panel-tabset}
+
+## Diapositive 1 — La question
+
+- Nom de la protéine, organisme, **fonction** en une phrase
+- La ou les **mutations** étudiées (notation `W43A`) et leur localisation (cœur / surface / site actif)
+- **Pourquoi** ce choix ? Hypothèse de départ : « nous pensons que… »
+
+## Diapositive 2 — Les résultats
+
+- Capture 3D : structure sauvage (gris) superposée au mutant (couleurs pLDDT), résidus mutés en bâtonnets
+- Petit tableau : pLDDT moyen sauvage / mutant, RMSD, score ESM-2, AlphaMissense
+- Le profil pLDDT sauvage vs mutant
+
+## Diapositive 3 — Interprétation et limites
+
+- Ce que les modèles **disent** ; sont-ils d'accord entre eux ?
+- Ce qu'ils **ne permettent pas** de conclure
+- L'**expérience** que vous proposeriez : mesure de stabilité thermique (DSF), dichroïsme circulaire, test d'activité, cristallographie…
+
+:::
+
+::: {.callout-tip}
+## Conseils
+- Une bonne présentation n'est pas celle qui trouve un « grand effet » : c'est celle qui **interprète
+  honnêtement** ce que montrent (et ne montrent pas) les modèles.
+- Faites vos captures 3D directement depuis py3Dmol (clic droit → enregistrer l'image) ou par capture d'écran.
+- Préparez les diapositives **pendant** que les prédictions tournent.
+:::

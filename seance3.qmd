@@ -1,0 +1,343 @@
+# Séance 3 : Séquences protéiques et modèles de langage biologique
+
+::: {.callout-note icon=false}
+## Informations de la séance
+- **Type** : Atelier pratique (*learn by doing*) — **GPU T4 recommandé**
+- **Durée** : 2h
+- **Problème biologique** : prédire la **localisation subcellulaire** d'une protéine (noyau, mitochondrie, membrane, sécrétée) à partir de sa seule séquence
+- **Données** : 600 protéines humaines **Swiss-Prot** (UniProt), 150 par compartiment, au format FASTA
+- **Outils** : Biopython, Scikit-learn, Hugging Face Transformers (**ESM-2** de Meta AI)
+- **Livrable** : un comparateur montrant le gain d'un modèle de langage protéique face au comptage d'acides aminés
+:::
+
+::: {.colab-launch}
+<a href="https://colab.research.google.com/github/nevermind78/IA_Biotech/blob/main/notebooks/S3_sequences_esm2.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Ouvrir dans Google Colab"></a>
+
+**Notebook de l'atelier** — ouvrez-le dans Colab, activez le **GPU T4**, puis `Fichier → Enregistrer une copie dans Drive`. Version téléchargeable : [S3_sequences_esm2.ipynb](notebooks/S3_sequences_esm2.ipynb)
+:::
+
+## 1. Le problème biologique
+
+Les protéines sont synthétisées par les ribosomes du cytoplasme, puis **adressées** vers leur
+compartiment de travail. Connaître cette localisation renseigne sur la **fonction** d'une protéine
+inconnue, et c'est crucial en biotechnologie : pour produire une protéine recombinante, on veut souvent
+qu'elle soit **sécrétée** dans le milieu de culture (purification facilitée).
+
+L'« adresse » est en grande partie **inscrite dans la séquence** :
+
+| Compartiment | Signal d'adressage | Caractéristique de séquence |
+|---|---|---|
+| **Sécrétée** (voie RE → Golgi) | **peptide signal** N-terminal (15-30 aa) | cœur hydrophobe, clivé après translocation |
+| **Mitochondrie** | **peptide de transit** N-terminal | hélice amphiphile riche en Arg/Lys, pauvre en Asp/Glu |
+| **Membrane plasmique** | **hélices transmembranaires** | segments de ~20 aa hydrophobes |
+| **Noyau** | **NLS** (*nuclear localization signal*) | courts motifs basiques (ex. `PKKKRKV`) n'importe où |
+
+: Principaux signaux d'adressage des protéines {.striped}
+
+Des outils comme **SignalP**, **TargetP** ou **DeepLoc** prédisent ces signaux par apprentissage
+automatique. Nous allons reconstruire une version simplifiée de ce type d'outil.
+
+## 2. Notions théoriques essentielles
+
+### 2.1 Les séquences et le format FASTA
+
+Une protéine est une chaîne écrite avec un **alphabet de 20 lettres** (les acides aminés). Le format
+**FASTA** est le standard universel :
+
+```text
+>sp|P01308|INS_HUMAN Insulin OS=Homo sapiens OX=9606 GN=INS PE=1 SV=1
+MALWMRLLPLLALLALWGPDPAAAFVNQHLCGSHLVEALYLVCGERGFFYTPKTRREAEDLQVGQVELGGGPGAGSLQPLALEGSLQKRGIVEQCCTSICSLYQLENYCN
+```
+
+La ligne d'en-tête commence par `>` (base `sp` = Swiss-Prot, accession `P01308`, nom, organisme…).
+**Biopython** lit ces fichiers en une ligne : `SeqIO.parse("fichier.fasta", "fasta")`.
+
+::: {.callout-note}
+## Swiss-Prot ou TrEMBL ?
+UniProtKB contient deux sections : **Swiss-Prot** (~570 000 entrées **vérifiées manuellement** par des
+experts) et **TrEMBL** (> 200 millions d'entrées annotées **automatiquement**). Pour entraîner un modèle,
+des étiquettes fiables sont essentielles : nous utilisons Swiss-Prot.
+:::
+
+```{python}
+#| echo: true
+#| code-fold: true
+#| code-summary: "Code de la figure"
+#| fig-cap: "Profil d'hydrophobicité (Kyte-Doolittle, fenêtre glissante de 9 aa) : l'insuline (sécrétée) présente un pic hydrophobe N-terminal — son peptide signal — absent de l'histone H4 (nucléaire), riche en lysines et arginines."
+import numpy as np
+import matplotlib.pyplot as plt
+
+KD = {"A": 1.8, "R": -4.5, "N": -3.5, "D": -3.5, "C": 2.5, "Q": -3.5, "E": -3.5, "G": -0.4, "H": -3.2, "I": 4.5,
+      "L": 3.8, "K": -3.9, "M": 1.9, "F": 2.8, "P": -1.6, "S": -0.8, "T": -0.7, "W": -0.9, "Y": -1.3, "V": 4.2}
+insuline = ("MALWMRLLPLLALLALWGPDPAAAFVNQHLCGSHLVEALYLVCGERGFFYTPKTRREAEDLQVGQVELGGGPGAGSLQPLALEGSLQKRGIVEQCCTSICSLYQLENYCN")
+histone_h4 = ("MSGRGKGGKGLGKGGAKRHRKVLRDNIQGITKPAIRRLARRGGVKRISGLIYEETRGVLKVFLENVIRDAVTYTEHAKRKTVTAMDVVYALKRQGRTLYGFGG")
+
+def profil(seq, w=9):
+    v = np.array([KD[a] for a in seq])
+    return np.convolve(v, np.ones(w) / w, mode="valid")
+
+plt.figure(figsize=(8, 3.2))
+plt.plot(np.arange(len(profil(insuline))) + 5, profil(insuline), lw=2, label="Insuline (sécrétée)")
+plt.plot(np.arange(len(profil(histone_h4))) + 5, profil(histone_h4), lw=2, label="Histone H4 (noyau)")
+plt.axhline(0, c="grey", lw=0.8)
+plt.axvspan(1, 24, color="gold", alpha=0.2, label="peptide signal de l'insuline")
+plt.xlabel("Position (aa)"); plt.ylabel("Hydrophobicité moyenne")
+plt.legend(fontsize=9)
+plt.tight_layout()
+plt.show()
+```
+
+### 2.2 Transformer une séquence en vecteur
+
+Un classifieur a besoin d'un **vecteur de taille fixe** — or les protéines ont des longueurs variables.
+
+| Représentation | Taille | Ce qu'elle capture | Ce qu'elle perd |
+|---|---|---|---|
+| **One-hot** | $L \times 20$ (variable) | identité exacte de chaque position | — (mais taille variable) |
+| **Composition** (1-mers) | 20 | proportion de chaque acide aminé | **tout l'ordre** de la séquence |
+| **Dipeptides** (2-mers) | 400 | paires voisines | l'ordre à longue distance |
+| **k-mers** | $20^k$ | motifs courts de $k$ lettres | explose vite : $20^3 = 8\,000$, $20^4 = 160\,000$ |
+| **Embedding ESM-2** | 320 à 5 120 | contexte, structure, évolution | interprétabilité directe |
+
+: Représentations d'une séquence protéique {.striped}
+
+```{python}
+#| echo: true
+#| code-fold: false
+from collections import Counter
+
+peptide = "MKKLLAKKL"
+k = 2
+kmers = [peptide[i:i + k] for i in range(len(peptide) - k + 1)]
+print("k-mers :", kmers)
+print("comptage :", Counter(kmers).most_common())
+```
+
+Ces représentations « faites main » relèvent du **feature engineering** : c'est l'humain qui décide quoi
+mesurer. Les modèles de langage, eux, **apprennent** la représentation (*representation learning*).
+
+### 2.3 Les modèles de langage protéiques
+
+L'analogie avec le langage humain est profonde :
+
+| Langage naturel | Protéines |
+|---|---|
+| lettres / mots | acides aminés |
+| phrases | séquences |
+| grammaire, sens | repliement, fonction, contraintes évolutives |
+| corpus : Wikipédia, livres | **UniRef** : des dizaines de millions de séquences naturelles |
+
+**ESM-2** (*Evolutionary Scale Modeling*, Meta AI, 2023) est un **Transformer** entraîné par
+**modélisation de langage masqué** : on cache ~15 % des acides aminés d'une séquence et le modèle doit
+les **deviner** à partir du contexte. La fonction de coût à minimiser est :
+
+$$
+\mathcal{L} = - \sum_{i \in \text{masqués}} \log P\left(x_i \mid x_{\setminus \text{masqués}}\right)
+$$
+
+C'est un apprentissage **auto-supervisé** : aucune étiquette humaine n'est nécessaire, la séquence est
+sa propre supervision. Pour bien deviner, le modèle doit implicitement apprendre quelles positions sont
+**en contact** dans la structure 3D, quels acides aminés sont **interchangeables**, quels motifs sont
+**conservés**…
+
+```{mermaid}
+flowchart TB
+    A["M K T <b>[MASK]</b> I A K"] --> B["Embeddings des jetons"]
+    B --> C["Self-attention (× 6 à 48)"]
+    C --> D["Représentation contextuelle"]
+    D --> E["Prédiction : P(A) = 0,62 …"]
+    D -.->|"moyenne"| F["<b>Embedding</b> de la protéine"]
+```
+
+Le cœur du Transformer est le mécanisme d'**attention** : chaque position calcule à quel point elle doit
+« regarder » chacune des autres positions :
+
+$$
+\text{Attention}(Q, K, V) = \text{softmax}\!\left(\frac{Q K^\top}{\sqrt{d}}\right) V
+$$
+
+où $Q$, $K$, $V$ (requêtes, clés, valeurs) sont des projections apprises des représentations. Les cartes
+d'attention d'ESM retrouvent d'ailleurs en partie les **contacts 3D** entre résidus.
+
+| Modèle ESM-2 | Couches | Paramètres | Dimension de l'embedding |
+|---|:---:|:---:|:---:|
+| `esm2_t6_8M_UR50D` | 6 | 8 M | 320 |
+| `esm2_t12_35M_UR50D` | 12 | 35 M | 480 |
+| `esm2_t30_150M_UR50D` | 30 | 150 M | 640 |
+| `esm2_t33_650M_UR50D` | 33 | 650 M | 1 280 |
+| `esm2_t48_15B_UR50D` | 48 | 15 G | 5 120 |
+
+: Famille ESM-2 (disponible sur Hugging Face) {.striped}
+
+### 2.4 Embeddings et apprentissage par transfert
+
+Pour obtenir **un vecteur par protéine**, on fait la **moyenne** (*mean pooling*) des représentations
+de toutes les positions de la dernière couche. Ce vecteur — l'**embedding** — sert d'entrée à un
+classifieur simple.
+
+```{mermaid}
+flowchart TB
+    subgraph P["① Pré-entraînement — par Meta AI"]
+        direction TB
+        U["Millions de séquences<br/>SANS étiquette"] --> M["ESM-2 (texte à trous)"]
+    end
+    subgraph T["② Transfert — notre atelier"]
+        direction TB
+        S["600 séquences<br/>AVEC étiquette"] --> M2["ESM-2 figé"]
+        M2 --> E["Embeddings"]
+        E --> C["Régression logistique"]
+        C --> R["Localisation prédite"]
+    end
+    M -.->|"poids (Hugging Face)"| M2
+```
+
+C'est l'**apprentissage par transfert** : un modèle entraîné sur une tâche générique avec énormément de
+données est réutilisé pour une tâche spécifique avec **peu de données étiquetées**. Deux variantes :
+
+- **extraction de caractéristiques** (notre cas) : le modèle est figé, on entraîne seulement un petit classifieur ;
+- **affinage** (*fine-tuning*) : on ré-entraîne aussi (une partie) du modèle — plus performant, plus coûteux.
+
+### 2.5 Le classifieur : régression logistique multi-classe
+
+Pour $K$ classes, la régression logistique calcule un score linéaire par classe et le transforme en
+probabilités par la fonction **softmax** :
+
+$$
+P(y = k \mid \mathbf{x}) = \frac{\exp(\mathbf{w}_k^\top \mathbf{x} + b_k)}{\sum_{j=1}^{K} \exp(\mathbf{w}_j^\top \mathbf{x} + b_j)}
+$$
+
+Le paramètre `C` contrôle la **régularisation** (petit `C` = modèle plus simple, moins de
+sur-apprentissage — important quand la dimension est grande devant le nombre d'exemples). On
+**standardise** les variables au préalable (`StandardScaler`).
+
+### 2.6 La validation croisée
+
+Avec 600 exemples, un unique découpage apprentissage/test dépend beaucoup du hasard. En **validation
+croisée à $k$ plis**, les données sont partagées en $k$ parts ; chaque part sert **une fois** de test
+pendant que les $k-1$ autres servent à l'apprentissage. On rapporte la **moyenne ± écart-type** des $k$
+scores.
+
+| | Part 1 | Part 2 | Part 3 | Part 4 | Part 5 | |
+|---|:---:|:---:|:---:|:---:|:---:|---|
+| **Pli 1** | 🟥 test | apprentissage | apprentissage | apprentissage | apprentissage | → score 1 |
+| **Pli 2** | apprentissage | 🟥 test | apprentissage | apprentissage | apprentissage | → score 2 |
+| **Pli 3** | apprentissage | apprentissage | 🟥 test | apprentissage | apprentissage | → score 3 |
+| **Pli 4** | apprentissage | apprentissage | apprentissage | 🟥 test | apprentissage | → score 4 |
+| **Pli 5** | apprentissage | apprentissage | apprentissage | apprentissage | 🟥 test | → score 5 |
+
+: Chaque protéine sert **4 fois** à l'apprentissage et **1 fois** au test ; le score rapporté est la **moyenne des 5 scores**. {.striped}
+
+Pour une comparaison **équitable**, on garde **le même classifieur et les mêmes plis** pour toutes les
+représentations : seule la représentation change.
+
+::: {.callout-warning}
+## Le piège de l'homologie
+Deux protéines de la même famille (homologues) ont des séquences très similaires. Si l'une est dans
+l'apprentissage et l'autre dans le test, le modèle « triche » en reconnaissant la famille. Les études
+rigoureuses (ex. DeepLoc 2.0) regroupent d'abord les séquences par **similarité** (outils CD-HIT,
+MMseqs2) et placent chaque groupe entièrement d'un côté. Nos scores sont donc **optimistes**.
+:::
+
+## 3. Déroulé de l'atelier
+
+| Temps | Partie du notebook | Activité |
+|---|---|---|
+| 0:00 – 0:10 | Présentation du problème et de la théorie | 🔎 |
+| 0:10 – 0:30 | §0-1 Installation, téléchargement, lecture FASTA avec Biopython | [▶️ Exécuter]{.pill .pill-run} |
+| 0:30 – 0:50 | §2 **Exercice : fonction `composition`**, heatmap, profil N-terminal | [✍️ Modifier]{.pill .pill-edit} [🔎 Q1]{.pill .pill-think} |
+| 0:50 – 1:05 | §3-4 k-mers, validation croisée des représentations simples | [▶️ Exécuter]{.pill .pill-run} [🔎 Q2]{.pill .pill-think} |
+| 1:05 – 1:30 | §5 ESM-2 : tokenisation, embeddings, évaluation | [▶️ Exécuter]{.pill .pill-run} [✍️ Modifier]{.pill .pill-edit} |
+| 1:30 – 1:50 | §6-7 Comparateur, matrices de confusion, t-SNE, nouvelles protéines | [🔎 Q3]{.pill .pill-think} [✍️ Modifier]{.pill .pill-edit} |
+| 1:50 – 2:00 | Défis : taille du modèle, N-terminal vs C-terminal | [✍️ Modifier]{.pill .pill-edit} |
+
+: Déroulé indicatif (2h) {.striped .hover .deroule}
+
+### Code clé à retenir
+
+```python
+import torch
+from transformers import AutoTokenizer, AutoModel
+
+nom = "facebook/esm2_t12_35M_UR50D"
+tokenizer = AutoTokenizer.from_pretrained(nom)          # découpe la séquence en jetons
+modele = AutoModel.from_pretrained(nom).eval()          # télécharge les poids pré-entraînés
+
+enc = tokenizer(["MKTAYIAKQRQISFVKSHFSRQ"], return_tensors="pt")
+with torch.no_grad():
+    h = modele(**enc).last_hidden_state                 # (1, L + 2, 480)
+embedding = h[0, 1:-1].mean(dim=0)                      # moyenne sans les jetons <cls> et <eos>
+```
+
+## 4. Exercices et défis
+
+1. **Exercice 1 — `composition(sequence)`** : renvoyer les 20 fréquences d'acides aminés.
+2. **Question d'analyse** : relier les enrichissements en acides aminés aux propriétés de chaque compartiment.
+3. **Défi 1 — Taille du modèle** : comparer ESM-2 8M, 35M et 150M (performance et temps de calcul).
+4. **Défi 2 — Où est l'information ?** : embeddings des 50 premiers vs 50 derniers acides aminés.
+
+::: {.callout-note collapse="true"}
+## Éléments de correction
+
+- **Composition** : `return [sequence.count(aa) / len(sequence) for aa in ACIDES_AMINES]`.
+- **Enrichissements** : membrane → acides aminés hydrophobes (`L`, `I`, `V`, `F`) des hélices transmembranaires ; noyau → `K`, `R`, `S` (liaison à l'ADN chargé négativement, NLS basiques) ; sécrétées → `C` (ponts disulfures stabilisant les protéines extracellulaires) ; mitochondrie → `A`, `L`, `R` et peu de `D`/`E` (peptide de transit amphiphile et basique).
+- **Comparateur** : la composition atteint typiquement ~55-65 % d'exactitude, les dipeptides font à peine mieux, et ESM-2 35M dépasse nettement (≈ 80 % ou plus). Les confusions résiduelles concernent souvent membrane ↔ sécrétée (les deux utilisent la voie du réticulum et un peptide signal).
+- **Taille du modèle** : le gain de 8M → 35M → 150M est réel mais **décroissant**, alors que le temps de calcul augmente fortement.
+- **N- vs C-terminal** : les 50 premiers acides aminés prédisent bien mieux la localisation que les 50 derniers, car les signaux de sécrétion et d'adressage mitochondrial sont **N-terminaux**.
+:::
+
+## 5. Livrable
+
+::: {.callout-important icon=false}
+## 🏁 À rendre
+- La figure `comparateur_representations.png` (exactitude moyenne ± écart-type pour composition, dipeptides et ESM-2) ;
+- les matrices de confusion composition vs ESM-2 ;
+- vos réponses aux questions 🔎 1 à 3, dont une explication de **pourquoi** ESM-2, qui n'a jamais vu d'étiquette de localisation, est si performant.
+:::
+
+## 6. Testez-vous
+
+::: {.callout-tip collapse="true"}
+## Q1. Pourquoi la composition en acides aminés perd-elle de l'information utile ?
+Elle ignore complètement l'**ordre** des acides aminés. Or les signaux d'adressage sont **locaux** (ex.
+le peptide signal dans les 30 premiers résidus) : leur effet est dilué dans la moyenne de toute la séquence.
+:::
+
+::: {.callout-tip collapse="true"}
+## Q2. Qu'est-ce que l'apprentissage auto-supervisé ?
+Un apprentissage où la supervision est **construite à partir des données elles-mêmes** (ici : deviner un
+acide aminé masqué). Il permet d'exploiter des quantités énormes de données **non étiquetées**.
+:::
+
+::: {.callout-tip collapse="true"}
+## Q3. Qu'est-ce qu'un embedding ?
+Un **vecteur de nombres** qui représente un objet (une protéine) de façon à ce que des objets similaires
+(fonction, structure, origine évolutive) aient des vecteurs **proches**. Ici, c'est la moyenne des
+représentations internes d'ESM-2.
+:::
+
+::: {.callout-tip collapse="true"}
+## Q4. Pourquoi utiliser la validation croisée plutôt qu'un seul découpage ?
+Pour réduire la **dépendance au hasard** du découpage et obtenir une estimation plus fiable (moyenne)
+avec une mesure de son **incertitude** (écart-type), surtout quand le nombre d'exemples est limité.
+:::
+
+::: {.callout-tip collapse="true"}
+## Q5. Pourquoi nos performances sont-elles probablement surestimées ?
+À cause des **homologues** répartis entre apprentissage et test : le modèle peut reconnaître une famille
+de protéines plutôt qu'apprendre les signaux d'adressage. Il faut un découpage par similarité de séquence.
+:::
+
+## 7. Limites et bonnes pratiques
+
+- Beaucoup de protéines ont **plusieurs localisations** (ex. noyau et cytoplasme) : nous les avons exclues pour simplifier, la réalité est **multi-étiquette**.
+- Les annotations de localisation, même dans Swiss-Prot, ne sont pas toutes expérimentales.
+- Un modèle de langage hérite des **biais** de ses données : espèces et familles sur-représentées dans UniProt.
+- L'embedding moyen est une **compression** : il résume une protéine entière en quelques centaines de nombres.
+
+## 8. Pour aller plus loin
+
+- Lin Z. *et al.* (2023). *Evolutionary-scale prediction of atomic-level protein structure with a language model.* **Science**, 379, 1123-1130. (ESM-2 et ESMFold)
+- Rives A. *et al.* (2021). *Biological structure and function emerge from scaling unsupervised learning to 250 million protein sequences.* **PNAS**, 118, e2016239118.
+- Thumuluri V. *et al.* (2022). *DeepLoc 2.0: multi-label subcellular localization prediction using protein language models.* **Nucleic Acids Research**, 50, W228-W234.
+- Vaswani A. *et al.* (2017). *Attention is all you need.* **NeurIPS**.
+- Documentation : [Hugging Face — ESM](https://huggingface.co/docs/transformers/model_doc/esm) · [Biopython Tutorial](https://biopython.org/docs/latest/Tutorial/index.html)
