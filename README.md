@@ -31,3 +31,7 @@ informatique : *learn by doing* sur **Google Colab**, avec des données biologiq
 pip install -r requirements.txt
 quarto preview        # ou : quarto render  (sortie dans _site/)
 ```
+
+## Site du cours
+
+Le site est en ligne sur **<https://nevermind78.github.io/IA_Biotech/>** 
