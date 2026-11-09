@@ -32,3 +32,6 @@ data/cache/
 Thumbs.db
 .vscode/
 .idea/
+
+# Guide de preparation de l enseignant : conserve sur la branche "enseignant"
+README-BIOLOGIE.md

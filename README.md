@@ -12,18 +12,10 @@ informatique : *learn by doing* sur **Google Colab**, avec des données biologiq
 | 4 | Imagerie cellulaire — Otsu, Cellpose, transfer learning | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/nevermind78/IA_Biotech/blob/main/notebooks/S4_imagerie_cellpose.ipynb) |
 | 5 | Structure 3D et mutations — ColabFold, ESM-2, mini-projet | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/nevermind78/IA_Biotech/blob/main/notebooks/S5_alphafold_mutations.ipynb) |
 
-## Pour l'enseignant
-
-📖 **[Guide de biologie pour l'enseignant](README-BIOLOGIE.md)** — décode le vocabulaire biologique du
-module pour un profil informatique : le dogme central expliqué par analogie avec le code source, les
-termes utiles séance par séance, les 12 pièges à éviter et des réponses prêtes aux questions d'étudiants.
-Ce guide n'est pas publié sur le site : il est destiné à la préparation des séances.
-
 ## Structure du dépôt
 
 ```
 ├── _quarto.yml          # configuration du livre Quarto
-├── README-BIOLOGIE.md   # guide de biologie pour l'enseignant (hors site)
 ├── index.qmd            # présentation du module
 ├── seance1.qmd … seance5.qmd   # cours résumé + notions théoriques + déroulé de chaque atelier
 ├── annexe-colab.qmd, notebooks.qmd, evaluation.qmd, glossaire.qmd, depannage.qmd
