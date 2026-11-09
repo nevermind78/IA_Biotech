@@ -1,0 +1,730 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Intelligence Artificielle et Biotechnologie",
+    "section": "",
+    "text": "Présentation du module",
+    "crumbs": [
+      "Présentation du module"
+    ]
+  },
+  {
+    "objectID": "index.html#informations-générales",
+    "href": "index.html#informations-générales",
+    "title": "Intelligence Artificielle et Biotechnologie",
+    "section": "Informations générales",
+    "text": "Informations générales\n\n\n\n\n\n\nNoteDétails du module\n\n\n\n\nIntitulé : Intelligence Artificielle et Biotechnologie\nPublic : élèves ingénieurs (biotechnologie, génie biologique, agroalimentaire, procédés…) non spécialistes en informatique\nPrérequis : bases de Python (variables, listes, fonctions) — une remise à niveau est fournie\nVolume horaire : 10h = 5 ateliers pratiques de 2h\nFormat : 100 % learn by doing, sur Google Colab (rien à installer : un navigateur et un compte Google suffisent)\nEnseignant : Abdallah Khemais",
+    "crumbs": [
+      "Présentation du module"
+    ]
+  },
+  {
+    "objectID": "index.html#lapproche-apprendre-en-faisant",
+    "href": "index.html#lapproche-apprendre-en-faisant",
+    "title": "Intelligence Artificielle et Biotechnologie",
+    "section": "L’approche : apprendre en faisant",
+    "text": "L’approche : apprendre en faisant\nChaque atelier suit le même fil rouge : on part d’un problème biologique concret, on charge un jeu de données réel, on entraîne ou interroge un modèle d’IA, puis on interprète les résultats avec un regard de biologiste.\n\n\n\n\n\n\nflowchart TB\n    A[\"🧬 Problème biologique\"] --&gt; B[\"📂 Données réelles\"]\n    B --&gt; C[\"🤖 Modèle d'IA\"]\n    C --&gt; D[\"📊 Évaluation\"]\n    D --&gt; E[\"🔬 Interprétation\"]\n    E -.-&gt;|\"nouvelle question\"| A\n\n\n\n\n\n\nLes notebooks Colab sont pré-remplis :\n\n≈ 70 % de code fourni que vous exécutez, lisez et analysez ;\n≈ 30 % de code à modifier : paramètres (curseurs, menus) ou petites fonctions à compléter.\n\n\nLégende utilisée dans tous les notebooks\n\n\n\n\n\n\n\nPictogramme\nActivité\nCe que vous faites\n\n\n\n\n▶️\nExécuter\nlancer une cellule de code fournie et lire le résultat\n\n\n✍️\nModifier\nchanger un paramètre, compléter quelques lignes\n\n\n🔎\nInterpréter\nrépondre à une question biologique ou méthodologique\n\n\n💡\nSolution\ncellule masquée (double-clic pour l’afficher)\n\n\n\n\n\n\n\n\n\nAstucePas besoin d’être informaticien·ne\n\n\n\nL’objectif n’est pas de devenir développeur, mais de savoir utiliser, évaluer et critiquer des outils d’IA appliqués à la biologie : choisir une méthode, vérifier qu’un modèle est fiable, et reconnaître ses limites.",
+    "crumbs": [
+      "Présentation du module"
+    ]
+  },
+  {
+    "objectID": "index.html#objectifs-dapprentissage",
+    "href": "index.html#objectifs-dapprentissage",
+    "title": "Intelligence Artificielle et Biotechnologie",
+    "section": "Objectifs d’apprentissage",
+    "text": "Objectifs d’apprentissage\nAu terme de ce module, vous serez capable de :\n\nPréparer un jeu de données biologiques réel (nettoyage, normalisation, encodage) avec Pandas ;\nEntraîner et évaluer un modèle supervisé en choisissant les bonnes métriques (matrice de confusion, ROC-AUC, validation croisée) ;\nExplorer des données de grande dimension sans étiquettes (ACP, UMAP, clustering) et en extraire des biomarqueurs ;\nUtiliser des modèles pré-entraînés (ESM-2, Cellpose, AlphaFold 2) par apprentissage par transfert ;\nInterpréter biologiquement les sorties d’un modèle et en identifier les limites (biais, sur-apprentissage, boîte noire, besoin de validation expérimentale).",
+    "crumbs": [
+      "Présentation du module"
+    ]
+  },
+  {
+    "objectID": "index.html#programme-des-5-ateliers",
+    "href": "index.html#programme-des-5-ateliers",
+    "title": "Intelligence Artificielle et Biotechnologie",
+    "section": "Programme des 5 ateliers",
+    "text": "Programme des 5 ateliers\n\nVue d’ensemble du module\n\n\nSéance\nProblème biologique\nDonnées réelles\nMéthodes d’IA\nLivrable\n\n\n\n\n1 · Premier modèle prédictif\nUne molécule est-elle toxique ?\nTox21 (~8 000 molécules)\nPandas, descripteurs RDKit, Random Forest\npipeline + matrice de confusion + importance des variables\n\n\n2 · Non supervisé & transcriptomique\nQuels types de cellules dans un échantillon ?\nRNA-seq single-cell PBMC 3k (2 700 cellules × 33 000 gènes)\nACP, UMAP, K-Means\ncarte interactive des clusters + biomarqueurs\n\n\n3 · Séquences & modèles de langage\nOù va une protéine dans la cellule ?\n600 protéines humaines Swiss-Prot (FASTA)\nk-mers, ESM-2 (Hugging Face), régression logistique\ncomparateur k-mers vs ESM-2\n\n\n4 · Vision par ordinateur\nCompter et mesurer des cellules\nMicroscopie en fluorescence (noyaux)\nOtsu/watershed, Cellpose (CNN), transfer learning\nscript de segmentation + rapport quantitatif\n\n\n5 · Structure & IA générative\nQuel est l’impact d’une mutation ?\nGB1, hémoglobine β, AlphaFold DB, PDB\nColabFold (AlphaFold 2), py3Dmol, ESM-2\nmini-projet en binôme (présentation 3 min)\n\n\n\n\n\n\n\n\n\nflowchart LR\n    T[\"📋 Tableaux de descripteurs\"] --&gt; S1[\"&lt;b&gt;S1&lt;/b&gt; · Random Forest\"]\n    M[\"🧫 Matrices d'expression\"] --&gt; S2[\"&lt;b&gt;S2&lt;/b&gt; · ACP / UMAP / K-Means\"]\n    Q[\"🔤 Séquences ADN / protéines\"] --&gt; S3[\"&lt;b&gt;S3&lt;/b&gt; · ESM-2\"]\n    I[\"🔬 Images de microscopie\"] --&gt; S4[\"&lt;b&gt;S4&lt;/b&gt; · Cellpose\"]\n    P[\"🧩 Structures 3D\"] --&gt; S5[\"&lt;b&gt;S5&lt;/b&gt; · AlphaFold 2\"]\n    S3 -.-&gt;|\"embeddings\"| S5",
+    "crumbs": [
+      "Présentation du module"
+    ]
+  },
+  {
+    "objectID": "index.html#organisation-pratique",
+    "href": "index.html#organisation-pratique",
+    "title": "Intelligence Artificielle et Biotechnologie",
+    "section": "Organisation pratique",
+    "text": "Organisation pratique\n\nAvant la séance 1Pendant chaque séanceAprès chaque séance\n\n\n\nCréez (ou vérifiez) votre compte Google.\nFaites le notebook d’auto-formation Prise en main de Colab et Python (45 min).\nTestez l’ouverture d’un notebook via un badge .\n\n\n\n\nOuvrez la page de la séance sur ce site et lisez l’encadré théorique (≈ 10 min, présenté par l’enseignant).\nCliquez sur le badge Open in Colab, puis Fichier → Enregistrer une copie dans Drive.\nPour les séances 3, 4 et 5 : Exécution → Modifier le type d'exécution → GPU T4.\nAvancez dans le notebook en suivant les pictogrammes ▶️ ✍️ 🔎.\n\n\n\n\nVérifiez que toutes les cellules ont été exécutées et que les questions 🔎 ont une réponse.\nDéposez le livrable demandé (notebook partagé ou fichiers exportés) sur la plateforme du cours.\nFaites le petit quiz « Testez-vous » en fin de page.",
+    "crumbs": [
+      "Présentation du module"
+    ]
+  },
+  {
+    "objectID": "index.html#évaluation",
+    "href": "index.html#évaluation",
+    "title": "Intelligence Artificielle et Biotechnologie",
+    "section": "Évaluation",
+    "text": "Évaluation\n\nModalités d’évaluation\n\n\n\n\n\n\n\nComposante\nPoids\nDétails\n\n\n\n\nLivrables des séances 1 à 4\n40 %\n4 × 10 % : notebook exécuté + réponses aux questions 🔎\n\n\nMini-projet (séance 5)\n40 %\nprésentation de 3 min en binôme + notebook\n\n\nParticipation et quiz\n20 %\nquiz « Testez-vous » et implication en atelier\n\n\n\nLa grille détaillée est disponible dans l’annexe Évaluation et mini-projet.",
+    "crumbs": [
+      "Présentation du module"
+    ]
+  },
+  {
+    "objectID": "index.html#stack-technique",
+    "href": "index.html#stack-technique",
+    "title": "Intelligence Artificielle et Biotechnologie",
+    "section": "Stack technique",
+    "text": "Stack technique\n\nBibliothèques utilisées\n\n\n\n\n\n\n\nOutil\nRôle dans le module\nSéances\n\n\n\n\nGoogle Colab\nenvironnement d’exécution gratuit (CPU/GPU) dans le navigateur\n1 – 5\n\n\nPandas / NumPy\nmanipulation de tableaux de données\n1 – 5\n\n\nMatplotlib / Seaborn / Plotly\nvisualisation (statique et interactive)\n1 – 5\n\n\nScikit-learn\nmodèles classiques d’apprentissage automatique\n1 – 4\n\n\nRDKit\nchimie-informatique (molécules, descripteurs)\n1\n\n\nScanpy / UMAP\nanalyse single-cell, réduction de dimension\n2\n\n\nBiopython\nlecture de séquences (FASTA) et de structures (PDB)\n3, 5\n\n\nHugging Face Transformers\nmodèles de langage protéiques pré-entraînés (ESM-2)\n3, 5\n\n\nscikit-image / Cellpose\ntraitement et segmentation d’images\n4\n\n\nColabFold / py3Dmol\nprédiction (AlphaFold 2) et visualisation 3D de structures\n5",
+    "crumbs": [
+      "Présentation du module"
+    ]
+  },
+  {
+    "objectID": "index.html#ressources",
+    "href": "index.html#ressources",
+    "title": "Intelligence Artificielle et Biotechnologie",
+    "section": "Ressources",
+    "text": "Ressources\n\nOuvrages de référence\n\nRamsundar B., Eastman P., Walters P., Pande V. (2019) — Deep Learning for the Life Sciences, O’Reilly.\nGéron A. (2022) — Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow, 3e édition, O’Reilly.\nAntao T. (2022) — Bioinformatics with Python Cookbook, 3e édition, Packt.\n\n\n\nBases de données utilisées\n\nTox21 / MoleculeNet — toxicologie ; ChEMBL — bioactivité des molécules\n10x Genomics datasets — RNA-seq single-cell\nUniProt — séquences et annotations de protéines\nBroad Bioimage Benchmark Collection — images de microscopie\nRCSB PDB et AlphaFold DB — structures 3D expérimentales et prédites\n\n\n\n\n\n\n\nAstuceCode source du cours\n\n\n\nTous les supports (pages, notebooks, données de secours) sont disponibles sur GitHub. Les notebooks peuvent aussi être téléchargés pour être exécutés avec Jupyter en local.",
+    "crumbs": [
+      "Présentation du module"
+    ]
+  },
+  {
+    "objectID": "seance1.html",
+    "href": "seance1.html",
+    "title": "Séance 1 : Données biologiques et premier modèle prédictif",
+    "section": "",
+    "text": "1. Le problème biologique\nChaque année, des milliers de nouvelles molécules (médicaments, pesticides, cosmétiques, additifs) doivent être évaluées pour leur toxicité. Les tests in vivo sont coûteux, lents et posent des questions éthiques (règle des 3R : remplacer, réduire, raffiner l’expérimentation animale). Le programme Tox21 a donc testé ~8 000 composés sur des essais cellulaires à haut débit.\nNous étudions l’essai NR-AhR : la molécule active-t-elle le récepteur aryl hydrocarbure ? AhR est un facteur de transcription activé par des polluants plans et aromatiques (dioxines, hydrocarbures aromatiques polycycliques de la fumée) ; son activation induit les enzymes CYP1A1/CYP1B1 et est associée à la cancérogénèse et à l’immunotoxicité.",
+    "crumbs": [
+      "Ateliers pratiques (5 × 2h)",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Séance 1 : Données biologiques et premier modèle prédictif</span>"
+    ]
+  },
+  {
+    "objectID": "seance1.html#le-problème-biologique",
+    "href": "seance1.html#le-problème-biologique",
+    "title": "Séance 1 : Données biologiques et premier modèle prédictif",
+    "section": "",
+    "text": "AstuceIdée clé : la relation structure–activité (QSAR)\n\n\n\nDes molécules de structures proches ont souvent des activités biologiques proches. Si l’on décrit chaque molécule par des nombres (ses descripteurs), un algorithme peut apprendre la relation entre ces nombres et la toxicité. C’est l’approche QSAR (Quantitative Structure–Activity Relationship), utilisée depuis les années 1960 et aujourd’hui dopée par le machine learning.",
+    "crumbs": [
+      "Ateliers pratiques (5 × 2h)",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Séance 1 : Données biologiques et premier modèle prédictif</span>"
+    ]
+  },
+  {
+    "objectID": "seance1.html#notions-théoriques-essentielles",
+    "href": "seance1.html#notions-théoriques-essentielles",
+    "title": "Séance 1 : Données biologiques et premier modèle prédictif",
+    "section": "2. Notions théoriques essentielles",
+    "text": "2. Notions théoriques essentielles\n\n2.1 Apprentissage supervisé\nEn apprentissage supervisé, on dispose d’exemples dont on connaît la réponse :\n\n\\(\\mathbf{X}\\) : la matrice des variables explicatives (features) — une ligne par molécule, une colonne par descripteur ;\n\\(\\mathbf{y}\\) : la cible (target) — ici 1 = toxique, 0 = non toxique.\n\nLe modèle apprend une fonction \\(f\\) telle que \\(f(\\mathbf{x}) \\approx y\\), puis l’applique à de nouvelles molécules. Si \\(y\\) est une catégorie, c’est une classification ; si c’est un nombre (ex. une IC50), c’est une régression.\n\n\n\n\n\n\nflowchart TB\n    A[\"SMILES\"] --&gt; B[\"Descripteurs (RDKit)\"]\n    B --&gt; C[\"Apprentissage / test\"]\n    C --&gt; D[\"Random Forest\"]\n    D --&gt; E[\"Prédiction\"]\n    E --&gt; F[\"Évaluation (ROC-AUC)\"]\n    F --&gt; G[\"Importance des variables\"]\n\n\n\n\n\n\n\n\n2.2 Représenter une molécule par des nombres\nUne molécule est d’abord écrite en SMILES (Simplified Molecular Input Line Entry System) : CCO est l’éthanol, c1ccccc1 le benzène (minuscules = atomes aromatiques). RDKit lit ces chaînes et calcule des descripteurs physico-chimiques :\n\n\n\n\n\n\n\n\nDescripteur\nDéfinition\nPertinence biologique\n\n\n\n\nMasse molaire\ntaille de la molécule (g/mol)\nabsorption, diffusion\n\n\nlogP\ncoefficient de partage octanol/eau\nlipophilie : passage des membranes, bioaccumulation\n\n\nTPSA\nsurface polaire topologique (Å²)\nperméabilité, passage de la barrière hémato-encéphalique\n\n\nDonneurs / accepteurs de liaisons H\ngroupes –OH, –NH…\ninteractions avec la cible\n\n\nCycles aromatiques\nnombre de cycles plans conjugués\nplanéité (ligands d’AhR)\n\n\nHalogènes\natomes F, Cl, Br, I\npersistance (polluants organochlorés)\n\n\n\n\n\n\n\n\n\nNoteLa règle des 5 de Lipinski\n\n\n\nUn médicament oral a généralement : masse ≤ 500 g/mol, logP ≤ 5, ≤ 5 donneurs et ≤ 10 accepteurs de liaisons H. Ces descripteurs simples résument déjà beaucoup de « biologie » !\n\n\nIl existe aussi des représentations plus riches : les empreintes moléculaires (fingerprints, ex. Morgan/ECFP : un vecteur de bits indiquant la présence de sous-structures) ou des graphes (atomes = nœuds, liaisons = arêtes) traités par des réseaux de neurones.\n\n\n2.3 Préparer les données\nUn jeu de données réel contient toujours des défauts :\n\nvaleurs manquantes : dans Tox21, une molécule n’a pas été testée dans tous les essais → on retire les lignes sans étiquette pour la cible étudiée ;\nsels et mélanges : CC(=O)[O-].[Na+] → on garde le plus gros fragment ;\ndoublons : la même molécule apparaît plusieurs fois → on la garde une fois ;\nclasses déséquilibrées : ~12 % de molécules actives seulement.\n\nOn sépare ensuite les données en apprentissage (80 %) et test (20 %). Le jeu de test simule des molécules jamais vues : c’est lui qui mesure la vraie performance. L’option stratify=y conserve la proportion de toxiques dans les deux ensembles.\n\n\n\n\n\n\nAttentionFuite de données (data leakage)\n\n\n\nToute information du jeu de test qui « fuit » dans l’apprentissage rend l’évaluation trop optimiste (ex. une même molécule sous deux formes salines différentes dans les deux ensembles). En chimie, on utilise souvent un découpage par squelette (scaffold split) pour tester la capacité du modèle à généraliser à de nouvelles familles chimiques.\n\n\n\n\n2.4 L’arbre de décision\nUn arbre de décision pose une suite de questions binaires sur les variables (« nombre de cycles aromatiques ≥ 3 ? »). À chaque nœud, il choisit la question qui sépare le mieux les classes, c’est-à-dire qui réduit le plus l’impureté. L’impureté de Gini d’un nœud contenant une proportion \\(p_k\\) de chaque classe \\(k\\) vaut :\n\\[\nG = 1 - \\sum_{k} p_k^2 \\qquad \\text{(en binaire : } G = 2p(1-p)\\text{)}\n\\]\n\\(G = 0\\) pour un nœud pur (une seule classe) et \\(G = 0{,}5\\) pour un mélange 50/50.\n\n\nCode de la figure\nimport numpy as np\nimport matplotlib.pyplot as plt\n\np = np.linspace(0.001, 0.999, 200)\ngini = 2 * p * (1 - p)\nentropie = -(p * np.log2(p) + (1 - p) * np.log2(1 - p)) / 2   # mise à l'échelle pour comparaison\n\nplt.figure(figsize=(6, 3.2))\nplt.plot(p, gini, lw=2.5, label=\"Gini  2p(1-p)\")\nplt.plot(p, entropie, lw=2.5, ls=\"--\", label=\"Entropie / 2\")\nplt.xlabel(\"Proportion de molécules toxiques dans le nœud (p)\")\nplt.ylabel(\"Impureté\")\nplt.axvline(0.5, c=\"grey\", lw=0.8)\nplt.legend()\nplt.tight_layout()\nplt.show()\n\n\n\n\n\nImpureté de Gini et entropie en fonction de la proportion de toxiques dans un nœud.\n\n\n\n\nUn arbre trop profond finit par isoler chaque molécule d’apprentissage : il mémorise au lieu d’apprendre — c’est le sur-apprentissage (overfitting).\n\n\n2.5 La forêt aléatoire (Random Forest)\nUne forêt aléatoire combine des centaines d’arbres rendus différents par deux sources de hasard :\n\nBagging : chaque arbre est entraîné sur un échantillon bootstrap (tirage avec remise) des molécules ;\nSous-ensemble de variables : à chaque nœud, seules \\(\\approx \\sqrt{p}\\) variables tirées au hasard sont candidates.\n\nLa prédiction finale est la moyenne des probabilités (ou le vote majoritaire) des arbres. Les erreurs individuelles se compensent : la forêt est beaucoup plus stable qu’un arbre seul.\n\n\nCode de la figure\nfrom sklearn.datasets import make_moons\nfrom sklearn.tree import DecisionTreeClassifier\nfrom sklearn.ensemble import RandomForestClassifier\n\nX, y = make_moons(n_samples=300, noise=0.3, random_state=0)\nxx, yy = np.meshgrid(np.linspace(-2, 3, 300), np.linspace(-1.5, 2, 300))\ngrille = np.c_[xx.ravel(), yy.ravel()]\n\nfig, axes = plt.subplots(1, 2, figsize=(10, 3.8))\nmodeles = [(\"Un arbre (profondeur illimitée)\", DecisionTreeClassifier(random_state=0)),\n           (\"Random Forest (200 arbres)\", RandomForestClassifier(n_estimators=200, random_state=0))]\nfor ax, (titre, m) in zip(axes, modeles):\n    m.fit(X, y)\n    zz = m.predict_proba(grille)[:, 1].reshape(xx.shape)\n    ax.contourf(xx, yy, zz, levels=20, cmap=\"RdBu_r\", alpha=0.6)\n    ax.scatter(X[:, 0], X[:, 1], c=y, cmap=\"RdBu_r\", edgecolor=\"k\", s=18)\n    ax.set_title(titre)\n    ax.set_xticks([]); ax.set_yticks([])\nplt.tight_layout()\nplt.show()\n\n\n\n\n\nFrontières de décision sur des données jouets : un arbre profond (sur-apprentissage) vs une forêt de 200 arbres.\n\n\n\n\n\nPrincipaux hyperparamètres de RandomForestClassifier\n\n\n\n\n\n\n\nHyperparamètre\nRôle\nEffet si on l’augmente\n\n\n\n\nn_estimators\nnombre d’arbres\nplus stable, plus lent (rarement nuisible)\n\n\nmax_depth\nprofondeur maximale\nplus flexible → risque de sur-apprentissage\n\n\nmin_samples_leaf\ntaille minimale d’une feuille\nmodèle plus « lisse »\n\n\nclass_weight=\"balanced\"\npondère les classes rares\nmeilleur rappel sur la classe minoritaire\n\n\n\n\n\n2.6 Évaluer un classifieur\nLa matrice de confusion croise la réalité et la prédiction :\n\nMatrice de confusion\n\n\n\n\n\n\n\n\nPrédit non toxique\nPrédit toxique\n\n\n\n\nRéellement non toxique\nVN (vrais négatifs)\nFP (fausses alertes)\n\n\nRéellement toxique\nFN (toxiques manqués)\nVP (vrais positifs)\n\n\n\n\\[\n\\text{Précision} = \\frac{VP}{VP + FP} \\qquad\n\\text{Rappel (sensibilité)} = \\frac{VP}{VP + FN} \\qquad\nF_1 = 2\\,\\frac{\\text{Précision} \\times \\text{Rappel}}{\\text{Précision} + \\text{Rappel}}\n\\]\n\nLe paradoxe de l’exactitudeLa courbe ROC et l’AUCChoisir le seuil\n\n\nAvec 12 % de toxiques, un modèle qui répond toujours « non toxique » obtient 88 % d’exactitude… et ne détecte aucun toxique. Sur des classes déséquilibrées, l’exactitude (accuracy) est trompeuse : regardez le rappel, la précision, le F1, l’exactitude équilibrée (moyenne des rappels de chaque classe) et l’AUC.\n\n\nLe modèle renvoie une probabilité ; on la compare à un seuil pour décider. La courbe ROC trace le taux de vrais positifs en fonction du taux de faux positifs pour tous les seuils. L’AUC (aire sous la courbe) est la probabilité qu’une molécule toxique tirée au hasard reçoive un score plus élevé qu’une molécule non toxique : 0,5 = hasard, 1 = parfait.\n\n\nBaisser le seuil (ex. 0,3 au lieu de 0,5) augmente le rappel (moins de toxiques manqués) mais diminue la précision (plus de fausses alertes). En criblage toxicologique, un faux négatif (toxique déclaré sûr) est bien plus grave qu’une fausse alerte, qui sera de toute façon vérifiée expérimentalement : on privilégie le rappel.\n\n\n\n\n\n2.7 Quelles variables comptent ?\n\nImportance par impureté (MDI) : somme des diminutions de Gini apportées par chaque variable dans tous les arbres. Rapide, mais biaisée en faveur des variables continues ou à nombreuses valeurs.\nImportance par permutation : on mélange une colonne du jeu de test et on mesure la perte de performance. Plus fiable, et calculée sur des données non vues.\n\n\n\n\n\n\n\nImportantImportance ≠ causalité\n\n\n\nUne variable importante est associée à la toxicité dans ces données : elle n’en est pas forcément la cause. Deux variables corrélées (ex. masse molaire et nombre d’atomes lourds) se partagent l’importance. L’interprétation biologique reste le travail du scientifique.",
+    "crumbs": [
+      "Ateliers pratiques (5 × 2h)",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Séance 1 : Données biologiques et premier modèle prédictif</span>"
+    ]
+  },
+  {
+    "objectID": "seance1.html#déroulé-de-latelier",
+    "href": "seance1.html#déroulé-de-latelier",
+    "title": "Séance 1 : Données biologiques et premier modèle prédictif",
+    "section": "3. Déroulé de l’atelier",
+    "text": "3. Déroulé de l’atelier\n\nDéroulé indicatif (2h)\n\n\n\n\n\n\n\nTemps\nPartie du notebook\nActivité\n\n\n\n\n0:00 – 0:10\nPrésentation du problème et de la théorie (cette page)\n🔎\n\n\n0:10 – 0:15\n§0 Installation de RDKit, imports\n▶️ Exécuter\n\n\n0:15 – 0:35\n§1 Chargement de Tox21, valeurs manquantes\n▶️ Exécuter 🔎 Q1\n\n\n0:35 – 0:50\n§2 Nettoyage : cible, sels, doublons (exercice 1), déséquilibre\n✍️ Modifier 🔎 Q2\n\n\n0:50 – 1:05\n§3 Descripteurs RDKit, histogrammes, corrélations\n▶️ Exécuter 🔎 Q3\n\n\n1:05 – 1:35\n§4 Modèle idiot, Random Forest, confusion, ROC, seuil (exercice 2)\n✍️ Modifier 🔎 Q4\n\n\n1:35 – 1:45\n§5 Importance des variables (Gini, permutation)\n▶️ Exécuter 🔎 Q5\n\n\n1:45 – 2:00\n§6-7 Nouvelles molécules, pipeline final, défis\n✍️ Modifier\n\n\n\n\nCode clé à retenir\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.metrics import ConfusionMatrixDisplay, roc_auc_score\n\nX_train, X_test, y_train, y_test = train_test_split(\n    X, y, test_size=0.2, stratify=y, random_state=42)      # 1. séparer\n\nrf = RandomForestClassifier(n_estimators=200, max_depth=12,\n                            class_weight=\"balanced\", random_state=42)\nrf.fit(X_train, y_train)                                    # 2. apprendre\n\nproba = rf.predict_proba(X_test)[:, 1]                      # 3. prédire (probabilités)\nprint(\"AUC :\", roc_auc_score(y_test, proba))                # 4. évaluer\nConfusionMatrixDisplay.from_estimator(rf, X_test, y_test)",
+    "crumbs": [
+      "Ateliers pratiques (5 × 2h)",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Séance 1 : Données biologiques et premier modèle prédictif</span>"
+    ]
+  },
+  {
+    "objectID": "seance1.html#exercices-et-défis",
+    "href": "seance1.html#exercices-et-défis",
+    "title": "Séance 1 : Données biologiques et premier modèle prédictif",
+    "section": "4. Exercices et défis",
+    "text": "4. Exercices et défis\n\nExercice 1 — Doublons : compter et supprimer les SMILES dupliqués avec duplicated() / drop_duplicates().\nExercice 2 — Seuil de décision : faire varier le seuil de 0,1 à 0,9 et observer le compromis précision/rappel.\nDéfi 1 : appliquer le pipeline à d’autres essais (SR-MMP, SR-p53, NR-ER…) et comparer les AUC.\nDéfi 2 : tracer l’AUC apprentissage vs test en fonction de max_depth pour visualiser le sur-apprentissage.\n\n\n\n\n\n\n\nNoteÉléments de correction\n\n\n\n\n\n\nDoublons : df.duplicated(subset=\"smiles\").sum() puis df = df.drop_duplicates(subset=\"smiles\"). Après le retrait des sels, plusieurs formes salines d’une même molécule deviennent identiques.\nSeuil : au seuil 0,5, on détecte ≈ 72 % des toxiques (AUC test ≈ 0,88) ; à 0,3, le rappel monte vers 85 % mais la précision chute (≈ 30 %). Avec class_weight=\"balanced\", les probabilités de la classe rare sont déjà « gonflées » : le seuil qui maximise le F1 peut donc être supérieur à 0,5 (≈ 0,65 ici). Le bon seuil dépend de l’objectif (ne rater aucun toxique ou limiter les fausses alertes), pas d’une règle universelle.\nDéfi 1 : SR-MMP (stress mitochondrial, AUC ≈ 0,91) et NR-AhR (≈ 0,88) sont les mieux prédits par ces descripteurs simples ; NR-ER et SR-ARE (≈ 0,76) sont plus difficiles, car l’activité dépend de détails fins de la structure (complémentarité avec la poche du récepteur, groupes réactifs) que des descripteurs globaux ne capturent pas.\nDéfi 2 : l’AUC d’apprentissage tend vers 1 quand la profondeur augmente, alors que l’AUC de test plafonne puis stagne : l’écart croissant est la signature du sur-apprentissage.\nImportance : cycles_aromatiques et fraction_sp3 ressortent nettement pour AhR (les actifs ont en moyenne ≈ 2 cycles aromatiques contre ≈ 1, et une fraction sp3 de 0,20 contre 0,50), avec logP — cohérent avec des ligands plans, aromatiques et lipophiles (une faible fraction sp3 = molécule plane).\nNouvelles molécules : les six exemples sont en réalité déjà présents dans Tox21 (dioxine, benzo[a]pyrène et β-naphtoflavone y sont actifs ; caféine, aspirine et paracétamol inactifs). Le paracétamol reçoit pourtant une probabilité élevée (≈ 0,7) : c’est un faux positif — avec seulement 12 descripteurs globaux, un petit cycle aromatique plan suffit à « ressembler » aux actifs. Leçon : avant d’annoncer une prédiction sur une molécule « nouvelle », vérifier qu’elle n’était pas dans les données d’apprentissage.",
+    "crumbs": [
+      "Ateliers pratiques (5 × 2h)",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Séance 1 : Données biologiques et premier modèle prédictif</span>"
+    ]
+  },
+  {
+    "objectID": "seance1.html#livrable",
+    "href": "seance1.html#livrable",
+    "title": "Séance 1 : Données biologiques et premier modèle prédictif",
+    "section": "5. Livrable",
+    "text": "5. Livrable\n\n\n\n\n\n\nImportant🏁 À rendre\n\n\n\nLe notebook exécuté contenant :\n\nle pipeline complet (fonction pipeline_toxicite) qui s’exécute sans erreur ;\nla matrice de confusion et la courbe ROC sur le jeu de test ;\nle graphique d’importance des variables et la figure rapport_NR-AhR.png ;\nvos réponses rédigées aux questions 🔎 1 à 5.",
+    "crumbs": [
+      "Ateliers pratiques (5 × 2h)",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Séance 1 : Données biologiques et premier modèle prédictif</span>"
+    ]
+  },
+  {
+    "objectID": "seance1.html#testez-vous",
+    "href": "seance1.html#testez-vous",
+    "title": "Séance 1 : Données biologiques et premier modèle prédictif",
+    "section": "6. Testez-vous",
+    "text": "6. Testez-vous\n\n\n\n\n\n\nAstuceQ1. Pourquoi évaluer le modèle sur un jeu de test séparé ?\n\n\n\n\n\nParce que les performances sur les données d’apprentissage sont optimistes : le modèle les a déjà vues (il peut les avoir mémorisées). Seul un jeu jamais vu estime la performance sur de nouvelles molécules.\n\n\n\n\n\n\n\n\n\nAstuceQ2. Un modèle obtient 90 % d’exactitude sur Tox21 NR-AhR. Est-ce un bon modèle ?\n\n\n\n\n\nPas forcément : un modèle constant « non toxique » obtient déjà ~88 %. Il faut regarder le rappel des toxiques, la précision, le F1 et l’AUC.\n\n\n\n\n\n\n\n\n\nAstuceQ3. Quelle est la différence entre un arbre de décision et une forêt aléatoire ?\n\n\n\n\n\nLa forêt agrège de nombreux arbres entraînés sur des échantillons bootstrap et des sous-ensembles aléatoires de variables. Elle réduit la variance (instabilité) d’un arbre unique et sur-apprend beaucoup moins.\n\n\n\n\n\n\n\n\n\nAstuceQ4. En toxicologie, faut-il privilégier la précision ou le rappel ?\n\n\n\n\n\nLe rappel : manquer une molécule toxique (faux négatif) est plus grave qu’une fausse alerte, qui sera vérifiée par un test expérimental.\n\n\n\n\n\n\n\n\n\nAstuceQ5. Le modèle indique que logP est très important. Peut-on conclure que la lipophilie cause la toxicité ?\n\n\n\n\n\nNon. L’importance mesure une association dans ces données. La lipophilie peut être corrélée à d’autres propriétés (aromaticité, taille) ou refléter un biais de composition de la chimiothèque. Seules des expériences permettent de conclure à une causalité.",
+    "crumbs": [
+      "Ateliers pratiques (5 × 2h)",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Séance 1 : Données biologiques et premier modèle prédictif</span>"
+    ]
+  },
+  {
+    "objectID": "seance1.html#limites-et-bonnes-pratiques",
+    "href": "seance1.html#limites-et-bonnes-pratiques",
+    "title": "Séance 1 : Données biologiques et premier modèle prédictif",
+    "section": "7. Limites et bonnes pratiques",
+    "text": "7. Limites et bonnes pratiques\n\nLes descripteurs globaux ignorent la géométrie 3D et les détails de la poche de liaison du récepteur.\nLe domaine d’applicabilité est limité : le modèle n’est fiable que pour des molécules semblables à celles de Tox21.\nUn essai cellulaire in vitro n’est pas la toxicité chez l’humain (métabolisme, dose, exposition).\nToujours comparer à une référence simple (modèle constant, régression logistique) avant de conclure qu’un modèle est utile.",
+    "crumbs": [
+      "Ateliers pratiques (5 × 2h)",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Séance 1 : Données biologiques et premier modèle prédictif</span>"
+    ]
+  },
+  {
+    "objectID": "seance1.html#pour-aller-plus-loin",
+    "href": "seance1.html#pour-aller-plus-loin",
+    "title": "Séance 1 : Données biologiques et premier modèle prédictif",
+    "section": "8. Pour aller plus loin",
+    "text": "8. Pour aller plus loin\n\nHuang R. et al. (2016). Modelling the Tox21 10K chemical profiles for in vivo toxicity prediction and mechanism characterization. Nature Communications, 7, 10425.\nWu Z. et al. (2018). MoleculeNet: a benchmark for molecular machine learning. Chemical Science, 9, 513-530.\nBreiman L. (2001). Random Forests. Machine Learning, 45, 5-32.\nDocumentation : Scikit-learn — Ensembles · RDKit — Getting Started",
+    "crumbs": [
+      "Ateliers pratiques (5 × 2h)",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Séance 1 : Données biologiques et premier modèle prédictif</span>"
+    ]
+  },
+  {
+    "objectID": "seance2.html",
+    "href": "seance2.html",
+    "title": "Séance 2 : Apprentissage non supervisé et profilage d’expression génique",
+    "section": "",
+    "text": "1. Le problème biologique\nLe RNA-seq mesure, pour chaque échantillon, la quantité d’ARN messager de chaque gène : c’est une photographie de l’activité de la cellule ou du tissu. Deux grandes situations :\nDans les deux cas, on ne connaît pas les groupes à l’avance : c’est un problème d’apprentissage non supervisé. Nous utilisons des cellules mononucléées du sang (PBMC) : lymphocytes T, B, NK, monocytes, cellules dendritiques et quelques plaquettes.\nflowchart TB\n    A[\"🩸 Échantillon de sang\"] --&gt; B[\"Isolement des cellules\"]\n    B --&gt; C[\"Séquençage des ARNm\"]\n    C --&gt; D[\"Matrice cellules × gènes\"]\n    D --&gt; E[\"QC + normalisation\"]\n    E --&gt; F[\"ACP puis UMAP\"]\n    F --&gt; G[\"Clustering (K-Means)\"]\n    G --&gt; H[\"Types cellulaires\"]",
+    "crumbs": [
+      "Ateliers pratiques (5 × 2h)",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Séance 2 : Apprentissage non supervisé et profilage d'expression génique</span>"
+    ]
+  },
+  {
+    "objectID": "seance2.html#le-problème-biologique",
+    "href": "seance2.html#le-problème-biologique",
+    "title": "Séance 2 : Apprentissage non supervisé et profilage d’expression génique",
+    "section": "",
+    "text": "RNA-seq « bulk » : un échantillon = un tissu (ex. une biopsie de tumeur). Regrouper des centaines de patients a permis de découvrir des sous-types moléculaires de cancers (ex. les sous-types luminal A/B, HER2, basal du cancer du sein) qui orientent aujourd’hui le traitement.\nRNA-seq single-cell : un échantillon = une cellule. On peut alors cartographier tous les types cellulaires d’un organe (projet Human Cell Atlas), suivre une réponse cellulaire à un traitement ou repérer une population rare.",
+    "crumbs": [
+      "Ateliers pratiques (5 × 2h)",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Séance 2 : Apprentissage non supervisé et profilage d'expression génique</span>"
+    ]
+  },
+  {
+    "objectID": "seance2.html#notions-théoriques-essentielles",
+    "href": "seance2.html#notions-théoriques-essentielles",
+    "title": "Séance 2 : Apprentissage non supervisé et profilage d’expression génique",
+    "section": "2. Notions théoriques essentielles",
+    "text": "2. Notions théoriques essentielles\n\n2.1 La matrice d’expression\nLes données forment une matrice \\(\\mathbf{X}\\) de taille \\(n \\times p\\) : \\(n\\) = 2 700 cellules (lignes), \\(p\\) ≈ 33 000 gènes (colonnes). La valeur \\(x_{ij}\\) est le nombre de molécules d’ARN du gène \\(j\\) comptées dans la cellule \\(i\\). Cette matrice est :\n\ncreuse (sparse) : &gt; 95 % de zéros (gènes non exprimés, ou ARN non capturé : dropout) ;\nde très grande dimension : \\(p \\gg n\\), chaque cellule est un point dans un espace à 33 000 axes.\n\n\n\n2.2 Contrôle qualité et normalisation\n\nContrôle qualité classique en single-cell\n\n\n\n\n\n\n\nIndicateur\nProblème détecté\nAction\n\n\n\n\nPeu de gènes détectés (&lt; 200)\ngouttelette vide, cellule abîmée\nretirer\n\n\nTrop de gènes (&gt; 2 500)\ndoublet (deux cellules capturées ensemble)\nretirer\n\n\n% d’ARN mitochondrial élevé (&gt; 5 %)\ncellule morte ou stressée (membrane percée : l’ARN cytoplasmique fuit)\nretirer\n\n\n\nChaque cellule est séquencée plus ou moins profondément : on normalise chaque cellule à 10 000 comptages, puis on applique un logarithme pour réduire l’écrasante influence des gènes très exprimés :\n\\[\n\\tilde{x}_{ij} = \\log\\left(1 + 10^4 \\cdot \\frac{x_{ij}}{\\sum_{k} x_{ik}}\\right)\n\\]\nOn ne garde ensuite que les ~2 000 gènes les plus variables (les autres reflètent surtout du bruit), et on centre-réduit chaque gène (moyenne 0, écart-type 1) pour que tous les gènes pèsent pareil.\n\n\n2.3 La malédiction de la dimension\nEn très grande dimension, toutes les distances se ressemblent : le plus proche voisin d’un point est presque aussi loin que le plus éloigné. Les algorithmes fondés sur les distances (K-Means, voisins) deviennent alors peu fiables — d’où la nécessité de réduire la dimension d’abord.\n\n\nCode de la figure\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nrng = np.random.default_rng(0)\ndims = [2, 5, 10, 50, 100, 500, 1000, 5000]\nratios = []\nfor d in dims:\n    pts = rng.random((500, d))\n    dist = np.linalg.norm(pts[1:] - pts[0], axis=1)\n    ratios.append(dist.max() / dist.min())\n\nplt.figure(figsize=(6, 3.2))\nplt.semilogx(dims, ratios, marker=\"o\", lw=2)\nplt.axhline(1, c=\"grey\", ls=\"--\")\nplt.xlabel(\"Nombre de dimensions (gènes)\")\nplt.ylabel(\"distance max / distance min\")\nplt.tight_layout()\nplt.show()\n\n\n\n\n\nQuand la dimension augmente, le rapport entre la distance au point le plus éloigné et au plus proche tend vers 1 : les distances perdent leur pouvoir discriminant.\n\n\n\n\n\n\n2.4 L’Analyse en Composantes Principales (ACP)\nL’ACP cherche de nouveaux axes (les composantes principales, PC) qui capturent le maximum de variance. Chaque PC est une combinaison linéaire des gènes :\n\\[\n\\text{PC}_1 = w_{1}\\,\\text{gène}_1 + w_{2}\\,\\text{gène}_2 + \\dots + w_{p}\\,\\text{gène}_p\n\\]\nMathématiquement, les vecteurs \\(\\mathbf{w}\\) (loadings) sont les vecteurs propres de la matrice de covariance des gènes, et la valeur propre \\(\\lambda_k\\) associée mesure la variance portée par la PC \\(k\\). La part de variance expliquée vaut \\(\\lambda_k / \\sum_j \\lambda_j\\).\n\n\nCode de la figure\nfrom sklearn.decomposition import PCA\n\ng1 = rng.normal(0, 1, 300)\ng2 = 0.8 * g1 + rng.normal(0, 0.4, 300)\nX2 = np.c_[g1, g2]\npca = PCA().fit(X2)\n\nplt.figure(figsize=(5, 4.5))\nplt.scatter(X2[:, 0], X2[:, 1], s=10, alpha=0.5)\nfor k, (vec, var) in enumerate(zip(pca.components_, pca.explained_variance_)):\n    v = vec * 2 * np.sqrt(var)\n    plt.annotate(\"\", xy=v, xytext=(0, 0), arrowprops=dict(arrowstyle=\"-&gt;\", lw=2.5, color=\"crimson\"))\n    plt.text(v[0] * 1.1, v[1] * 1.1, f\"PC{k + 1} ({pca.explained_variance_ratio_[k]:.0%})\",\n             color=\"crimson\", fontsize=11)\nplt.xlabel(\"gène A\"); plt.ylabel(\"gène B\"); plt.axis(\"equal\")\nplt.tight_layout()\nplt.show()\n\n\n\n\n\nACP sur deux « gènes » corrélés : PC1 suit la direction de plus grande variance, PC2 lui est orthogonale.\n\n\n\n\nEn pratique, on garde les 30 à 50 premières PC : elles résument l’essentiel de la structure biologique et éliminent beaucoup de bruit. Les loadings sont interprétables : les gènes de plus fort poids sur PC1 indiquent ce qui distingue les grands groupes de cellules.\n\n\n2.5 UMAP : une carte qui respecte les voisinages\nL’ACP est linéaire et ne peut pas « déplier » des structures complexes. UMAP (Uniform Manifold Approximation and Projection) :\n\nconstruit un graphe des \\(k\\) plus proches voisins de chaque cellule (dans l’espace des PC) ;\ncherche une disposition en 2D qui préserve au mieux ce graphe.\n\n\nParamètres principaux d’UMAP\n\n\n\n\n\n\nParamètre\nEffet\n\n\n\n\nn_neighbors petit (5)\nfavorise la structure locale : beaucoup de petits îlots\n\n\nn_neighbors grand (50-100)\nfavorise la structure globale : îlots plus fusionnés\n\n\nmin_dist\ndistance minimale entre points sur la carte (compacité des îlots)\n\n\n\n\n\n\n\n\n\nAttentionLire une carte UMAP avec prudence\n\n\n\nUMAP (comme t-SNE) préserve les voisinages, pas les distances : la distance entre deux îlots, leur taille apparente ou leur forme n’ont pas de signification quantitative. On ne calcule rien sur une carte UMAP : on y visualise des résultats obtenus dans l’espace des PC.\n\n\n\n\n2.6 Le clustering K-Means\nK-Means partitionne les \\(n\\) points en \\(K\\) groupes en minimisant l’inertie (somme des distances au carré de chaque point au centre \\(\\boldsymbol{\\mu}_k\\) de son groupe) :\n\\[\n\\min_{C_1,\\dots,C_K} \\; \\sum_{k=1}^{K} \\sum_{i \\in C_k} \\left\\lVert \\mathbf{x}_i - \\boldsymbol{\\mu}_k \\right\\rVert^2\n\\]\nAlgorithme de Lloyd : (1) placer \\(K\\) centres (initialisation k-means++) ; (2) affecter chaque point au centre le plus proche ; (3) recalculer chaque centre comme la moyenne de son groupe ; (4) répéter jusqu’à stabilité.\n\n\nCode de la figure\nfrom sklearn.datasets import make_blobs\nfrom sklearn.cluster import KMeans\nfrom sklearn.metrics import silhouette_score\n\nXb, _ = make_blobs(n_samples=400, centers=[[0, 0], [4, 1], [1.5, 4]], cluster_std=0.8, random_state=1)\nfig, axes = plt.subplots(1, 3, figsize=(13, 3.6))\nfor ax, k in zip(axes[:2], [2, 3]):\n    km = KMeans(n_clusters=k, n_init=10, random_state=0).fit(Xb)\n    ax.scatter(Xb[:, 0], Xb[:, 1], c=km.labels_, cmap=\"Set2\", s=10)\n    ax.scatter(*km.cluster_centers_.T, c=\"k\", marker=\"X\", s=120)\n    ax.set_title(f\"K = {k}\")\n    ax.set_xticks([]); ax.set_yticks([])\nks = range(2, 9)\nsil = [silhouette_score(Xb, KMeans(n_clusters=k, n_init=10, random_state=0).fit_predict(Xb)) for k in ks]\naxes[2].plot(ks, sil, marker=\"o\", color=\"tab:green\")\naxes[2].set_xlabel(\"K\"); axes[2].set_title(\"Score de silhouette\")\nplt.tight_layout()\nplt.show()\n\n\n\n\n\nK-Means sur des données simulées : avec K = 3 la partition est naturelle ; le score de silhouette est maximal pour le « bon » K.\n\n\n\n\nChoisir K :\n\nméthode du coude : l’inertie diminue toujours avec \\(K\\) ; on cherche le point où elle cesse de chuter fortement ;\nsilhouette : pour chaque point, \\(s = \\dfrac{b - a}{\\max(a, b)}\\) où \\(a\\) est la distance moyenne aux points de son groupe et \\(b\\) au groupe voisin le plus proche (\\(s \\in [-1, 1]\\), plus c’est haut mieux c’est) ;\nconnaissance biologique : combien de populations attend-on ?\n\n\n\n\n\n\n\nNoteLimites de K-Means et alternatives\n\n\n\nK-Means suppose des groupes sphériques et de tailles comparables : il peut avoir du mal avec les populations rares (plaquettes, cellules dendritiques), surtout si K est trop petit, et il découpe parfois une grande population continue en plusieurs morceaux. En single-cell, la référence est le clustering Leiden sur le graphe des voisins ; d’autres méthodes existent : clustering hiérarchique, DBSCAN/HDBSCAN (fondés sur la densité), modèles de mélange gaussiens.\n\n\n\n\n2.7 Du cluster à la biologie : les gènes marqueurs\nUn cluster n’est qu’un groupe mathématique. Pour lui donner un sens biologique, on cherche les gènes surexprimés dans ce cluster par rapport aux autres :\n\nlog fold-change : différence d’expression moyenne (en log) dedans vs dehors ;\n% de cellules exprimant le gène dans le cluster (un bon marqueur est présent dans la majorité) ;\nen analyse rigoureuse : test statistique (Wilcoxon) et correction pour tests multiples (FDR), car on teste des milliers de gènes.\n\nOn compare ensuite aux marqueurs connus (ex. CD3E → lymphocytes T, MS4A1 → B, LYZ/CD14 → monocytes, NKG7/GNLY → NK, PPBP → plaquettes).\n\n\n2.8 Évaluer un clustering\n\nComment juger un clustering\n\n\n\n\n\n\n\nType\nMesure\nQuand ?\n\n\n\n\nInterne\ninertie, silhouette\naucune étiquette disponible\n\n\nExterne\nindice de Rand ajusté (ARI), information mutuelle\non dispose d’une annotation de référence\n\n\nBiologique\ncohérence des marqueurs, reproductibilité sur un autre échantillon\ntoujours !",
+    "crumbs": [
+      "Ateliers pratiques (5 × 2h)",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Séance 2 : Apprentissage non supervisé et profilage d'expression génique</span>"
+    ]
+  },
+  {
+    "objectID": "seance2.html#déroulé-de-latelier",
+    "href": "seance2.html#déroulé-de-latelier",
+    "title": "Séance 2 : Apprentissage non supervisé et profilage d’expression génique",
+    "section": "3. Déroulé de l’atelier",
+    "text": "3. Déroulé de l’atelier\n\nDéroulé indicatif (2h)\n\n\n\n\n\n\n\nTemps\nPartie du notebook\nActivité\n\n\n\n\n0:00 – 0:10\nPrésentation du problème et de la théorie\n🔎\n\n\n0:10 – 0:20\n§0-1 Installation, chargement, structure AnnData, sparsité\n▶️ Exécuter 🔎 Q1\n\n\n0:20 – 0:35\n§2 Contrôle qualité : choix des seuils\n✍️ Modifier\n\n\n0:35 – 0:45\n§3 Normalisation, gènes variables\n▶️ Exécuter\n\n\n0:45 – 1:00\n§4 ACP : éboulis, projection, loadings\n▶️ Exécuter 🔎 Q2\n\n\n1:00 – 1:15\n§5 UMAP : influence de n_neighbors\n✍️ Modifier 🔎 Q3\n\n\n1:15 – 1:30\n§6 K-Means : coude, silhouette, choix de K\n✍️ Modifier\n\n\n1:30 – 1:50\n§7-9 Carte interactive, marqueurs, annotation, groupe atypique\n✍️ Modifier 🔎 Q4\n\n\n1:50 – 2:00\n§10 Export du livrable, bonus Leiden\n▶️ Exécuter\n\n\n\n\nCode clé à retenir\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.decomposition import PCA\nfrom sklearn.cluster import KMeans\nimport umap\n\nX_std = StandardScaler().fit_transform(X_hvg)            # 1. centrer-réduire chaque gène\nX_pca = PCA(n_components=50).fit_transform(X_std)        # 2. ACP : 2000 gènes → 50 PC\nX_umap = umap.UMAP(n_neighbors=15).fit_transform(X_pca[:, :30])   # 3. carte 2D\nclusters = KMeans(n_clusters=9, n_init=20).fit_predict(X_pca[:, :30])  # 4. clustering sur les PC\n\n\n\n\n\n\nImportantLe clustering se fait sur les PC, pas sur la carte UMAP\n\n\n\nUMAP sert à visualiser. Le clustering est calculé dans l’espace des composantes principales, qui préserve mieux les distances réelles entre cellules.",
+    "crumbs": [
+      "Ateliers pratiques (5 × 2h)",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Séance 2 : Apprentissage non supervisé et profilage d'expression génique</span>"
+    ]
+  },
+  {
+    "objectID": "seance2.html#exercices-et-défis",
+    "href": "seance2.html#exercices-et-défis",
+    "title": "Séance 2 : Apprentissage non supervisé et profilage d’expression génique",
+    "section": "4. Exercices et défis",
+    "text": "4. Exercices et défis\n\nSeuils de QC : choisir GENES_MIN, GENES_MAX, MT_MAX à partir des histogrammes et justifier.\nUMAP : comparer n_neighbors = 5, 15, 50 et décrire l’effet sur la carte.\nChoix de K : proposer un K à partir des courbes et des connaissances sur le sang.\nAnnotation : compléter le dictionnaire numéro de cluster → type cellulaire à l’aide des marqueurs.\nGroupe atypique : isoler un petit îlot par ses coordonnées et identifier ses biomarqueurs.\nBonus : comparer K-Means et Leiden (ARI) ; tester la robustesse avec N_PC = 10, K = 5.\n\n\n\n\n\n\n\nNoteÉléments de correction\n\n\n\n\n\n\nQC : les seuils classiques pour PBMC 3k sont 200 &lt; gènes &lt; 2 500 et % mito &lt; 5 % ; il reste ≈ 2 640 cellules.\nACP : PC1 oppose typiquement les cellules myéloïdes (monocytes : LYZ, S100A8, CST3, FTL) aux lymphoïdes (T/NK : CD3E, IL32, LTB) ; la variance expliquée décroît vite après les ~10 premières PC.\nUMAP : avec n_neighbors = 5, la carte se fragmente en nombreux petits îlots ; à 50-100, les populations proches (T CD4 / T CD8 / NK) se rapprochent.\nK : la silhouette n’a pas toujours un maximum net ; un K de 8 à 10 est biologiquement raisonnable (T CD4, T CD8, B, NK, monocytes CD14+, monocytes FCGR3A+, dendritiques, plaquettes).\nGroupe atypique : avec K = 9, K-Means isole un tout petit cluster (≈ 13 cellules sur 2 638) qui exprime PPBP, PF4, GNG11, SDPR… ce sont les plaquettes (fragments de mégacaryocytes, qui contiennent encore un peu d’ARN). En RNA-seq bulk, leur signal serait dilué dans celui des milliers d’autres cellules.\nBonus : l’ARI entre K-Means et Leiden est généralement élevé (≈ 0,6-0,8) mais pas parfait : les frontières entre populations proches (T CD4 naïfs / mémoire) dépendent de l’algorithme et des paramètres.",
+    "crumbs": [
+      "Ateliers pratiques (5 × 2h)",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Séance 2 : Apprentissage non supervisé et profilage d'expression génique</span>"
+    ]
+  },
+  {
+    "objectID": "seance2.html#livrable",
+    "href": "seance2.html#livrable",
+    "title": "Séance 2 : Apprentissage non supervisé et profilage d’expression génique",
+    "section": "5. Livrable",
+    "text": "5. Livrable\n\n\n\n\n\n\nImportant🏁 À rendre\n\n\n\n\nLa carte interactive carte_clusters_PBMC.html (clusters annotés) ;\nle fichier marqueurs_groupe_atypique.csv ;\nvos réponses aux questions 🔎 1 à 4, dont l’identité du groupe atypique et ses 5 premiers biomarqueurs, avec une phrase justifiant leur rôle biologique.",
+    "crumbs": [
+      "Ateliers pratiques (5 × 2h)",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Séance 2 : Apprentissage non supervisé et profilage d'expression génique</span>"
+    ]
+  },
+  {
+    "objectID": "seance2.html#testez-vous",
+    "href": "seance2.html#testez-vous",
+    "title": "Séance 2 : Apprentissage non supervisé et profilage d’expression génique",
+    "section": "6. Testez-vous",
+    "text": "6. Testez-vous\n\n\n\n\n\n\nAstuceQ1. Pourquoi applique-t-on un logarithme aux comptages ?\n\n\n\n\n\nLes comptages varient sur plusieurs ordres de grandeur : sans log, quelques gènes très exprimés domineraient toutes les distances. Le log rend les variations relatives comparables (un doublement compte autant pour un gène faible que pour un gène fort).\n\n\n\n\n\n\n\n\n\nAstuceQ2. Que représente la PC1 ?\n\n\n\n\n\nLa direction de l’espace des gènes le long de laquelle les cellules varient le plus. C’est une combinaison linéaire de gènes dont les coefficients (loadings) indiquent les gènes responsables de cette variation.\n\n\n\n\n\n\n\n\n\nAstuceQ3. Deux îlots sont très éloignés sur la carte UMAP : les populations sont-elles très différentes ?\n\n\n\n\n\nPas nécessairement. UMAP préserve les voisinages locaux, pas les distances globales. Pour comparer des populations, il faut revenir à l’espace des PC ou à l’expression des gènes.\n\n\n\n\n\n\n\n\n\nAstuceQ4. Pourquoi K-Means peut-il « rater » une population rare ?\n\n\n\n\n\nParce qu’il minimise l’inertie totale : il est plus « rentable » de couper en deux une grande population que d’isoler quelques dizaines de cellules. Les méthodes fondées sur la densité ou sur un graphe (DBSCAN, Leiden) sont plus adaptées aux petits groupes.\n\n\n\n\n\n\n\n\n\nAstuceQ5. Qu’est-ce qui distingue l’apprentissage non supervisé de la séance 1 ?\n\n\n\n\n\nIl n’y a pas d’étiquette \\(y\\) : l’algorithme découvre une structure dans \\(\\mathbf{X}\\) seule. L’évaluation est donc plus difficile et repose sur des critères internes et sur l’interprétation biologique.",
+    "crumbs": [
+      "Ateliers pratiques (5 × 2h)",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Séance 2 : Apprentissage non supervisé et profilage d'expression génique</span>"
+    ]
+  },
+  {
+    "objectID": "seance2.html#limites-et-bonnes-pratiques",
+    "href": "seance2.html#limites-et-bonnes-pratiques",
+    "title": "Séance 2 : Apprentissage non supervisé et profilage d’expression génique",
+    "section": "7. Limites et bonnes pratiques",
+    "text": "7. Limites et bonnes pratiques\n\nLes résultats dépendent de nombreux choix (seuils de QC, nombre de gènes variables, de PC, K, graine aléatoire) : vérifiez la robustesse de vos conclusions.\nUn cluster peut refléter un artefact technique (doublets, stress de dissociation, effet de lot) plutôt qu’un vrai type cellulaire.\nLes effets de lot (batch effects) entre échantillons ou patients doivent être corrigés avant de les comparer (méthodes Harmony, scVI…).\nUn biomarqueur identifié in silico doit être validé (cytométrie en flux, immunohistochimie, qPCR).",
+    "crumbs": [
+      "Ateliers pratiques (5 × 2h)",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Séance 2 : Apprentissage non supervisé et profilage d'expression génique</span>"
+    ]
+  },
+  {
+    "objectID": "seance2.html#pour-aller-plus-loin",
+    "href": "seance2.html#pour-aller-plus-loin",
+    "title": "Séance 2 : Apprentissage non supervisé et profilage d’expression génique",
+    "section": "8. Pour aller plus loin",
+    "text": "8. Pour aller plus loin\n\nLuecken M. D. & Theis F. J. (2019). Current best practices in single-cell RNA-seq analysis: a tutorial. Molecular Systems Biology, 15, e8746.\nWolf F. A., Angerer P. & Theis F. J. (2018). SCANPY: large-scale single-cell gene expression data analysis. Genome Biology, 19, 15.\nMcInnes L., Healy J. & Melville J. (2018). UMAP: Uniform Manifold Approximation and Projection for Dimension Reduction. arXiv:1802.03426.\nDéfi « patients » : le jeu UCI Gene expression cancer RNA-Seq (801 tumeurs de 5 types issus de TCGA) se prête à la même démarche ; comparez vos clusters aux types tumoraux réels avec l’ARI.\nTutoriel officiel : Scanpy — Preprocessing and clustering 3k PBMCs",
+    "crumbs": [
+      "Ateliers pratiques (5 × 2h)",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Séance 2 : Apprentissage non supervisé et profilage d'expression génique</span>"
+    ]
+  },
+  {
+    "objectID": "seance3.html",
+    "href": "seance3.html",
+    "title": "Séance 3 : Séquences protéiques et modèles de langage biologique",
+    "section": "",
+    "text": "1. Le problème biologique\nLes protéines sont synthétisées par les ribosomes du cytoplasme, puis adressées vers leur compartiment de travail. Connaître cette localisation renseigne sur la fonction d’une protéine inconnue, et c’est crucial en biotechnologie : pour produire une protéine recombinante, on veut souvent qu’elle soit sécrétée dans le milieu de culture (purification facilitée).\nL’« adresse » est en grande partie inscrite dans la séquence :\nDes outils comme SignalP, TargetP ou DeepLoc prédisent ces signaux par apprentissage automatique. Nous allons reconstruire une version simplifiée de ce type d’outil.",
+    "crumbs": [
+      "Ateliers pratiques (5 × 2h)",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Séance 3 : Séquences protéiques et modèles de langage biologique</span>"
+    ]
+  },
+  {
+    "objectID": "seance3.html#le-problème-biologique",
+    "href": "seance3.html#le-problème-biologique",
+    "title": "Séance 3 : Séquences protéiques et modèles de langage biologique",
+    "section": "",
+    "text": "Principaux signaux d’adressage des protéines\n\n\n\n\n\n\n\nCompartiment\nSignal d’adressage\nCaractéristique de séquence\n\n\n\n\nSécrétée (voie RE → Golgi)\npeptide signal N-terminal (15-30 aa)\ncœur hydrophobe, clivé après translocation\n\n\nMitochondrie\npeptide de transit N-terminal\nhélice amphiphile riche en Arg/Lys, pauvre en Asp/Glu\n\n\nMembrane plasmique\nhélices transmembranaires\nsegments de ~20 aa hydrophobes\n\n\nNoyau\nNLS (nuclear localization signal)\ncourts motifs basiques (ex. PKKKRKV) n’importe où",
+    "crumbs": [
+      "Ateliers pratiques (5 × 2h)",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Séance 3 : Séquences protéiques et modèles de langage biologique</span>"
+    ]
+  },
+  {
+    "objectID": "seance3.html#notions-théoriques-essentielles",
+    "href": "seance3.html#notions-théoriques-essentielles",
+    "title": "Séance 3 : Séquences protéiques et modèles de langage biologique",
+    "section": "2. Notions théoriques essentielles",
+    "text": "2. Notions théoriques essentielles\n\n2.1 Les séquences et le format FASTA\nUne protéine est une chaîne écrite avec un alphabet de 20 lettres (les acides aminés). Le format FASTA est le standard universel :\n&gt;sp|P01308|INS_HUMAN Insulin OS=Homo sapiens OX=9606 GN=INS PE=1 SV=1\nMALWMRLLPLLALLALWGPDPAAAFVNQHLCGSHLVEALYLVCGERGFFYTPKTRREAEDLQVGQVELGGGPGAGSLQPLALEGSLQKRGIVEQCCTSICSLYQLENYCN\nLa ligne d’en-tête commence par &gt; (base sp = Swiss-Prot, accession P01308, nom, organisme…). Biopython lit ces fichiers en une ligne : SeqIO.parse(\"fichier.fasta\", \"fasta\").\n\n\n\n\n\n\nNoteSwiss-Prot ou TrEMBL ?\n\n\n\nUniProtKB contient deux sections : Swiss-Prot (~570 000 entrées vérifiées manuellement par des experts) et TrEMBL (&gt; 200 millions d’entrées annotées automatiquement). Pour entraîner un modèle, des étiquettes fiables sont essentielles : nous utilisons Swiss-Prot.\n\n\n\n\nCode de la figure\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nKD = {\"A\": 1.8, \"R\": -4.5, \"N\": -3.5, \"D\": -3.5, \"C\": 2.5, \"Q\": -3.5, \"E\": -3.5, \"G\": -0.4, \"H\": -3.2, \"I\": 4.5,\n      \"L\": 3.8, \"K\": -3.9, \"M\": 1.9, \"F\": 2.8, \"P\": -1.6, \"S\": -0.8, \"T\": -0.7, \"W\": -0.9, \"Y\": -1.3, \"V\": 4.2}\ninsuline = (\"MALWMRLLPLLALLALWGPDPAAAFVNQHLCGSHLVEALYLVCGERGFFYTPKTRREAEDLQVGQVELGGGPGAGSLQPLALEGSLQKRGIVEQCCTSICSLYQLENYCN\")\nhistone_h4 = (\"MSGRGKGGKGLGKGGAKRHRKVLRDNIQGITKPAIRRLARRGGVKRISGLIYEETRGVLKVFLENVIRDAVTYTEHAKRKTVTAMDVVYALKRQGRTLYGFGG\")\n\ndef profil(seq, w=9):\n    v = np.array([KD[a] for a in seq])\n    return np.convolve(v, np.ones(w) / w, mode=\"valid\")\n\nplt.figure(figsize=(8, 3.2))\nplt.plot(np.arange(len(profil(insuline))) + 5, profil(insuline), lw=2, label=\"Insuline (sécrétée)\")\nplt.plot(np.arange(len(profil(histone_h4))) + 5, profil(histone_h4), lw=2, label=\"Histone H4 (noyau)\")\nplt.axhline(0, c=\"grey\", lw=0.8)\nplt.axvspan(1, 24, color=\"gold\", alpha=0.2, label=\"peptide signal de l'insuline\")\nplt.xlabel(\"Position (aa)\"); plt.ylabel(\"Hydrophobicité moyenne\")\nplt.legend(fontsize=9)\nplt.tight_layout()\nplt.show()\n\n\n\n\n\nProfil d’hydrophobicité (Kyte-Doolittle, fenêtre glissante de 9 aa) : l’insuline (sécrétée) présente un pic hydrophobe N-terminal — son peptide signal — absent de l’histone H4 (nucléaire), riche en lysines et arginines.\n\n\n\n\n\n\n2.2 Transformer une séquence en vecteur\nUn classifieur a besoin d’un vecteur de taille fixe — or les protéines ont des longueurs variables.\n\nReprésentations d’une séquence protéique\n\n\n\n\n\n\n\n\nReprésentation\nTaille\nCe qu’elle capture\nCe qu’elle perd\n\n\n\n\nOne-hot\n\\(L \\times 20\\) (variable)\nidentité exacte de chaque position\n— (mais taille variable)\n\n\nComposition (1-mers)\n20\nproportion de chaque acide aminé\ntout l’ordre de la séquence\n\n\nDipeptides (2-mers)\n400\npaires voisines\nl’ordre à longue distance\n\n\nk-mers\n\\(20^k\\)\nmotifs courts de \\(k\\) lettres\nexplose vite : \\(20^3 = 8\\,000\\), \\(20^4 = 160\\,000\\)\n\n\nEmbedding ESM-2\n320 à 5 120\ncontexte, structure, évolution\ninterprétabilité directe\n\n\n\n\nfrom collections import Counter\n\npeptide = \"MKKLLAKKL\"\nk = 2\nkmers = [peptide[i:i + k] for i in range(len(peptide) - k + 1)]\nprint(\"k-mers :\", kmers)\nprint(\"comptage :\", Counter(kmers).most_common())\n\nk-mers : ['MK', 'KK', 'KL', 'LL', 'LA', 'AK', 'KK', 'KL']\ncomptage : [('KK', 2), ('KL', 2), ('MK', 1), ('LL', 1), ('LA', 1), ('AK', 1)]\n\n\nCes représentations « faites main » relèvent du feature engineering : c’est l’humain qui décide quoi mesurer. Les modèles de langage, eux, apprennent la représentation (representation learning).\n\n\n2.3 Les modèles de langage protéiques\nL’analogie avec le langage humain est profonde :\n\n\n\n\n\n\n\nLangage naturel\nProtéines\n\n\n\n\nlettres / mots\nacides aminés\n\n\nphrases\nséquences\n\n\ngrammaire, sens\nrepliement, fonction, contraintes évolutives\n\n\ncorpus : Wikipédia, livres\nUniRef : des dizaines de millions de séquences naturelles\n\n\n\nESM-2 (Evolutionary Scale Modeling, Meta AI, 2023) est un Transformer entraîné par modélisation de langage masqué : on cache ~15 % des acides aminés d’une séquence et le modèle doit les deviner à partir du contexte. La fonction de coût à minimiser est :\n\\[\n\\mathcal{L} = - \\sum_{i \\in \\text{masqués}} \\log P\\left(x_i \\mid x_{\\setminus \\text{masqués}}\\right)\n\\]\nC’est un apprentissage auto-supervisé : aucune étiquette humaine n’est nécessaire, la séquence est sa propre supervision. Pour bien deviner, le modèle doit implicitement apprendre quelles positions sont en contact dans la structure 3D, quels acides aminés sont interchangeables, quels motifs sont conservés…\n\n\n\n\n\n\nflowchart TB\n    A[\"M K T &lt;b&gt;[MASK]&lt;/b&gt; I A K\"] --&gt; B[\"Embeddings des jetons\"]\n    B --&gt; C[\"Self-attention (× 6 à 48)\"]\n    C --&gt; D[\"Représentation contextuelle\"]\n    D --&gt; E[\"Prédiction : P(A) = 0,62 …\"]\n    D -.-&gt;|\"moyenne\"| F[\"&lt;b&gt;Embedding&lt;/b&gt; de la protéine\"]\n\n\n\n\n\n\nLe cœur du Transformer est le mécanisme d’attention : chaque position calcule à quel point elle doit « regarder » chacune des autres positions :\n\\[\n\\text{Attention}(Q, K, V) = \\text{softmax}\\!\\left(\\frac{Q K^\\top}{\\sqrt{d}}\\right) V\n\\]\noù \\(Q\\), \\(K\\), \\(V\\) (requêtes, clés, valeurs) sont des projections apprises des représentations. Les cartes d’attention d’ESM retrouvent d’ailleurs en partie les contacts 3D entre résidus.\n\nFamille ESM-2 (disponible sur Hugging Face)\n\n\nModèle ESM-2\nCouches\nParamètres\nDimension de l’embedding\n\n\n\n\nesm2_t6_8M_UR50D\n6\n8 M\n320\n\n\nesm2_t12_35M_UR50D\n12\n35 M\n480\n\n\nesm2_t30_150M_UR50D\n30\n150 M\n640\n\n\nesm2_t33_650M_UR50D\n33\n650 M\n1 280\n\n\nesm2_t48_15B_UR50D\n48\n15 G\n5 120\n\n\n\n\n\n2.4 Embeddings et apprentissage par transfert\nPour obtenir un vecteur par protéine, on fait la moyenne (mean pooling) des représentations de toutes les positions de la dernière couche. Ce vecteur — l’embedding — sert d’entrée à un classifieur simple.\n\n\n\n\n\n\nflowchart TB\n    subgraph P[\"① Pré-entraînement — par Meta AI\"]\n        direction TB\n        U[\"Millions de séquences&lt;br/&gt;SANS étiquette\"] --&gt; M[\"ESM-2 (texte à trous)\"]\n    end\n    subgraph T[\"② Transfert — notre atelier\"]\n        direction TB\n        S[\"600 séquences&lt;br/&gt;AVEC étiquette\"] --&gt; M2[\"ESM-2 figé\"]\n        M2 --&gt; E[\"Embeddings\"]\n        E --&gt; C[\"Régression logistique\"]\n        C --&gt; R[\"Localisation prédite\"]\n    end\n    M -.-&gt;|\"poids (Hugging Face)\"| M2\n\n\n\n\n\n\nC’est l’apprentissage par transfert : un modèle entraîné sur une tâche générique avec énormément de données est réutilisé pour une tâche spécifique avec peu de données étiquetées. Deux variantes :\n\nextraction de caractéristiques (notre cas) : le modèle est figé, on entraîne seulement un petit classifieur ;\naffinage (fine-tuning) : on ré-entraîne aussi (une partie) du modèle — plus performant, plus coûteux.\n\n\n\n2.5 Le classifieur : régression logistique multi-classe\nPour \\(K\\) classes, la régression logistique calcule un score linéaire par classe et le transforme en probabilités par la fonction softmax :\n\\[\nP(y = k \\mid \\mathbf{x}) = \\frac{\\exp(\\mathbf{w}_k^\\top \\mathbf{x} + b_k)}{\\sum_{j=1}^{K} \\exp(\\mathbf{w}_j^\\top \\mathbf{x} + b_j)}\n\\]\nLe paramètre C contrôle la régularisation (petit C = modèle plus simple, moins de sur-apprentissage — important quand la dimension est grande devant le nombre d’exemples). On standardise les variables au préalable (StandardScaler).\n\n\n2.6 La validation croisée\nAvec 600 exemples, un unique découpage apprentissage/test dépend beaucoup du hasard. En validation croisée à \\(k\\) plis, les données sont partagées en \\(k\\) parts ; chaque part sert une fois de test pendant que les \\(k-1\\) autres servent à l’apprentissage. On rapporte la moyenne ± écart-type des \\(k\\) scores.\n\nChaque protéine sert 4 fois à l’apprentissage et 1 fois au test ; le score rapporté est la moyenne des 5 scores.\n\n\n\n\n\n\n\n\n\n\n\n\nPart 1\nPart 2\nPart 3\nPart 4\nPart 5\n\n\n\n\n\nPli 1\n🟥 test\napprentissage\napprentissage\napprentissage\napprentissage\n→ score 1\n\n\nPli 2\napprentissage\n🟥 test\napprentissage\napprentissage\napprentissage\n→ score 2\n\n\nPli 3\napprentissage\napprentissage\n🟥 test\napprentissage\napprentissage\n→ score 3\n\n\nPli 4\napprentissage\napprentissage\napprentissage\n🟥 test\napprentissage\n→ score 4\n\n\nPli 5\napprentissage\napprentissage\napprentissage\napprentissage\n🟥 test\n→ score 5\n\n\n\nPour une comparaison équitable, on garde le même classifieur et les mêmes plis pour toutes les représentations : seule la représentation change.\n\n\n\n\n\n\nAttentionLe piège de l’homologie\n\n\n\nDeux protéines de la même famille (homologues) ont des séquences très similaires. Si l’une est dans l’apprentissage et l’autre dans le test, le modèle « triche » en reconnaissant la famille. Les études rigoureuses (ex. DeepLoc 2.0) regroupent d’abord les séquences par similarité (outils CD-HIT, MMseqs2) et placent chaque groupe entièrement d’un côté. Nos scores sont donc optimistes.",
+    "crumbs": [
+      "Ateliers pratiques (5 × 2h)",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Séance 3 : Séquences protéiques et modèles de langage biologique</span>"
+    ]
+  },
+  {
+    "objectID": "seance3.html#déroulé-de-latelier",
+    "href": "seance3.html#déroulé-de-latelier",
+    "title": "Séance 3 : Séquences protéiques et modèles de langage biologique",
+    "section": "3. Déroulé de l’atelier",
+    "text": "3. Déroulé de l’atelier\n\nDéroulé indicatif (2h)\n\n\n\n\n\n\n\nTemps\nPartie du notebook\nActivité\n\n\n\n\n0:00 – 0:10\nPrésentation du problème et de la théorie\n🔎\n\n\n0:10 – 0:30\n§0-1 Installation, téléchargement, lecture FASTA avec Biopython\n▶️ Exécuter\n\n\n0:30 – 0:50\n§2 Exercice : fonction composition, heatmap, profil N-terminal\n✍️ Modifier 🔎 Q1\n\n\n0:50 – 1:05\n§3-4 k-mers, validation croisée des représentations simples\n▶️ Exécuter 🔎 Q2\n\n\n1:05 – 1:30\n§5 ESM-2 : tokenisation, embeddings, évaluation\n▶️ Exécuter ✍️ Modifier\n\n\n1:30 – 1:50\n§6-7 Comparateur, matrices de confusion, t-SNE, nouvelles protéines\n🔎 Q3 ✍️ Modifier\n\n\n1:50 – 2:00\nDéfis : taille du modèle, N-terminal vs C-terminal\n✍️ Modifier\n\n\n\n\nCode clé à retenir\nimport torch\nfrom transformers import AutoTokenizer, AutoModel\n\nnom = \"facebook/esm2_t12_35M_UR50D\"\ntokenizer = AutoTokenizer.from_pretrained(nom)          # découpe la séquence en jetons\nmodele = AutoModel.from_pretrained(nom).eval()          # télécharge les poids pré-entraînés\n\nenc = tokenizer([\"MKTAYIAKQRQISFVKSHFSRQ\"], return_tensors=\"pt\")\nwith torch.no_grad():\n    h = modele(**enc).last_hidden_state                 # (1, L + 2, 480)\nembedding = h[0, 1:-1].mean(dim=0)                      # moyenne sans les jetons &lt;cls&gt; et &lt;eos&gt;",
+    "crumbs": [
+      "Ateliers pratiques (5 × 2h)",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Séance 3 : Séquences protéiques et modèles de langage biologique</span>"
+    ]
+  },
+  {
+    "objectID": "seance3.html#exercices-et-défis",
+    "href": "seance3.html#exercices-et-défis",
+    "title": "Séance 3 : Séquences protéiques et modèles de langage biologique",
+    "section": "4. Exercices et défis",
+    "text": "4. Exercices et défis\n\nExercice 1 — composition(sequence) : renvoyer les 20 fréquences d’acides aminés.\nQuestion d’analyse : relier les enrichissements en acides aminés aux propriétés de chaque compartiment.\nDéfi 1 — Taille du modèle : comparer ESM-2 8M, 35M et 150M (performance et temps de calcul).\nDéfi 2 — Où est l’information ? : embeddings des 50 premiers vs 50 derniers acides aminés.\n\n\n\n\n\n\n\nNoteÉléments de correction\n\n\n\n\n\n\nComposition : return [sequence.count(aa) / len(sequence) for aa in ACIDES_AMINES].\nEnrichissements : membrane → acides aminés hydrophobes (L, I, V, F) des hélices transmembranaires ; noyau → K, R, S (liaison à l’ADN chargé négativement, NLS basiques) ; sécrétées → C (ponts disulfures stabilisant les protéines extracellulaires) ; mitochondrie → A, L, R et peu de D/E (peptide de transit amphiphile et basique).\nComparateur : la composition atteint typiquement ~55-65 % d’exactitude, les dipeptides font à peine mieux, et ESM-2 35M dépasse nettement (≈ 80 % ou plus). Les confusions résiduelles concernent souvent membrane ↔︎ sécrétée (les deux utilisent la voie du réticulum et un peptide signal).\nTaille du modèle : le gain de 8M → 35M → 150M est réel mais décroissant, alors que le temps de calcul augmente fortement.\nN- vs C-terminal : les 50 premiers acides aminés prédisent bien mieux la localisation que les 50 derniers, car les signaux de sécrétion et d’adressage mitochondrial sont N-terminaux.",
+    "crumbs": [
+      "Ateliers pratiques (5 × 2h)",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Séance 3 : Séquences protéiques et modèles de langage biologique</span>"
+    ]
+  },
+  {
+    "objectID": "seance3.html#livrable",
+    "href": "seance3.html#livrable",
+    "title": "Séance 3 : Séquences protéiques et modèles de langage biologique",
+    "section": "5. Livrable",
+    "text": "5. Livrable\n\n\n\n\n\n\nImportant🏁 À rendre\n\n\n\n\nLa figure comparateur_representations.png (exactitude moyenne ± écart-type pour composition, dipeptides et ESM-2) ;\nles matrices de confusion composition vs ESM-2 ;\nvos réponses aux questions 🔎 1 à 3, dont une explication de pourquoi ESM-2, qui n’a jamais vu d’étiquette de localisation, est si performant.",
+    "crumbs": [
+      "Ateliers pratiques (5 × 2h)",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Séance 3 : Séquences protéiques et modèles de langage biologique</span>"
+    ]
+  },
+  {
+    "objectID": "seance3.html#testez-vous",
+    "href": "seance3.html#testez-vous",
+    "title": "Séance 3 : Séquences protéiques et modèles de langage biologique",
+    "section": "6. Testez-vous",
+    "text": "6. Testez-vous\n\n\n\n\n\n\nAstuceQ1. Pourquoi la composition en acides aminés perd-elle de l’information utile ?\n\n\n\n\n\nElle ignore complètement l’ordre des acides aminés. Or les signaux d’adressage sont locaux (ex. le peptide signal dans les 30 premiers résidus) : leur effet est dilué dans la moyenne de toute la séquence.\n\n\n\n\n\n\n\n\n\nAstuceQ2. Qu’est-ce que l’apprentissage auto-supervisé ?\n\n\n\n\n\nUn apprentissage où la supervision est construite à partir des données elles-mêmes (ici : deviner un acide aminé masqué). Il permet d’exploiter des quantités énormes de données non étiquetées.\n\n\n\n\n\n\n\n\n\nAstuceQ3. Qu’est-ce qu’un embedding ?\n\n\n\n\n\nUn vecteur de nombres qui représente un objet (une protéine) de façon à ce que des objets similaires (fonction, structure, origine évolutive) aient des vecteurs proches. Ici, c’est la moyenne des représentations internes d’ESM-2.\n\n\n\n\n\n\n\n\n\nAstuceQ4. Pourquoi utiliser la validation croisée plutôt qu’un seul découpage ?\n\n\n\n\n\nPour réduire la dépendance au hasard du découpage et obtenir une estimation plus fiable (moyenne) avec une mesure de son incertitude (écart-type), surtout quand le nombre d’exemples est limité.\n\n\n\n\n\n\n\n\n\nAstuceQ5. Pourquoi nos performances sont-elles probablement surestimées ?\n\n\n\n\n\nÀ cause des homologues répartis entre apprentissage et test : le modèle peut reconnaître une famille de protéines plutôt qu’apprendre les signaux d’adressage. Il faut un découpage par similarité de séquence.",
+    "crumbs": [
+      "Ateliers pratiques (5 × 2h)",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Séance 3 : Séquences protéiques et modèles de langage biologique</span>"
+    ]
+  },
+  {
+    "objectID": "seance3.html#limites-et-bonnes-pratiques",
+    "href": "seance3.html#limites-et-bonnes-pratiques",
+    "title": "Séance 3 : Séquences protéiques et modèles de langage biologique",
+    "section": "7. Limites et bonnes pratiques",
+    "text": "7. Limites et bonnes pratiques\n\nBeaucoup de protéines ont plusieurs localisations (ex. noyau et cytoplasme) : nous les avons exclues pour simplifier, la réalité est multi-étiquette.\nLes annotations de localisation, même dans Swiss-Prot, ne sont pas toutes expérimentales.\nUn modèle de langage hérite des biais de ses données : espèces et familles sur-représentées dans UniProt.\nL’embedding moyen est une compression : il résume une protéine entière en quelques centaines de nombres.",
+    "crumbs": [
+      "Ateliers pratiques (5 × 2h)",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Séance 3 : Séquences protéiques et modèles de langage biologique</span>"
+    ]
+  },
+  {
+    "objectID": "seance3.html#pour-aller-plus-loin",
+    "href": "seance3.html#pour-aller-plus-loin",
+    "title": "Séance 3 : Séquences protéiques et modèles de langage biologique",
+    "section": "8. Pour aller plus loin",
+    "text": "8. Pour aller plus loin\n\nLin Z. et al. (2023). Evolutionary-scale prediction of atomic-level protein structure with a language model. Science, 379, 1123-1130. (ESM-2 et ESMFold)\nRives A. et al. (2021). Biological structure and function emerge from scaling unsupervised learning to 250 million protein sequences. PNAS, 118, e2016239118.\nThumuluri V. et al. (2022). DeepLoc 2.0: multi-label subcellular localization prediction using protein language models. Nucleic Acids Research, 50, W228-W234.\nVaswani A. et al. (2017). Attention is all you need. NeurIPS.\nDocumentation : Hugging Face — ESM · Biopython Tutorial",
+    "crumbs": [
+      "Ateliers pratiques (5 × 2h)",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Séance 3 : Séquences protéiques et modèles de langage biologique</span>"
+    ]
+  },
+  {
+    "objectID": "seance4.html",
+    "href": "seance4.html",
+    "title": "Séance 4 : Vision par ordinateur pour l’imagerie cellulaire",
+    "section": "",
+    "text": "1. Le problème biologique\nL’imagerie est partout en biologie : numération en hématologie, anatomopathologie, suivi de cultures cellulaires en bioproduction, criblage à haut contenu (high-content screening) où des robots acquièrent des dizaines de milliers d’images par jour pour tester l’effet de molécules sur des cellules. Compter et mesurer à la main est lent, fatigant et subjectif (deux opérateurs ne trouvent pas le même nombre).\nL’objectif est de passer d’une image à des mesures :\nflowchart TB\n    A[\"🔬 Image de microscopie\"] --&gt; B[\"Pré-traitement\"]\n    B --&gt; C[\"&lt;b&gt;Segmentation&lt;/b&gt;\"]\n    C --&gt; D[\"Mesures morphologiques\"]\n    D --&gt; E[\"Détection d'anomalies\"]\n    E --&gt; F[\"📄 Rapport quantitatif\"]",
+    "crumbs": [
+      "Ateliers pratiques (5 × 2h)",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Séance 4 : Vision par ordinateur pour l'imagerie cellulaire</span>"
+    ]
+  },
+  {
+    "objectID": "seance4.html#notions-théoriques-essentielles",
+    "href": "seance4.html#notions-théoriques-essentielles",
+    "title": "Séance 4 : Vision par ordinateur pour l’imagerie cellulaire",
+    "section": "2. Notions théoriques essentielles",
+    "text": "2. Notions théoriques essentielles\n\n2.1 Une image est une matrice de nombres\nUne image numérique en niveaux de gris est un tableau 2D : chaque case (pixel) contient une intensité. En microscopie de fluorescence, l’intensité est proportionnelle à la quantité de fluorophore (ex. DAPI ou Hoechst, qui se fixent à l’ADN et marquent les noyaux).\n\nVocabulaire de l’image numérique\n\n\n\n\n\n\nNotion\nSignification\n\n\n\n\nProfondeur\n8 bits → valeurs de 0 à 255 ; 16 bits → 0 à 65 535 (fréquent en microscopie)\n\n\nCanaux\nune image par fluorophore (ex. noyaux en bleu, membrane en vert)\n\n\nTaille du pixel\nen µm/pixel, donnée par le microscope : indispensable pour convertir les surfaces\n\n\nHistogramme\ndistribution des intensités : fond sombre (pic) vs objets lumineux\n\n\n\n\n\n2.2 Les filtres de convolution\nFiltrer une image consiste à faire glisser un petit noyau (kernel, ex. 3 × 3) sur l’image et à calculer en chaque pixel une somme pondérée des voisins :\n\\[\n(I * K)(i, j) = \\sum_{m} \\sum_{n} I(i + m,\\, j + n)\\, K(m, n)\n\\]\nUn noyau de moyenne lisse le bruit ; un noyau de Sobel détecte les contours. Retenez bien cette opération : c’est la brique de base des réseaux de neurones convolutifs.\n\n\nCode de la figure\nimport numpy as np\nimport matplotlib.pyplot as plt\nfrom scipy import ndimage as ndi\nfrom skimage import filters\n\nrng = np.random.default_rng(3)\nimg = np.zeros((200, 200))\nyy, xx = np.mgrid[:200, :200]\nfor _ in range(25):                                   # 25 « noyaux » elliptiques\n    cy, cx = rng.uniform(15, 185, 2)\n    a, b = rng.uniform(6, 11, 2)\n    img += 120 * (((yy - cy) / a) ** 2 + ((xx - cx) / b) ** 2 &lt;= 1)\nimg = ndi.gaussian_filter(np.clip(img, 0, 180), 1.5) + rng.normal(20, 8, img.shape)\n\nseuil = filters.threshold_otsu(img)\nfig, axes = plt.subplots(1, 4, figsize=(15, 3.6))\naxes[0].imshow(img, cmap=\"gray\"); axes[0].set_title(\"Image (bruitée)\")\naxes[1].hist(img.ravel(), bins=80, color=\"tab:purple\"); axes[1].axvline(seuil, c=\"r\", ls=\"--\")\naxes[1].set_title(f\"Histogramme, seuil d'Otsu = {seuil:.0f}\"); axes[1].set_yscale(\"log\")\naxes[2].imshow(filters.gaussian(img, sigma=2), cmap=\"gray\"); axes[2].set_title(\"Convolution : lissage\")\naxes[3].imshow(filters.sobel(img), cmap=\"magma\"); axes[3].set_title(\"Convolution : contours (Sobel)\")\nfor ax in [axes[0], axes[2], axes[3]]:\n    ax.axis(\"off\")\nplt.tight_layout()\nplt.show()\n\n\n\n\n\nUne image synthétique de noyaux, son histogramme avec le seuil d’Otsu, et deux convolutions (lissage gaussien, détection de contours par Sobel).\n\n\n\n\n\n\n2.3 La segmentation classique\n\nSeuillage d’Otsu : choisit automatiquement le seuil \\(t\\) qui maximise la variance inter-classes entre le fond (proportion \\(\\omega_0\\), moyenne \\(\\mu_0\\)) et les objets (\\(\\omega_1\\), \\(\\mu_1\\)) : \\[\\sigma_B^2(t) = \\omega_0(t)\\,\\omega_1(t)\\,\\big[\\mu_0(t) - \\mu_1(t)\\big]^2\\]\nMorphologie mathématique : retirer les petits objets (bruit), boucher les trous.\nÉtiquetage des composantes connexes : chaque « tache » reçoit un numéro.\nWatershed (ligne de partage des eaux) : on calcule pour chaque pixel sa distance au fond ; les maxima locaux servent de « sources », et l’on « inonde » la carte pour séparer les noyaux qui se touchent.\n\n\n\n\n\n\n\nAttentionLes limites de l’approche classique\n\n\n\nChaque paramètre (lissage, taille minimale, distance entre maxima) est réglé à la main pour une image donnée. Avec un éclairage inégal, des cellules collées ou de formes variées, il n’existe souvent pas de réglage qui fonctionne partout.\n\n\n\n\n2.4 Les réseaux de neurones convolutifs (CNN)\nUn CNN empile des couches de convolution dont les noyaux ne sont plus choisis par l’humain mais appris à partir d’exemples annotés. Chaque couche est suivie d’une non-linéarité (ReLU : \\(\\max(0, x)\\)) et parfois d’un sous-échantillonnage (pooling). Les premières couches apprennent des contours, les suivantes des textures, puis des formes de plus en plus abstraites.\n\n\n\n\n\n\nflowchart TB\n    I[\"Image 512 × 512\"] --&gt; C1[\"Convolution → contours\"]\n    C1 --&gt; P1[\"Pooling → 256 × 256\"]\n    P1 --&gt; C2[\"Convolution → textures\"]\n    C2 --&gt; P2[\"Pooling → 128 × 128\"]\n    P2 --&gt; C3[\"Convolution → formes\"]\n    C3 --&gt; O[\"Sortie\"]\n\n\n\n\n\n\nL’apprentissage ajuste les millions de poids des noyaux par descente de gradient pour minimiser l’erreur entre la prédiction et l’annotation (rétropropagation du gradient).\n\n\n2.5 Segmentation par deep learning : U-Net et Cellpose\n\nLes tâches de vision par ordinateur\n\n\n\n\n\n\n\nTâche\nQuestion\nExemple\n\n\n\n\nClassification\nque contient l’image ?\n« globule infecté / sain »\n\n\nSegmentation sémantique\nquelle classe pour chaque pixel ?\n« noyau / fond »\n\n\nSegmentation d’instances\nà quel objet appartient chaque pixel ?\n« noyau n°17 » ← notre besoin\n\n\n\nLe U-Net (Ronneberger et al., 2015), conçu pour l’imagerie biomédicale, est un réseau en « U » : un encodeur réduit l’image pour comprendre le contexte, un décodeur la remet à pleine résolution, et des connexions directes (skip connections) transmettent les détails fins.\n\n\n\n\n\n\nflowchart TB\n    subgraph E[\"Encodeur (contexte)\"]\n        E1[\"512²\"] --&gt; E2[\"256²\"] --&gt; E3[\"128²\"]\n    end\n    subgraph D[\"Décodeur (localisation)\"]\n        D3[\"128²\"] --&gt; D2[\"256²\"] --&gt; D1[\"512²\"]\n    end\n    E3 --&gt; B[\"Goulot&lt;br/&gt;64²\"] --&gt; D3\n    E2 -.-&gt;|\"skip\"| D2\n    E1 -.-&gt;|\"skip\"| D1\n    D1 --&gt; S[\"Carte de sortie&lt;br/&gt;par pixel\"]\n\n\n\n\n\n\nCellpose (Stringer et al., 2021) est un réseau de type U-Net entraîné sur des milliers d’images variées. Pour chaque pixel, il prédit : (1) la probabilité d’être dans une cellule et (2) un champ de flux — des vecteurs qui pointent vers le centre de la cellule. En suivant ces flux, les pixels d’une même cellule convergent vers le même point : les cellules qui se touchent sont séparées naturellement. Cellpose-SAM (version 4, 2025) remplace l’encodeur par celui du modèle de vision généraliste Segment Anything pour généraliser encore mieux.\n\n\n2.6 L’apprentissage par transfert en imagerie\nEntraîner un CNN de zéro demande des dizaines de milliers d’images annotées. On réutilise donc un modèle pré-entraîné :\n\nutilisation directe : Cellpose segmente nos noyaux sans ré-entraînement ;\nextraction de caractéristiques : un CNN entraîné sur ImageNet (1,2 million de photos du quotidien) transforme chaque image en vecteur ; un petit classifieur apprend la tâche (bonus paludisme) ;\naffinage (fine-tuning) : on ré-entraîne les dernières couches sur quelques centaines d’images annotées (Cellpose le permet aussi, avec annotation interactive).\n\nPourquoi ça marche ? Les premières couches d’un CNN (contours, textures) sont génériques : elles servent aussi bien pour des chats que pour des cellules.\n\n\n2.7 Évaluer une segmentation\nSi l’on dispose d’une annotation de référence (masque \\(B\\)) et d’une prédiction (masque \\(A\\)) :\n\\[\n\\text{IoU} = \\frac{|A \\cap B|}{|A \\cup B|} \\qquad\\qquad \\text{Dice} = \\frac{2\\,|A \\cap B|}{|A| + |B|}\n\\]\nPour la segmentation d’instances, on apparie chaque cellule prédite à une cellule réelle (IoU &gt; 0,5) et on calcule précision, rappel et précision moyenne (average precision). Sans annotation (notre cas), on se contente d’une inspection visuelle et de la cohérence des comptages.\n\n\n2.8 De la segmentation aux mesures, et détection d’anomalies\n\nDescripteurs morphologiques\n\n\n\n\n\n\n\nMesure (regionprops)\nDéfinition\nIntérêt biologique\n\n\n\n\narea\nnombre de pixels × (taille du pixel)²\ntaille du noyau (ploïdie, cycle cellulaire)\n\n\neccentricity\n0 = cercle, → 1 = allongé\ndéformation, migration\n\n\nsolidity\nsurface / surface de l’enveloppe convexe\nnoyaux lobés, fragmentés (apoptose)\n\n\ncircularité\n\\(4\\pi A / P^2\\)\nrégularité du contour\n\n\nintensity_mean\nintensité moyenne dans l’objet\ncondensation de l’ADN (mitose, apoptose)\n\n\n\nPour repérer les cellules atypiques sans étiquette, on utilise l’Isolation Forest : des arbres coupent l’espace des mesures au hasard ; une cellule anormale (très différente des autres) est isolée en très peu de coupes. Le paramètre contamination fixe la proportion attendue d’anomalies.",
+    "crumbs": [
+      "Ateliers pratiques (5 × 2h)",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Séance 4 : Vision par ordinateur pour l'imagerie cellulaire</span>"
+    ]
+  },
+  {
+    "objectID": "seance4.html#déroulé-de-latelier",
+    "href": "seance4.html#déroulé-de-latelier",
+    "title": "Séance 4 : Vision par ordinateur pour l’imagerie cellulaire",
+    "section": "3. Déroulé de l’atelier",
+    "text": "3. Déroulé de l’atelier\n\nDéroulé indicatif (2h)\n\n\n\n\n\n\n\nTemps\nPartie du notebook\nActivité\n\n\n\n\n0:00 – 0:10\nPrésentation du problème et de la théorie\n🔎\n\n\n0:10 – 0:20\n§0-1 Installation de Cellpose (en premier !), l’image comme matrice\n▶️ Exécuter 🔎 Q1\n\n\n0:20 – 0:45\n§2 Segmentation classique : Otsu, watershed, réglage des paramètres\n✍️ Modifier 🔎 Q2\n\n\n0:45 – 1:05\n§3 Cellpose : segmentation pré-entraînée, comparaison\n▶️ Exécuter 🔎 Q3\n\n\n1:05 – 1:20\n§4 Mesures regionprops, conversion en µm²\n✍️ Modifier\n\n\n1:20 – 1:35\n§5 Détection d’anomalies (Isolation Forest)\n✍️ Modifier 🔎 Q4\n\n\n1:35 – 1:50\n§6 Script automatisé sur 4 champs + export du rapport\n▶️ Exécuter\n\n\n1:50 – 2:00\nDéfi (votre image) ou bonus transfer learning paludisme\n✍️ Modifier\n\n\n\n\nCode clé à retenir\nfrom cellpose import models\nfrom skimage import measure\n\nmodele = models.CellposeModel(gpu=True)                 # Cellpose-SAM pré-entraîné\nmasques = modele.eval(image)[0]                          # 0 = fond, 1..N = une cellule\n\nmesures = measure.regionprops_table(\n    masques, intensity_image=image,\n    properties=[\"label\", \"area\", \"eccentricity\", \"solidity\", \"intensity_mean\"])\nprint(f\"{masques.max()} cellules — surface moyenne : {mesures['area'].mean() * 0.5**2:.1f} µm²\")",
+    "crumbs": [
+      "Ateliers pratiques (5 × 2h)",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Séance 4 : Vision par ordinateur pour l'imagerie cellulaire</span>"
+    ]
+  },
+  {
+    "objectID": "seance4.html#exercices-et-défis",
+    "href": "seance4.html#exercices-et-défis",
+    "title": "Séance 4 : Vision par ordinateur pour l’imagerie cellulaire",
+    "section": "4. Exercices et défis",
+    "text": "4. Exercices et défis\n\nRéglage de la méthode classique : faire varier SIGMA, TAILLE_MIN, DISTANCE_MIN et observer sur- et sous-segmentation.\nComparaison classique vs Cellpose : nombre de noyaux, qualité de séparation des noyaux collés, noyaux en mitose.\nAnomalies : faire varier CONTAMINATION ; les anomalies détectées sont-elles des mitoses ?\nDéfi : analyser votre propre image (ex. BBBC039) avec analyser_image.\nBonus : transfer learning ResNet-18 + régression logistique pour détecter les globules rouges infectés par Plasmodium.\n\n\n\n\n\n\n\nNoteÉléments de correction\n\n\n\n\n\n\nMéthode classique : avec les réglages par défaut, Otsu trouve 269 objets que le watershed découpe en 312 noyaux. DISTANCE_MIN trop petit → sur-segmentation (un noyau coupé en plusieurs) ; trop grand → sous-segmentation (noyaux collés fusionnés). Le meilleur réglage varie d’une zone à l’autre de l’image.\nCellpose détecte 333 noyaux (en ~1 s sur GPU). Le signe le plus parlant est la taille des plus gros objets : aire maximale de 307 px pour la méthode classique contre 202 px pour Cellpose, et 8 objets de plus du double de l’aire médiane contre 2 — ces gros objets sont des noyaux accolés fusionnés (sous-segmentation). Attention toutefois : remove_small_objects filtre d’office les petits objets de la méthode classique, ce qui lui donne une fausse apparence de propreté tout en pouvant effacer de vrais petits noyaux. Prix du deep learning : installation, 1,2 Go de poids, GPU conseillé, modèle peu explicable.\nAnomalies : avec CONTAMINATION = 0,05, on obtient ≈ 17 cellules sur 333. Les noyaux mitotiques (ADN condensé) sont petits et très lumineux : ils ressortent en tête de l’Isolation Forest. Les faux positifs typiques sont des noyaux coupés au bord de l’image (d’où clear_border) ou deux noyaux fusionnés (très grands).\nRapport : sur les 4 champs, le nombre de cellules varie fortement (≈ 40 à 140) alors que la surface moyenne reste stable (≈ 22 à 25 µm²) — c’est le signe d’une segmentation cohérente malgré des densités cellulaires différentes.\nBonus paludisme : l’extraction de caractéristiques ResNet-18 + régression logistique atteint ≈ 93 % d’exactitude avec seulement 750 images d’apprentissage, sans ré-entraîner le CNN.",
+    "crumbs": [
+      "Ateliers pratiques (5 × 2h)",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Séance 4 : Vision par ordinateur pour l'imagerie cellulaire</span>"
+    ]
+  },
+  {
+    "objectID": "seance4.html#livrable",
+    "href": "seance4.html#livrable",
+    "title": "Séance 4 : Vision par ordinateur pour l’imagerie cellulaire",
+    "section": "5. Livrable",
+    "text": "5. Livrable\n\n\n\n\n\n\nImportant🏁 À rendre\n\n\n\nL’archive rapport_imagerie.zip contenant :\n\nrapport_global.csv : par image, nombre de cellules, surface moyenne ± écart-type (µm²), intensité moyenne, nombre et % d’anomalies ;\nun fichier CSV par cellule pour chaque image ;\nles figures de segmentation (contours bleus, anomalies en rouge) ;\n\net vos réponses aux questions 🔎 1 à 4.",
+    "crumbs": [
+      "Ateliers pratiques (5 × 2h)",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Séance 4 : Vision par ordinateur pour l'imagerie cellulaire</span>"
+    ]
+  },
+  {
+    "objectID": "seance4.html#testez-vous",
+    "href": "seance4.html#testez-vous",
+    "title": "Séance 4 : Vision par ordinateur pour l’imagerie cellulaire",
+    "section": "6. Testez-vous",
+    "text": "6. Testez-vous\n\n\n\n\n\n\nAstuceQ1. Quelle est la différence entre segmentation sémantique et segmentation d’instances ?\n\n\n\n\n\nLa segmentation sémantique attribue une classe à chaque pixel (noyau / fond) ; la segmentation d’instances distingue en plus chaque objet (noyau n°1, n°2…). Pour compter, il faut des instances.\n\n\n\n\n\n\n\n\n\nAstuceQ2. Quel est le lien entre un filtre de convolution et un CNN ?\n\n\n\n\n\nUn CNN est un empilement de convolutions dont les noyaux sont appris par l’entraînement au lieu d’être choisis à la main (comme le lissage gaussien ou le filtre de Sobel).\n\n\n\n\n\n\n\n\n\nAstuceQ3. Pourquoi Cellpose fonctionne-t-il sur nos images sans ré-entraînement ?\n\n\n\n\n\nParce qu’il a été pré-entraîné sur un jeu très varié d’images de cellules et de noyaux : il a appris des caractéristiques génériques de ce qu’est une cellule. C’est de l’apprentissage par transfert.\n\n\n\n\n\n\n\n\n\nAstuceQ4. Pourquoi faut-il connaître la taille du pixel ?\n\n\n\n\n\nLes mesures sont calculées en pixels. Pour comparer des expériences (autre microscope, autre grossissement) ou interpréter biologiquement une surface, il faut convertir en µm² : surface (µm²) = nombre de pixels × (taille du pixel en µm)².\n\n\n\n\n\n\n\n\n\nAstuceQ5. Que mesure l’IoU ?\n\n\n\n\n\nLe recouvrement entre une segmentation prédite et une segmentation de référence : l’aire de l’intersection divisée par l’aire de l’union (1 = superposition parfaite, 0 = aucun recouvrement).",
+    "crumbs": [
+      "Ateliers pratiques (5 × 2h)",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Séance 4 : Vision par ordinateur pour l'imagerie cellulaire</span>"
+    ]
+  },
+  {
+    "objectID": "seance4.html#limites-et-bonnes-pratiques",
+    "href": "seance4.html#limites-et-bonnes-pratiques",
+    "title": "Séance 4 : Vision par ordinateur pour l’imagerie cellulaire",
+    "section": "7. Limites et bonnes pratiques",
+    "text": "7. Limites et bonnes pratiques\n\nToujours regarder les images : une métrique globale peut cacher des erreurs systématiques.\nLes conditions d’acquisition (exposition, mise au point, marquage) doivent être identiques entre conditions comparées.\nUn modèle pré-entraîné peut échouer sur un type d’image non représenté dans ses données (autre marquage, tissu épais, histologie) : il faut alors l’affiner sur quelques images annotées.\nPour un usage diagnostique, un outil d’IA doit être validé cliniquement et répondre à la réglementation des dispositifs médicaux.",
+    "crumbs": [
+      "Ateliers pratiques (5 × 2h)",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Séance 4 : Vision par ordinateur pour l'imagerie cellulaire</span>"
+    ]
+  },
+  {
+    "objectID": "seance4.html#pour-aller-plus-loin",
+    "href": "seance4.html#pour-aller-plus-loin",
+    "title": "Séance 4 : Vision par ordinateur pour l’imagerie cellulaire",
+    "section": "8. Pour aller plus loin",
+    "text": "8. Pour aller plus loin\n\nStringer C., Wang T., Michaelos M. & Pachitariu M. (2021). Cellpose: a generalist algorithm for cellular segmentation. Nature Methods, 18, 100-106.\nPachitariu M., Rariden M. & Stringer C. (2025). Cellpose-SAM: superhuman generalization for cellular segmentation. bioRxiv.\nRonneberger O., Fischer P. & Brox T. (2015). U-Net: Convolutional networks for biomedical image segmentation. MICCAI.\nRajaraman S. et al. (2018). Pre-trained convolutional neural networks as feature extractors toward improved malaria parasite detection in thin blood smear images. PeerJ, 6, e4568.\nRessources : Cellpose · scikit-image — exemples · BBBC",
+    "crumbs": [
+      "Ateliers pratiques (5 × 2h)",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Séance 4 : Vision par ordinateur pour l'imagerie cellulaire</span>"
+    ]
+  },
+  {
+    "objectID": "seance5.html",
+    "href": "seance5.html",
+    "title": "Séance 5 : IA générative, repliement protéique et mini-projet",
+    "section": "",
+    "text": "1. Le problème biologique\nLa fonction d’une protéine découle de sa forme 3D : la poche active d’une enzyme, la surface d’interaction d’un anticorps, le canal d’un transporteur. Une mutation ponctuelle (un seul acide aminé changé) peut :\nDéterminer une structure expérimentalement (cristallographie aux rayons X, RMN, cryo-microscopie électronique) prend des mois. AlphaFold 2 la prédit en quelques minutes à partir de la séquence.",
+    "crumbs": [
+      "Ateliers pratiques (5 × 2h)",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Séance 5 : IA générative, repliement protéique et mini-projet</span>"
+    ]
+  },
+  {
+    "objectID": "seance5.html#le-problème-biologique",
+    "href": "seance5.html#le-problème-biologique",
+    "title": "Séance 5 : IA générative, repliement protéique et mini-projet",
+    "section": "",
+    "text": "déstabiliser le repliement (la protéine se déplie ou s’agrège) → perte de fonction, maladie génétique ;\nmodifier une surface d’interaction ou un site actif sans changer le repliement ;\naméliorer une propriété : c’est la base de l’ingénierie des protéines (enzymes industrielles plus thermostables, anticorps plus affins).",
+    "crumbs": [
+      "Ateliers pratiques (5 × 2h)",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Séance 5 : IA générative, repliement protéique et mini-projet</span>"
+    ]
+  },
+  {
+    "objectID": "seance5.html#notions-théoriques-essentielles",
+    "href": "seance5.html#notions-théoriques-essentielles",
+    "title": "Séance 5 : IA générative, repliement protéique et mini-projet",
+    "section": "2. Notions théoriques essentielles",
+    "text": "2. Notions théoriques essentielles\n\n2.1 Du repliement à la structure\n\nLes niveaux de structure des protéines\n\n\n\n\n\n\nNiveau\nDescription\n\n\n\n\nPrimaire\nla séquence d’acides aminés\n\n\nSecondaire\nhélices α, feuillets β, boucles (liaisons H du squelette)\n\n\nTertiaire\nle repliement 3D d’une chaîne (cœur hydrophobe enfoui, surface polaire)\n\n\nQuaternaire\nl’assemblage de plusieurs chaînes (ex. l’hémoglobine = 2 α + 2 β)\n\n\n\nAnfinsen (prix Nobel 1972) a montré que la séquence contient l’information nécessaire au repliement. Mais le nombre de conformations possibles est astronomique (paradoxe de Levinthal) : prédire la structure à partir de la séquence est resté un grand défi pendant 50 ans. Depuis 1994, la compétition CASP évalue les méthodes à l’aveugle sur des structures non publiées.\n\n\n2.2 AlphaFold 2 : les idées clés\nEn 2020 (CASP14), AlphaFold 2 (DeepMind) atteint une précision proche de l’expérience pour une grande partie des cibles. Demis Hassabis et John Jumper reçoivent le prix Nobel de chimie 2024 (avec David Baker, pour la conception de protéines).\nIdée n°1 — la coévolution. Si deux résidus sont en contact dans la structure, une mutation de l’un est souvent compensée par une mutation de l’autre au cours de l’évolution. En alignant des milliers de séquences homologues (un MSA, multiple sequence alignment), on voit apparaître ces mutations corrélées : elles trahissent les contacts 3D.\nIdée n°2 — une architecture qui raisonne en géométrie. Le module Evoformer fait dialoguer une représentation du MSA et une représentation des paires de résidus (distances, orientations), avec des mises à jour « triangulaires » qui imposent une cohérence géométrique (si A est proche de B et B de C, alors A et C ne peuvent pas être très loin). Le module de structure construit ensuite les coordonnées 3D, et le tout est recyclé plusieurs fois.\n\n\n\n\n\n\nflowchart TB\n    S[\"Séquence\"] --&gt; M[\"Homologues (MSA)\"]\n    S --&gt; T[\"Modèles (optionnel)\"]\n    M --&gt; E[\"&lt;b&gt;Evoformer&lt;/b&gt;&lt;br/&gt;MSA ⇄ paires\"]\n    T --&gt; E\n    E --&gt; SM[\"Module de structure\"]\n    SM --&gt;|\"recyclage × 3\"| E\n    SM --&gt; O[\"Structure + pLDDT + PAE\"]\n\n\n\n\n\n\nColabFold (Mirdita et al., 2022) rend AlphaFold 2 accessible dans Colab en remplaçant la recherche d’homologues (des heures sur des bases de plusieurs téraoctets) par le serveur MMseqs2, 20 à 30 fois plus rapide.\n\n\n2.3 Lire les scores de confiance\n\nLes scores de confiance d’AlphaFold\n\n\n\n\n\n\n\nScore\nÉchelle\nSignification\n\n\n\n\npLDDT\n0 – 100, par résidu\nconfiance locale : &gt; 90 très haute, 70-90 bonne, 50-70 faible, &lt; 50 très faible (souvent une région désordonnée)\n\n\nPAE\nen Å, par paire de résidus\nerreur attendue sur la position du résidu \\(j\\) quand on superpose sur le résidu \\(i\\) : renseigne sur la position relative des domaines\n\n\npTM\n0 – 1, global\nqualité estimée du repliement global (&gt; 0,5 : repliement probablement correct)\n\n\n\n\n\n\n\n\n\nAttentionUn score de confiance n’est pas une mesure\n\n\n\nLe pLDDT est une auto-évaluation du modèle. Un pLDDT faible peut signaler une vraie région intrinsèquement désordonnée (ce qui est une information biologique !) ou simplement un manque d’homologues dans le MSA.\n\n\n\n\n2.4 Comparer deux structures : le RMSD\nLe RMSD (root-mean-square deviation) mesure l’écart moyen entre les positions de \\(N\\) atomes correspondants (en général les carbones α), après superposition optimale (algorithme de Kabsch) :\n\\[\n\\text{RMSD} = \\sqrt{\\frac{1}{N}\\sum_{i=1}^{N} \\left\\lVert \\mathbf{x}_i - \\mathbf{y}_i \\right\\rVert^2}\n\\]\nOrdres de grandeur : &lt; 1 Å quasi identique ; 1-2 Å très proche ; &gt; 4 Å repliements différents.\n\n\nCode de la démonstration\nimport numpy as np\n\ndef kabsch_rmsd(P, Q):\n    \"\"\"RMSD après superposition optimale de Q sur P (centrage + rotation de Kabsch).\"\"\"\n    P, Q = P - P.mean(0), Q - Q.mean(0)\n    U, _, Vt = np.linalg.svd(Q.T @ P)\n    d = np.sign(np.linalg.det(U @ Vt))\n    R = U @ np.diag([1, 1, d]) @ Vt\n    return np.sqrt(((Q @ R - P) ** 2).sum(1).mean())\n\nrng = np.random.default_rng(0)\nP = rng.normal(size=(56, 3)) * 8                       # 56 « carbones alpha »\nangle = np.deg2rad(70)\nrotation = np.array([[np.cos(angle), -np.sin(angle), 0], [np.sin(angle), np.cos(angle), 0], [0, 0, 1]])\nQ = P @ rotation.T + [10, -5, 3] + rng.normal(scale=0.5, size=P.shape)   # tournée, déplacée, bruitée\n\nrmsd_brut = np.sqrt(((P - Q) ** 2).sum(1).mean())\nprint(f\"RMSD sans superposition : {rmsd_brut:5.2f} Å\")\nprint(f\"RMSD après Kabsch      : {kabsch_rmsd(P, Q):5.2f} Å  (≈ le bruit ajouté)\")\n\n\nRMSD sans superposition : 18.16 Å\nRMSD après Kabsch      :  0.90 Å  (≈ le bruit ajouté)\n\n\n\n\n2.5 Mutations : notation et effets\n\nNotation : W43A = le tryptophane (W) en position 43 devient une alanine (A). En nomenclature clinique HGVS : p.Trp43Ala.\n⚠️ Numérotation : la mutation de la drépanocytose est historiquement notée E6V car la méthionine initiale est retirée de la protéine mature ; dans la séquence UniProt (qui commence par M), c’est la position 7 (p.Glu7Val).\nEffet sur la stabilité : mesuré par \\(\\Delta\\Delta G\\) (variation de l’énergie libre de dépliement). Les mutations du cœur hydrophobe et les prolines dans les hélices/feuillets sont souvent très déstabilisantes ; les mutations de surface sont souvent tolérées.\n\n\n\n\n\n\n\nImportantAlphaFold n’a pas été conçu pour prédire l’effet des mutations\n\n\n\nAlphaFold 2 a appris à prédire la structure des protéines naturelles, repliées et stables de la PDB. Pour un mutant, il prédit très souvent le même repliement que la protéine sauvage, même si en réalité le mutant ne se replie plus. Plusieurs études ont montré que la structure prédite seule est un mauvais indicateur de la stabilité ou de la pathogénicité d’une mutation ponctuelle.\n\n\n\n\n2.6 Prédire l’effet d’une mutation avec un modèle de langage\nLes modèles de langage protéiques (séance 3) offrent un autre angle. Pour une mutation à la position \\(i\\), on masque cette position et on compare les probabilités prédites :\n\\[\n\\text{score}(i, \\text{sauvage} \\to \\text{muté}) = \\log P(x_i = \\text{muté} \\mid \\text{contexte}) - \\log P(x_i = \\text{sauvage} \\mid \\text{contexte})\n\\]\nUn score très négatif signifie que l’évolution n’a « jamais » accepté cet acide aminé à cet endroit : la mutation est probablement délétère. Ce score zéro-shot (aucun entraînement sur des données de mutations) est corrélé aux mesures expérimentales de balayage mutationnel profond (deep mutational scanning). AlphaMissense (DeepMind, 2023) combine ce type d’approche avec la structure pour estimer la pathogénicité de tous les variants faux-sens humains.\n\n\n2.7 L’IA générative pour les protéines\n\nPanorama de l’IA générative pour les protéines\n\n\n\n\n\n\n\nApproche\nPrincipe\nExemples\n\n\n\n\nModèles de langage masqués\ndeviner / échantillonner des acides aminés\nESM-2\n\n\nModèles de langage autorégressifs\nécrire une séquence lettre par lettre, comme un chatbot\nProtGPT2, ProGen\n\n\nRepliement inverse\nconcevoir une séquence pour une structure donnée\nProteinMPNN\n\n\nDiffusion\ngénérer de nouveaux squelettes 3D à partir de bruit\nRFdiffusion\n\n\nModèles multimodaux\nséquence + structure + fonction, complexes avec ADN/ligands\nESM3, AlphaFold 3\n\n\n\nCes outils permettent de concevoir des protéines qui n’existent pas dans la nature (liants thérapeutiques, enzymes, vaccins). Les séquences générées doivent toujours être synthétisées et testées expérimentalement.\n\n\n2.8 Les limites à garder en tête\n\nBiais des données : la PDB est enrichie en protéines solubles, stables, cristallisables ; les protéines sans homologues (MSA pauvre) sont moins bien prédites.\nUne seule conformation statique : pas de dynamique, d’états multiples (ex. hémoglobine oxy/désoxy), d’environnement (membrane, pH, ligands, modifications post-traductionnelles) dans AlphaFold 2.\nBoîte noire : le modèle ne « comprend » pas la physique, il reconnaît des motifs appris.\nValidation expérimentale indispensable : stabilité thermique (DSF), dichroïsme circulaire, mesures d’activité, cristallographie…",
+    "crumbs": [
+      "Ateliers pratiques (5 × 2h)",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Séance 5 : IA générative, repliement protéique et mini-projet</span>"
+    ]
+  },
+  {
+    "objectID": "seance5.html#déroulé-de-latelier",
+    "href": "seance5.html#déroulé-de-latelier",
+    "title": "Séance 5 : IA générative, repliement protéique et mini-projet",
+    "section": "3. Déroulé de l’atelier",
+    "text": "3. Déroulé de l’atelier\n\nDéroulé indicatif (2h)\n\n\n\n\n\n\n\nTemps\nPartie du notebook\nActivité\n\n\n\n\n0:00 – 0:05\nLancer l’installation de ColabFold (§0), présentation du problème\n▶️ Exécuter\n\n\n0:05 – 0:20\n§1 AlphaFold DB : hémoglobine β en 3D, profil pLDDT\n▶️ Exécuter 🔎 Q1\n\n\n0:20 – 0:45\n§2 Prédiction de GB1 avec ColabFold, PAE, RMSD vs cristallographie, exercice MSA\n▶️ Exécuter 🔎 Q2\n\n\n0:45 – 1:05\n§3 Mutations : muter(), sauvage vs mutant, superposition 3D\n✍️ Modifier 🔎 Q3\n\n\n1:05 – 1:15\n§4 Paysage mutationnel ESM-2\n▶️ Exécuter 🔎 Q4\n\n\n1:15 – 1:45\n§5 Mini-projet en binôme : choix du sujet, prédictions, analyse, 3 diapositives\n✍️ Modifier\n\n\n1:45 – 2:00\nPrésentations (3 min par binôme) et discussion des limites\n🔎 Discuter\n\n\n\n\n\n\n\n\n\nAstucePlan B si ColabFold ne fonctionne pas\n\n\n\nLes mises à jour de Colab cassent parfois l’installation de ColabFold. Dans ce cas, choisissez MOTEUR = \"ESMFold (API, sans GPU)\" en haut du notebook : la prédiction passe par l’API publique d’ESMFold (Meta AI), qui prédit une structure en quelques secondes à partir d’un modèle de langage, sans MSA. Toutes les analyses (pLDDT, RMSD, mutations) fonctionnent de la même façon. Autre solution : utiliser le notebook officiel ColabFold et téléverser les fichiers PDB obtenus.\n\n\n\nCode clé à retenir\n# Prédiction ColabFold en ligne de commande (dans Colab)\n!colabfold_batch --num-models 1 --num-recycle 3 gb1.fasta resultats/\n\n# Lecture du pLDDT (colonne B-factor) et visualisation 3D\nfrom Bio.PDB import PDBParser\nimport py3Dmol\ns = PDBParser(QUIET=True).get_structure(\"gb1\", \"resultats/gb1_unrelaxed_rank_001.pdb\")\nplddt = [res[\"CA\"].get_bfactor() for res in s.get_residues()]\n\nvue = py3Dmol.view(width=600, height=400)\nvue.addModel(open(\"resultats/gb1_unrelaxed_rank_001.pdb\").read(), \"pdb\")\nvue.setStyle({\"cartoon\": {\"color\": \"spectrum\"}})\nvue.zoomTo(); vue.show()",
+    "crumbs": [
+      "Ateliers pratiques (5 × 2h)",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Séance 5 : IA générative, repliement protéique et mini-projet</span>"
+    ]
+  },
+  {
+    "objectID": "seance5.html#mini-projet-en-binôme-45-min",
+    "href": "seance5.html#mini-projet-en-binôme-45-min",
+    "title": "Séance 5 : IA générative, repliement protéique et mini-projet",
+    "section": "4. Mini-projet en binôme (45 min)",
+    "text": "4. Mini-projet en binôme (45 min)\n\n\n\n\n\n\nImportant🏁 Consigne\n\n\n\nChoisissez une protéine et 1 à 3 mutations. Prédisez les structures sauvage et mutante, croisez avec le score ESM-2 (et AlphaMissense pour une protéine humaine), puis présentez en 3 minutes (3 diapositives maximum) :\n\nLa question — la protéine, son rôle biologique, les mutations choisies et pourquoi ;\nLes résultats — pLDDT sauvage vs mutant, RMSD, une capture 3D, score ESM-2 / AlphaMissense ;\nL’interprétation et les limites — ce que l’on peut conclure, ce que l’on ne peut pas conclure, et l’expérience que vous proposeriez pour valider in vitro.\n\n\n\n\nSujets proposés\n\n\n\n\n\n\n\n\nSujet\nProtéine\nIdées de mutations\nCe qu’il faut discuter\n\n\n\n\nA\nGB1 (56 aa), protéine modèle d’ingénierie\ncœur W43, F52, Y3 vs surface K10, E19\nAlphaFold « voit »-il la déstabilisation du cœur ?\n\n\nB\nHémoglobine β (147 aa), drépanocytose\nE7V (= E6V clinique)\nune mutation pathogène… sans changement de repliement\n\n\nC\nUbiquitine (76 aa), signalisation cellulaire\nI44A (surface d’interaction), L67S (cœur)\nfonction ≠ stabilité\n\n\nD\nVotre protéine (&lt; 150 aa)\nà justifier\npertinence biologique du choix\n\n\n\nLa grille d’évaluation détaillée est dans l’annexe Évaluation et mini-projet.\n\n\n\n\n\n\nNotePistes d’analyse pour le sujet B (drépanocytose)\n\n\n\n\n\nValeurs obtenues lors d’un essai (ESMFold + ESM-2 150M) :\n\n\n\n\nsauvage\nmutant E7V\n\n\n\n\npLDDT moyen\n94,2\n94,3\n\n\nRMSD mutant vs sauvage\n—\n0,01 Å\n\n\nscore ESM-2\n—\n−1,4 (modéré)\n\n\nAlphaMissense\n—\n0,22 (plutôt bénin)\n\n\n\n\nAlphaFold/ESMFold prédit un repliement strictement identique : la mutation est en surface.\nAlphaMissense la classe comme probablement bénigne et le score ESM-2 est modéré : ces modèles estiment surtout l’impact sur le repliement et la conservation évolutive.\nOr la maladie est réelle et grave : la valine hydrophobe exposée crée un « point collant » qui fait polymériser l’hémoglobine désoxygénée en fibres rigides, déformant les globules rouges en faucille.\nLeçon : un mécanisme de gain de fonction impliquant plusieurs molécules (interactions intermoléculaires, état désoxy) est hors de portée d’un modèle qui prédit une seule chaîne dans un seul état. La validation expérimentale (et clinique) reste indispensable.",
+    "crumbs": [
+      "Ateliers pratiques (5 × 2h)",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Séance 5 : IA générative, repliement protéique et mini-projet</span>"
+    ]
+  },
+  {
+    "objectID": "seance5.html#testez-vous",
+    "href": "seance5.html#testez-vous",
+    "title": "Séance 5 : IA générative, repliement protéique et mini-projet",
+    "section": "5. Testez-vous",
+    "text": "5. Testez-vous\n\n\n\n\n\n\nAstuceQ1. Pourquoi AlphaFold a-t-il besoin d’un alignement multiple de séquences ?\n\n\n\n\n\nParce que les mutations corrélées entre positions au cours de l’évolution (coévolution) révèlent les résidus en contact dans la structure 3D. Sans MSA, la prédiction est en général bien moins bonne (sauf pour les modèles de langage comme ESMFold, qui ont « mémorisé » cette information évolutive).\n\n\n\n\n\n\n\n\n\nAstuceQ2. Une région a un pLDDT de 35. Que peut-on en conclure ?\n\n\n\n\n\nLe modèle a très peu confiance dans la position de cette région. Elle est souvent désordonnée (flexible, sans structure fixe) ; elle ne doit pas être interprétée comme une structure précise.\n\n\n\n\n\n\n\n\n\nAstuceQ3. Le mutant prédit a un RMSD de 0,3 Å par rapport à la protéine sauvage. La mutation est-elle sans effet ?\n\n\n\n\n\nNon : AlphaFold tend à prédire le même repliement pour des séquences proches. Une mutation peut déstabiliser la protéine, abolir une interaction ou une activité catalytique sans que la structure prédite ne change. Il faut d’autres indicateurs et une validation expérimentale.\n\n\n\n\n\n\n\n\n\nAstuceQ4. Que signifie un score ESM-2 de −8 pour une mutation ?\n\n\n\n\n\nQue l’acide aminé muté est environ \\(e^{8} \\approx 3\\,000\\) fois moins probable que l’acide aminé sauvage à cette position selon le modèle : cette substitution est très rare dans l’évolution, donc probablement délétère.\n\n\n\n\n\n\n\n\n\nAstuceQ5. Citez trois limites d’AlphaFold 2.\n\n\n\n\n\nPar exemple : (1) une seule conformation statique ; (2) pas de ligands, d’ions, de membranes ni de modifications post-traductionnelles ; (3) mauvaise sensibilité aux mutations ponctuelles ; (4) dépendance à la profondeur du MSA ; (5) biais de la PDB ; (6) boîte noire.",
+    "crumbs": [
+      "Ateliers pratiques (5 × 2h)",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Séance 5 : IA générative, repliement protéique et mini-projet</span>"
+    ]
+  },
+  {
+    "objectID": "seance5.html#pour-aller-plus-loin",
+    "href": "seance5.html#pour-aller-plus-loin",
+    "title": "Séance 5 : IA générative, repliement protéique et mini-projet",
+    "section": "6. Pour aller plus loin",
+    "text": "6. Pour aller plus loin\n\nJumper J. et al. (2021). Highly accurate protein structure prediction with AlphaFold. Nature, 596, 583-589.\nMirdita M. et al. (2022). ColabFold: making protein folding accessible to all. Nature Methods, 19, 679-682.\nMeier J. et al. (2021). Language models enable zero-shot prediction of the effects of mutations on protein function. NeurIPS.\nCheng J. et al. (2023). Accurate proteome-wide missense variant effect prediction with AlphaMissense. Science, 381, eadg7492.\nBuel G. R. & Walters K. J. (2022). Can AlphaFold2 predict the impact of missense mutations on structure? Nature Structural & Molecular Biology, 29, 1-2.\nRessources : AlphaFold DB · ColabFold · RCSB PDB — 1PGA · py3Dmol",
+    "crumbs": [
+      "Ateliers pratiques (5 × 2h)",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Séance 5 : IA générative, repliement protéique et mini-projet</span>"
+    ]
+  },
+  {
+    "objectID": "annexe-colab.html",
+    "href": "annexe-colab.html",
+    "title": "Appendix A — Prise en main de Google Colab et Python express",
+    "section": "",
+    "text": "Google Colab en bref\nGoogle Colaboratory est un service gratuit de Google qui exécute des notebooks Jupyter dans le cloud : pas d’installation, des bibliothèques scientifiques déjà présentes, et un accès à des GPU (cartes graphiques) indispensables au deep learning.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Prise en main de Google Colab et Python express</span>"
+    ]
+  },
+  {
+    "objectID": "annexe-colab.html#google-colab-en-bref",
+    "href": "annexe-colab.html#google-colab-en-bref",
+    "title": "Appendix A — Prise en main de Google Colab et Python express",
+    "section": "",
+    "text": "Les gestes essentiels dans Colab\n\n\n\n\n\n\nAction\nComment\n\n\n\n\nExécuter une cellule\nMaj + Entrée (ou bouton ▶)\n\n\nTout exécuter\nExécution → Tout exécuter (Ctrl + F9)\n\n\nRepartir de zéro\nExécution → Redémarrer la session\n\n\nActiver le GPU\nExécution → Modifier le type d'exécution → GPU T4\n\n\nSauvegarder son travail\nFichier → Enregistrer une copie dans Drive\n\n\nAjouter une cellule\nboutons + Code / + Texte\n\n\nAfficher une solution masquée\ndouble-clic sur la cellule « 💡 Solution »\n\n\n\n\n\n\n\n\n\nAttentionColab est temporaire\n\n\n\n\nUne session inactive est coupée au bout d’un certain temps ; une session dure au maximum quelques heures.\nÀ la coupure, les variables et les fichiers créés sont perdus (pas le notebook enregistré dans Drive).\nL’accès gratuit au GPU est limité : désactivez-le (Modifier le type d'exécution → CPU) quand vous n’en avez pas besoin.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Prise en main de Google Colab et Python express</span>"
+    ]
+  },
+  {
+    "objectID": "annexe-colab.html#comment-se-lit-un-notebook-de-latelier",
+    "href": "annexe-colab.html#comment-se-lit-un-notebook-de-latelier",
+    "title": "Appendix A — Prise en main de Google Colab et Python express",
+    "section": "Comment se lit un notebook de l’atelier",
+    "text": "Comment se lit un notebook de l’atelier\n\n\n\n\n\n\nflowchart TB\n    A[\"📝 Cellule texte&lt;br/&gt;explique le problème\"] --&gt; B[\"▶️ Cellule de code fournie&lt;br/&gt;à exécuter et lire\"]\n    B --&gt; C[\"🔎 Question&lt;br/&gt;répondre dans la cellule texte\"]\n    C --&gt; D[\"✍️ Exercice&lt;br/&gt;paramètre ou quelques lignes\"]\n    D --&gt; E[\"💡 Solution masquée&lt;br/&gt;à exécuter dans tous les cas\"]\n    E --&gt; B\n\n\n\n\n\n\nLes formulaires Colab permettent de modifier un paramètre sans toucher au code :\nN_ARBRES = 200   #@param {type:\"slider\", min:10, max:500, step:10}\nCIBLE = \"NR-AhR\" #@param [\"NR-AhR\", \"SR-MMP\", \"SR-p53\"]\nDans Colab, ces lignes s’affichent comme un curseur et un menu déroulant à droite de la cellule. Changez la valeur, puis ré-exécutez la cellule (et les suivantes qui en dépendent).",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Prise en main de Google Colab et Python express</span>"
+    ]
+  },
+  {
+    "objectID": "annexe-colab.html#aide-mémoire-python",
+    "href": "annexe-colab.html#aide-mémoire-python",
+    "title": "Appendix A — Prise en main de Google Colab et Python express",
+    "section": "Aide-mémoire Python",
+    "text": "Aide-mémoire Python\n\nTypes de baseSéquences (str)Listes et bouclesDictionnaires et fonctionsPandas\n\n\ngene = \"TP53\"            # str  : texte\nlongueur = 393           # int  : entier\nmasse = 43.7             # float: décimal\nactif = True             # bool : True / False\nprint(f\"{gene} : {longueur} aa, {masse} kDa\")   # f-string\n\n\nadn = \"ATGGCCATTGTA\"\nlen(adn)            # 12\nadn[:3]             # 'ATG'  (les 3 premiers)\nadn[-3:]            # 'GTA'  (les 3 derniers)\nadn.count(\"G\")      # 3\nadn[::-1]           # séquence inversée\n\n\ngenes = [\"BRCA1\", \"TP53\", \"EGFR\"]\ngenes.append(\"KRAS\")\nfor g in genes:\n    if g == \"TP53\":\n        print(g, \"suppresseur de tumeur\")\ncodons = [adn[i:i+3] for i in range(0, len(adn), 3)]\n\n\ncode = {\"ATG\": \"M\", \"GCC\": \"A\", \"TAA\": \"*\"}\ncode[\"ATG\"]               # 'M'\ncode.get(\"NNN\", \"?\")      # '?' si la clé n'existe pas\n\ndef taux_gc(seq):\n    \"\"\"Proportion de G et C dans une séquence.\"\"\"\n    return (seq.count(\"G\") + seq.count(\"C\")) / len(seq)\n\n\nimport pandas as pd\ndf = pd.read_csv(\"donnees.csv\")        # lire un fichier\ndf.shape, df.head(), df.info()         # explorer\ndf[\"colonne\"]                          # une colonne\ndf[df[\"expression\"] &gt; 5]               # filtrer des lignes\ndf.dropna()                            # retirer les valeurs manquantes\ndf.groupby(\"type\")[\"expression\"].mean()  # moyenne par groupe\ndf.to_csv(\"resultat.csv\", index=False) # enregistrer",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Prise en main de Google Colab et Python express</span>"
+    ]
+  },
+  {
+    "objectID": "annexe-colab.html#les-messages-derreur-les-plus-fréquents",
+    "href": "annexe-colab.html#les-messages-derreur-les-plus-fréquents",
+    "title": "Appendix A — Prise en main de Google Colab et Python express",
+    "section": "Les messages d’erreur les plus fréquents",
+    "text": "Les messages d’erreur les plus fréquents\n\nLire une erreur : regardez toujours la dernière ligne du message\n\n\n\n\n\n\n\nErreur\nCause probable\nSolution\n\n\n\n\nNameError: name 'x' is not defined\ncellule qui définit x non exécutée, ou faute de frappe\nexécuter les cellules précédentes dans l’ordre\n\n\nModuleNotFoundError: No module named ...\nbibliothèque non installée\nexécuter la cellule %pip install en début de notebook\n\n\nKeyError: 'colonne'\nnom de colonne ou de clé inexistant\nvérifier l’orthographe avec df.columns\n\n\nIndentationError\ndécalage (espaces) incorrect\naligner le code avec 4 espaces\n\n\nCUDA out of memory\nmémoire du GPU saturée\nréduire la taille des lots, redémarrer la session\n\n\n\nVoir aussi l’annexe Dépannage.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Prise en main de Google Colab et Python express</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks.html",
+    "href": "notebooks.html",
+    "title": "Appendix B — Notebooks Colab et données",
+    "section": "",
+    "text": "Catalogue\nTous les notebooks s’ouvrent directement dans Google Colab grâce aux badges ci-dessous. Pensez à enregistrer une copie dans votre Drive (Fichier → Enregistrer une copie dans Drive) avant de commencer : vos modifications seront ainsi conservées.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>Notebooks Colab et données</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks.html#catalogue",
+    "href": "notebooks.html#catalogue",
+    "title": "Appendix B — Notebooks Colab et données",
+    "section": "",
+    "text": "Notebooks du module\n\n\nSéance\nNotebook\nOuvrir\nExécution\nDurée\n\n\n\n\n0\nPrise en main de Colab et Python express télécharger\n\nCPU\n45 min\n\n\n1\nToxicité des molécules et Random Forest télécharger\n\nCPU\n2h\n\n\n2\nTranscriptomique single-cell : ACP, UMAP, K-Means télécharger\n\nCPU\n2h\n\n\n3\nSéquences protéiques : k-mers vs ESM-2 télécharger\n\nGPU conseillé\n2h\n\n\n4\nImagerie cellulaire : Otsu, Cellpose, rapport télécharger\n\nGPU conseillé\n2h\n\n\n5\nAlphaFold 2 (ColabFold), mutations, ESM-2 télécharger\n\nGPU requis\n2h",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>Notebooks Colab et données</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks.html#jeux-de-données",
+    "href": "notebooks.html#jeux-de-données",
+    "title": "Appendix B — Notebooks Colab et données",
+    "section": "Jeux de données",
+    "text": "Jeux de données\nTous les jeux de données sont publics et téléchargés automatiquement par les notebooks. Une copie de secours des plus petits est stockée dans le dossier data/ du dépôt.\n\nDonnées utilisées\n\n\nSéance\nJeu de données\nSource\nTaille\n\n\n\n\n1\nTox21 (12 essais de toxicité, ~7 800 molécules)\nMoleculeNet / DeepChem — NIH, EPA, FDA\n120 Ko\n\n\n2\nPBMC 3k (RNA-seq single-cell)\n10x Genomics via Scanpy\n6 Mo\n\n\n3\n600 protéines humaines Swiss-Prot (noyau, mitochondrie, membrane, sécrétées)\nUniProt — requête REST, copie dans data/s3_localisation/\n250 Ko\n\n\n4\nhuman_mitosis (noyaux en fluorescence)\nscikit-image\n250 Ko\n\n\n4 (bonus)\nMalaria cell images (27 558 globules rouges)\nNIH / NLM\n340 Mo\n\n\n5\nGB1 (PDB 1PGA), hémoglobine β (UniProt P68871), AlphaMissense\nRCSB PDB, AlphaFold DB\n&lt; 1 Mo\n\n\n\n\n\n\n\n\n\nNoteReconstruire le jeu de la séance 3\n\n\n\nLes fichiers FASTA ont été obtenus par la requête UniProt suivante (exemple pour le noyau, en excluant les protéines aussi annotées dans le cytoplasme ou les trois autres compartiments), puis par un tirage aléatoire reproductible de 150 protéines par classe :\nreviewed:true AND organism_id:9606 AND length:[80 TO 600] AND cc_scl_term:SL-0191\n  NOT cc_scl_term:SL-0086 NOT cc_scl_term:SL-0173 NOT cc_scl_term:SL-0243 NOT cc_scl_term:SL-0039",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>Notebooks Colab et données</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks.html#exécuter-les-notebooks-hors-de-colab",
+    "href": "notebooks.html#exécuter-les-notebooks-hors-de-colab",
+    "title": "Appendix B — Notebooks Colab et données",
+    "section": "Exécuter les notebooks hors de Colab",
+    "text": "Exécuter les notebooks hors de Colab\nLes notebooks fonctionnent aussi avec Jupyter en local (les cellules propres à Colab sont ignorées). Installez les dépendances avec :\npip install pandas scikit-learn matplotlib seaborn plotly rdkit scanpy umap-learn \\\n            biopython transformers torch torchvision cellpose py3Dmol requests\nLa prédiction ColabFold nécessite Linux et un GPU NVIDIA : en local, utilisez le moteur ESMFold (API) proposé dans le notebook de la séance 5.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>Notebooks Colab et données</span>"
+    ]
+  },
+  {
+    "objectID": "evaluation.html",
+    "href": "evaluation.html",
+    "title": "Appendix C — Évaluation et mini-projet",
+    "section": "",
+    "text": "Répartition",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>C</span>  <span class='chapter-title'>Évaluation et mini-projet</span>"
+    ]
+  },
+  {
+    "objectID": "evaluation.html#répartition",
+    "href": "evaluation.html#répartition",
+    "title": "Appendix C — Évaluation et mini-projet",
+    "section": "",
+    "text": "Modalités d’évaluation\n\n\n\n\n\n\n\n\nComposante\nPoids\nQuand\nFormat\n\n\n\n\nLivrable séance 1 — pipeline toxicité\n10 %\nfin de séance 1\nnotebook exécuté + figure\n\n\nLivrable séance 2 — carte des clusters\n10 %\nfin de séance 2\nfichier HTML + CSV + réponses\n\n\nLivrable séance 3 — comparateur\n10 %\nfin de séance 3\nfigure + réponses\n\n\nLivrable séance 4 — rapport d’imagerie\n10 %\nfin de séance 4\narchive ZIP + réponses\n\n\nMini-projet (séance 5)\n40 %\nfin de séance 5\nprésentation 3 min + notebook\n\n\nParticipation et quiz « Testez-vous »\n20 %\ncontinu\n—",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>C</span>  <span class='chapter-title'>Évaluation et mini-projet</span>"
+    ]
+  },
+  {
+    "objectID": "evaluation.html#grille-dun-livrable-de-séance-sur-10",
+    "href": "evaluation.html#grille-dun-livrable-de-séance-sur-10",
+    "title": "Appendix C — Évaluation et mini-projet",
+    "section": "Grille d’un livrable de séance (sur 10)",
+    "text": "Grille d’un livrable de séance (sur 10)\n\nLivrables des séances 1 à 4\n\n\n\n\n\n\n\nCritère\nPoints\nAttendu\n\n\n\n\nExécution\n3\nle notebook s’exécute sans erreur, les sorties sont présentes\n\n\nExercices ✍️\n2\nles cellules « À vous » sont complétées (pas seulement la solution exécutée)\n\n\nQuestions 🔎\n4\nréponses rédigées, justifiées par les résultats obtenus et par un argument biologique\n\n\nEsprit critique\n1\nau moins une limite ou une précaution d’interprétation identifiée",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>C</span>  <span class='chapter-title'>Évaluation et mini-projet</span>"
+    ]
+  },
+  {
+    "objectID": "evaluation.html#mini-projet-grille-de-la-présentation-sur-20",
+    "href": "evaluation.html#mini-projet-grille-de-la-présentation-sur-20",
+    "title": "Appendix C — Évaluation et mini-projet",
+    "section": "Mini-projet : grille de la présentation (sur 20)",
+    "text": "Mini-projet : grille de la présentation (sur 20)\n\nPrésentation du mini-projet\n\n\n\n\n\n\n\nCritère\nPoints\nCe que l’on attend\n\n\n\n\nQuestion biologique\n4\nprotéine et mutation(s) clairement présentées, choix justifié (maladie, ingénierie, rôle structural…)\n\n\nDémarche et résultats\n5\nprédictions sauvage et mutant, pLDDT, RMSD, capture 3D lisible, score ESM-2 / AlphaMissense\n\n\nInterprétation\n4\nconclusion prudente, cohérente avec les résultats et avec la biologie de la protéine\n\n\nLimites du modèle\n4\nau moins deux limites pertinentes (biais de données, boîte noire, insensibilité aux mutations ponctuelles, conformation unique…) et une expérience de validation proposée\n\n\nCommunication\n3\n3 minutes respectées, 3 diapositives claires, les deux membres s’expriment",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>C</span>  <span class='chapter-title'>Évaluation et mini-projet</span>"
+    ]
+  },
+  {
+    "objectID": "evaluation.html#modèle-de-présentation-3-diapositives",
+    "href": "evaluation.html#modèle-de-présentation-3-diapositives",
+    "title": "Appendix C — Évaluation et mini-projet",
+    "section": "Modèle de présentation (3 diapositives)",
+    "text": "Modèle de présentation (3 diapositives)\n\nDiapositive 1 — La questionDiapositive 2 — Les résultatsDiapositive 3 — Interprétation et limites\n\n\n\nNom de la protéine, organisme, fonction en une phrase\nLa ou les mutations étudiées (notation W43A) et leur localisation (cœur / surface / site actif)\nPourquoi ce choix ? Hypothèse de départ : « nous pensons que… »\n\n\n\n\nCapture 3D : structure sauvage (gris) superposée au mutant (couleurs pLDDT), résidus mutés en bâtonnets\nPetit tableau : pLDDT moyen sauvage / mutant, RMSD, score ESM-2, AlphaMissense\nLe profil pLDDT sauvage vs mutant\n\n\n\n\nCe que les modèles disent ; sont-ils d’accord entre eux ?\nCe qu’ils ne permettent pas de conclure\nL’expérience que vous proposeriez : mesure de stabilité thermique (DSF), dichroïsme circulaire, test d’activité, cristallographie…\n\n\n\n\n\n\n\n\n\n\nAstuceConseils\n\n\n\n\nUne bonne présentation n’est pas celle qui trouve un « grand effet » : c’est celle qui interprète honnêtement ce que montrent (et ne montrent pas) les modèles.\nFaites vos captures 3D directement depuis py3Dmol (clic droit → enregistrer l’image) ou par capture d’écran.\nPréparez les diapositives pendant que les prédictions tournent.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>C</span>  <span class='chapter-title'>Évaluation et mini-projet</span>"
+    ]
+  },
+  {
+    "objectID": "glossaire.html",
+    "href": "glossaire.html",
+    "title": "Appendix D — Glossaire IA ↔︎ Biologie",
+    "section": "",
+    "text": "Glossaire\n\n\n\n\n\n\n\nTerme\nDéfinition\nSéance\n\n\n\n\nAccuracy (exactitude)\nproportion de prédictions correctes ; trompeuse si les classes sont déséquilibrées\n1\n\n\nACP (PCA)\nréduction de dimension linéaire qui projette les données sur les axes de plus grande variance\n2\n\n\nAlphaFold 2\nréseau de neurones de DeepMind qui prédit la structure 3D d’une protéine à partir de sa séquence et d’un MSA\n5\n\n\nAlphaMissense\nmodèle prédisant la pathogénicité des variants faux-sens humains\n5\n\n\nApprentissage par transfert\nréutiliser un modèle pré-entraîné sur une grande tâche générique pour une tâche spécifique avec peu de données\n3, 4\n\n\nApprentissage supervisé\napprendre à partir d’exemples dont la réponse (étiquette) est connue\n1, 3\n\n\nApprentissage non supervisé\ndécouvrir une structure dans des données sans étiquette (clustering, réduction de dimension)\n2, 4\n\n\nAuto-supervisé\nla supervision est construite à partir des données elles-mêmes (ex. deviner un acide aminé masqué)\n3\n\n\nAUC ROC\naire sous la courbe ROC ; probabilité qu’un positif reçoive un score plus élevé qu’un négatif\n1\n\n\nBagging\nentraîner plusieurs modèles sur des échantillons bootstrap et agréger leurs prédictions\n1\n\n\nCellpose\nréseau de neurones généraliste de segmentation de cellules et de noyaux\n4\n\n\nClasse déséquilibrée\nune classe est beaucoup plus rare que l’autre (ex. 12 % de toxiques)\n1\n\n\nClustering\nregroupement automatique d’objets similaires\n2\n\n\nCNN\nréseau de neurones convolutif : empilement de filtres de convolution appris, adapté aux images\n4\n\n\nCoévolution\nvariation corrélée de deux positions au cours de l’évolution, souvent signe d’un contact 3D\n5\n\n\nDescripteur (feature)\nvariable numérique décrivant un objet (masse, logP, nombre de cycles…)\n1\n\n\nEmbedding\nvecteur appris qui représente un objet ; des objets similaires ont des vecteurs proches\n3\n\n\nESM-2\nmodèle de langage protéique de Meta AI (Transformer entraîné à deviner des acides aminés masqués)\n3, 5\n\n\nFASTA\nformat texte standard des séquences (&gt; en-tête, puis la séquence)\n3\n\n\nFaux négatif / faux positif\npositif prédit négatif (ex. toxique manqué) / négatif prédit positif (fausse alerte)\n1\n\n\nFeature importance\ncontribution estimée de chaque variable aux prédictions d’un modèle\n1\n\n\nGène marqueur\ngène spécifiquement exprimé dans une population cellulaire\n2\n\n\nHyperparamètre\nréglage du modèle choisi par l’utilisateur (nombre d’arbres, K, profondeur…)\n1, 2\n\n\nIsolation Forest\nméthode de détection d’anomalies qui isole les points atypiques par des coupes aléatoires\n4\n\n\nK-Means\nalgorithme de clustering qui minimise la distance des points au centre de leur groupe\n2\n\n\nk-mer\nsous-séquence de k lettres consécutives\n3\n\n\nMatrice de confusion\ntableau croisant classes réelles et prédites\n1, 3\n\n\nMSA\nalignement multiple de séquences homologues\n5\n\n\nPAE\nerreur d’alignement prédite par AlphaFold entre deux résidus (en Å)\n5\n\n\npLDDT\nscore de confiance local d’AlphaFold (0-100) par résidu\n5\n\n\nPrécision / rappel\npart des positifs prédits qui sont vrais / part des vrais positifs retrouvés\n1\n\n\nQSAR\nrelation quantitative structure–activité : prédire l’activité d’une molécule à partir de sa structure\n1\n\n\nRandom Forest\nensemble d’arbres de décision entraînés sur des sous-échantillons et des sous-ensembles de variables\n1\n\n\nRMSD\nécart quadratique moyen entre les atomes de deux structures superposées (en Å)\n5\n\n\nSegmentation d’instances\nattribuer chaque pixel à un objet individuel (cellule n°1, n°2…)\n4\n\n\nSilhouette\nscore (−1 à 1) mesurant si un point est bien dans son cluster\n2\n\n\nSMILES\nécriture d’une molécule sous forme de texte (CCO = éthanol)\n1\n\n\nSur-apprentissage (overfitting)\nle modèle mémorise les données d’apprentissage et généralise mal\n1\n\n\nTransformer\narchitecture de réseau fondée sur l’attention, à la base des modèles de langage\n3\n\n\nU-Net\nréseau encodeur-décodeur avec connexions directes, standard en segmentation biomédicale\n4\n\n\nUMAP\nréduction de dimension non linéaire qui préserve les voisinages, pour visualiser en 2D\n2\n\n\nValidation croisée\névaluer un modèle en alternant plusieurs découpages apprentissage/test\n3\n\n\nWatershed\nalgorithme de « ligne de partage des eaux » pour séparer des objets qui se touchent\n4",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>D</span>  <span class='chapter-title'>Glossaire IA ↔ Biologie</span>"
+    ]
+  },
+  {
+    "objectID": "depannage.html",
+    "href": "depannage.html",
+    "title": "Appendix E — Dépannage (FAQ)",
+    "section": "",
+    "text": "Astuce« NameError: name ‘…’ is not defined »\n\n\n\n\n\nUne cellule précédente n’a pas été exécutée (ou la session a redémarré). Faites Exécution → Exécuter les cellules précédentes (Ctrl + F8), ou Exécution → Tout exécuter.\n\n\n\n\n\n\n\n\n\nAstuce« ModuleNotFoundError: No module named ‘rdkit’ » (ou scanpy, Bio, cellpose…)\n\n\n\n\n\nLa cellule d’installation (%pip install …) en haut du notebook n’a pas été exécutée dans cette session. Exécutez-la, puis relancez la cellule qui a échoué. Si l’erreur persiste : Exécution → Redémarrer la session, puis réexécutez depuis le début.\n\n\n\n\n\n\n\n\n\nAstucePas de GPU / « Vous ne pouvez pas vous connecter au GPU pour le moment »\n\n\n\n\n\nLe quota de GPU gratuit est limité et partagé. Solutions :\n\nséance 3 : choisissez le modèle esm2_t6_8M_UR50D, qui tourne en quelques minutes sur CPU ;\nséance 4 : Cellpose fonctionne sur CPU (≈ 1 minute par image) ;\nséance 5 : choisissez MOTEUR = \"ESMFold (API, sans GPU)\".\n\nPensez à désactiver le GPU des notebooks qui n’en ont pas besoin (séances 0, 1 et 2).\n\n\n\n\n\n\n\n\n\nAstuceUn téléchargement de données échoue\n\n\n\n\n\nChaque notebook prévoit une source de secours (copie dans le dépôt GitHub ou requête directe à la base de données). Relancez la cellule ; si les deux sources échouent, vérifiez la connexion ou téléchargez le fichier depuis le dossier data/ et téléversez-le dans Colab (icône 📁 à gauche → téléverser).\n\n\n\n\n\n\n\n\n\nAstuceSéance 5 : l’installation de ColabFold échoue ou ne se termine pas\n\n\n\n\n\n\nVérifiez que le GPU est activé, puis consultez le fichier install_colabfold.log (icône 📁).\nRedémarrez la session et relancez la section 0.\nPlan B : MOTEUR = \"ESMFold (API, sans GPU)\" — toutes les analyses restent possibles.\nPlan C : prédisez avec le notebook officiel ColabFold, téléchargez le ZIP de résultats, puis téléversez le fichier *_rank_001*.pdb dans votre notebook.\n\n\n\n\n\n\n\n\n\n\nAstuceSéance 5 : « too many requests » ou MSA très lent\n\n\n\n\n\nLe serveur MMseqs2 de ColabFold est partagé par tous les utilisateurs dans le monde. En classe, échelonnez les lancements entre binômes, ou utilisez mode_msa=\"single_sequence\" pour un test rapide (prédiction de moins bonne qualité).\n\n\n\n\n\n\n\n\n\nAstuce« CUDA out of memory »\n\n\n\n\n\nLa mémoire du GPU est saturée : Exécution → Redémarrer la session, puis réduisez la taille des lots (taille_lot=4 dans embeddings_esm, lot=8 dans carte_mutations) ou choisissez un modèle plus petit.\n\n\n\n\n\n\n\n\n\nAstuceLa carte Plotly ou la vue 3D py3Dmol ne s’affiche pas\n\n\n\n\n\nRé-exécutez la cellule. Si le problème persiste, rechargez la page du navigateur (le notebook reste ouvert) ou essayez un autre navigateur (Chrome / Firefox à jour). Les bloqueurs de scripts peuvent empêcher l’affichage.\n\n\n\n\n\n\n\n\n\nAstuceJ’ai perdu mon travail\n\n\n\n\n\nLes notebooks ouverts depuis un badge sont des copies temporaires. Prenez l’habitude de faire Fichier → Enregistrer une copie dans Drive dès l’ouverture. Les fichiers générés (CSV, figures) doivent être téléchargés avant la fin de la session.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>E</span>  <span class='chapter-title'>Dépannage (FAQ)</span>"
+    ]
+  }
+]

@@ -1,0 +1,2017 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.11.9">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Séance 5 : IA générative, repliement protéique et mini-projet – Intelligence Artificielle et Biotechnologie</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./annexe-colab.html" rel="next">
+<link href="./seance4.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-5de16f5e46225c21e2daa90d340bf64f.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-3218d7d29a29f08bc4fdf3802c3e3ca5.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-5de16f5e46225c21e2daa90d340bf64f.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-d29f24995af1e3397e5707c0c8660694.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-71b6201ca03046a2144629b9c7df8fe5.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-d29f24995af1e3397e5707c0c8660694.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+<!-- Google Translate Widget -->
+</head><body class="nav-sidebar floating quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          toggle.setAttribute("aria-checked", alternate ? "true" : "false");
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455).
+    // Not run on load: stylesheets are set before first paint there, and
+    // scrolling would undo the scroll to a URL fragment (#14973).
+    // The one pixel nudge keeps the reader where they were.
+    const refreshSafariScrollbar = () => {
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        const scrollY = window.scrollY;
+        window.scrollTo(0, scrollY > 0 ? scrollY - 1 : 1);
+        setTimeout(() => {
+          window.scrollTo(0, scrollY);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      refreshSafariScrollbar();
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script><div id="google_translate_element"></div>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'fr',
+    includedLanguages: 'fr,en',
+    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+    autoDisplay: false
+  }, 'google_translate_element');
+}
+</script>
+
+<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<style>
+#google_translate_element {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 9999;
+  background: white;
+  padding: 2px;
+  border-radius: 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  border: 1px solid #ddd;
+}
+.goog-te-gadget { font-size: 0 !important; }
+.goog-te-gadget-simple {
+  background-color: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+}
+.goog-te-menu-value span { color: #333 !important; font-size: 13px !important; }
+.goog-te-menu-value {
+  color: #333 !important;
+  border: none !important;
+  background: transparent !important;
+  padding: 4px 10px !important;
+  border-radius: 15px !important;
+}
+.goog-te-banner-frame.skiptranslate { display: none !important; }
+body { top: 0px !important; }
+</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+
+
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" aria-label="Toolbar">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./seance1.html">Ateliers pratiques (5 × 2h)</a></li><li class="breadcrumb-item"><a href="./seance5.html"><span class="chapter-title">Séance 5 : IA générative, repliement protéique et mini-projet</span></a></li></ol></nav>
+        <a class="flex-grow-1" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto" aria-label="Site">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Intelligence Artificielle et Biotechnologie</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/nevermind78/IA_Biotech" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <button type="button" role="switch" aria-checked="false" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode" aria-label="Toggle dark mode"><i class="bi"></i></button>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Présentation du module</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-controls="quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-1-label">Ateliers pratiques (5 × 2h)</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-1" aria-labelledby="quarto-sidebar-section-1-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./seance1.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Séance 1 : Données biologiques et premier modèle prédictif</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./seance2.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Séance 2 : Apprentissage non supervisé et profilage d’expression génique</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./seance3.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Séance 3 : Séquences protéiques et modèles de langage biologique</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./seance4.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Séance 4 : Vision par ordinateur pour l’imagerie cellulaire</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./seance5.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Séance 5 : IA générative, repliement protéique et mini-projet</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-controls="quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-2-label">Appendices</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-2" aria-labelledby="quarto-sidebar-section-2-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./annexe-colab.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prise en main de Google Colab et Python express</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebooks.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Notebooks Colab et données</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./evaluation.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Évaluation et mini-projet</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./glossaire.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Glossaire IA ↔︎ Biologie</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./depannage.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Dépannage (FAQ)</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" aria-labelledby="toc-title" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#le-problème-biologique" id="toc-le-problème-biologique" class="nav-link active" data-scroll-target="#le-problème-biologique">1. Le problème biologique</a></li>
+  <li><a href="#notions-théoriques-essentielles" id="toc-notions-théoriques-essentielles" class="nav-link" data-scroll-target="#notions-théoriques-essentielles">2. Notions théoriques essentielles</a>
+  <ul class="collapse">
+  <li><a href="#du-repliement-à-la-structure" id="toc-du-repliement-à-la-structure" class="nav-link" data-scroll-target="#du-repliement-à-la-structure">2.1 Du repliement à la structure</a></li>
+  <li><a href="#alphafold-2-les-idées-clés" id="toc-alphafold-2-les-idées-clés" class="nav-link" data-scroll-target="#alphafold-2-les-idées-clés">2.2 AlphaFold 2 : les idées clés</a></li>
+  <li><a href="#lire-les-scores-de-confiance" id="toc-lire-les-scores-de-confiance" class="nav-link" data-scroll-target="#lire-les-scores-de-confiance">2.3 Lire les scores de confiance</a></li>
+  <li><a href="#comparer-deux-structures-le-rmsd" id="toc-comparer-deux-structures-le-rmsd" class="nav-link" data-scroll-target="#comparer-deux-structures-le-rmsd">2.4 Comparer deux structures : le RMSD</a></li>
+  <li><a href="#mutations-notation-et-effets" id="toc-mutations-notation-et-effets" class="nav-link" data-scroll-target="#mutations-notation-et-effets">2.5 Mutations : notation et effets</a></li>
+  <li><a href="#prédire-leffet-dune-mutation-avec-un-modèle-de-langage" id="toc-prédire-leffet-dune-mutation-avec-un-modèle-de-langage" class="nav-link" data-scroll-target="#prédire-leffet-dune-mutation-avec-un-modèle-de-langage">2.6 Prédire l’effet d’une mutation avec un modèle de langage</a></li>
+  <li><a href="#lia-générative-pour-les-protéines" id="toc-lia-générative-pour-les-protéines" class="nav-link" data-scroll-target="#lia-générative-pour-les-protéines">2.7 L’IA générative pour les protéines</a></li>
+  <li><a href="#les-limites-à-garder-en-tête" id="toc-les-limites-à-garder-en-tête" class="nav-link" data-scroll-target="#les-limites-à-garder-en-tête">2.8 Les limites à garder en tête</a></li>
+  </ul></li>
+  <li><a href="#déroulé-de-latelier" id="toc-déroulé-de-latelier" class="nav-link" data-scroll-target="#déroulé-de-latelier">3. Déroulé de l’atelier</a>
+  <ul class="collapse">
+  <li><a href="#code-clé-à-retenir" id="toc-code-clé-à-retenir" class="nav-link" data-scroll-target="#code-clé-à-retenir">Code clé à retenir</a></li>
+  </ul></li>
+  <li><a href="#mini-projet-en-binôme-45-min" id="toc-mini-projet-en-binôme-45-min" class="nav-link" data-scroll-target="#mini-projet-en-binôme-45-min">4. Mini-projet en binôme (45 min)</a></li>
+  <li><a href="#testez-vous" id="toc-testez-vous" class="nav-link" data-scroll-target="#testez-vous">5. Testez-vous</a></li>
+  <li><a href="#pour-aller-plus-loin" id="toc-pour-aller-plus-loin" class="nav-link" data-scroll-target="#pour-aller-plus-loin">6. Pour aller plus loin</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content" tabindex="-1">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./seance1.html">Ateliers pratiques (5 × 2h)</a></li><li class="breadcrumb-item"><a href="./seance5.html"><span class="chapter-title">Séance 5 : IA générative, repliement protéique et mini-projet</span></a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-title">Séance 5 : IA générative, repliement protéique et mini-projet</span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Informations de la séance
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Type</strong> : Atelier pratique + <strong>mini-projet en binôme (45 min)</strong> — <strong>GPU T4 obligatoire</strong> pour ColabFold</li>
+<li><strong>Durée</strong> : 2h</li>
+<li><strong>Problème biologique</strong> : prédire la structure 3D d’une protéine mutée et évaluer l’impact fonctionnel d’une mutation ponctuelle</li>
+<li><strong>Données</strong> : domaine GB1 de la protéine G (PDB 1PGA), hémoglobine β (UniProt P68871), AlphaFold DB, AlphaMissense</li>
+<li><strong>Outils</strong> : <strong>ColabFold</strong> (AlphaFold 2 + MMseqs2), py3Dmol, Biopython, ESM-2 (Hugging Face) ; plan B : ESMFold (API)</li>
+<li><strong>Livrable</strong> : présentation de 3 minutes de l’impact observé d’une mutation et des limites du modèle</li>
+</ul>
+</div>
+</div>
+<div class="colab-launch">
+<p><a href="https://colab.research.google.com/github/nevermind78/IA_Biotech/blob/main/notebooks/S5_alphafold_mutations.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Ouvrir dans Google Colab"></a></p>
+<p><strong>Notebook de l’atelier</strong> — ouvrez-le dans Colab, activez le <strong>GPU T4</strong> et lancez <strong>immédiatement</strong> la section 0 (installation de ColabFold en arrière-plan, 3 à 5 min). Version téléchargeable : <a href="notebooks/S5_alphafold_mutations.ipynb">S5_alphafold_mutations.ipynb</a></p>
+</div>
+<section id="le-problème-biologique" class="level2">
+<h2 class="anchored" data-anchor-id="le-problème-biologique">1. Le problème biologique</h2>
+<p>La <strong>fonction</strong> d’une protéine découle de sa <strong>forme 3D</strong> : la poche active d’une enzyme, la surface d’interaction d’un anticorps, le canal d’un transporteur. Une <strong>mutation ponctuelle</strong> (un seul acide aminé changé) peut :</p>
+<ul>
+<li><strong>déstabiliser le repliement</strong> (la protéine se déplie ou s’agrège) → perte de fonction, maladie génétique ;</li>
+<li><strong>modifier une surface</strong> d’interaction ou un site actif sans changer le repliement ;</li>
+<li><strong>améliorer</strong> une propriété : c’est la base de l’<strong>ingénierie des protéines</strong> (enzymes industrielles plus thermostables, anticorps plus affins).</li>
+</ul>
+<p>Déterminer une structure expérimentalement (cristallographie aux rayons X, RMN, cryo-microscopie électronique) prend des mois. <strong>AlphaFold 2</strong> la prédit en quelques minutes à partir de la séquence.</p>
+</section>
+<section id="notions-théoriques-essentielles" class="level2">
+<h2 class="anchored" data-anchor-id="notions-théoriques-essentielles">2. Notions théoriques essentielles</h2>
+<section id="du-repliement-à-la-structure" class="level3">
+<h3 class="anchored" data-anchor-id="du-repliement-à-la-structure">2.1 Du repliement à la structure</h3>
+<table class="table-striped caption-top table">
+<caption>Les niveaux de structure des protéines</caption>
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Niveau</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Primaire</strong></td>
+<td>la séquence d’acides aminés</td>
+</tr>
+<tr class="even">
+<td><strong>Secondaire</strong></td>
+<td>hélices α, feuillets β, boucles (liaisons H du squelette)</td>
+</tr>
+<tr class="odd">
+<td><strong>Tertiaire</strong></td>
+<td>le repliement 3D d’une chaîne (cœur hydrophobe enfoui, surface polaire)</td>
+</tr>
+<tr class="even">
+<td><strong>Quaternaire</strong></td>
+<td>l’assemblage de plusieurs chaînes (ex. l’hémoglobine = 2 α + 2 β)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Anfinsen</strong> (prix Nobel 1972) a montré que la séquence contient l’information nécessaire au repliement. Mais le nombre de conformations possibles est astronomique (<strong>paradoxe de Levinthal</strong>) : prédire la structure à partir de la séquence est resté un grand défi pendant 50 ans. Depuis 1994, la compétition <strong>CASP</strong> évalue les méthodes à l’aveugle sur des structures non publiées.</p>
+</section>
+<section id="alphafold-2-les-idées-clés" class="level3">
+<h3 class="anchored" data-anchor-id="alphafold-2-les-idées-clés">2.2 AlphaFold 2 : les idées clés</h3>
+<p>En 2020 (CASP14), <strong>AlphaFold 2</strong> (DeepMind) atteint une précision proche de l’expérience pour une grande partie des cibles. Demis Hassabis et John Jumper reçoivent le <strong>prix Nobel de chimie 2024</strong> (avec David Baker, pour la conception de protéines).</p>
+<p><strong>Idée n°1 — la coévolution.</strong> Si deux résidus sont <strong>en contact</strong> dans la structure, une mutation de l’un est souvent <strong>compensée</strong> par une mutation de l’autre au cours de l’évolution. En alignant des milliers de séquences <strong>homologues</strong> (un <strong>MSA</strong>, <em>multiple sequence alignment</em>), on voit apparaître ces <strong>mutations corrélées</strong> : elles trahissent les contacts 3D.</p>
+<p><strong>Idée n°2 — une architecture qui raisonne en géométrie.</strong> Le module <strong>Evoformer</strong> fait dialoguer une représentation du MSA et une représentation des <strong>paires de résidus</strong> (distances, orientations), avec des mises à jour « triangulaires » qui imposent une cohérence géométrique (si A est proche de B et B de C, alors A et C ne peuvent pas être très loin). Le <strong>module de structure</strong> construit ensuite les coordonnées 3D, et le tout est <strong>recyclé</strong> plusieurs fois.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+
+<pre class="mermaid mermaid-js">flowchart TB
+    S["Séquence"] --&gt; M["Homologues (MSA)"]
+    S --&gt; T["Modèles (optionnel)"]
+    M --&gt; E["&lt;b&gt;Evoformer&lt;/b&gt;&lt;br/&gt;MSA ⇄ paires"]
+    T --&gt; E
+    E --&gt; SM["Module de structure"]
+    SM --&gt;|"recyclage × 3"| E
+    SM --&gt; O["Structure + pLDDT + PAE"]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p><strong>ColabFold</strong> (Mirdita <em>et al.</em>, 2022) rend AlphaFold 2 accessible dans Colab en remplaçant la recherche d’homologues (des heures sur des bases de plusieurs téraoctets) par le serveur <strong>MMseqs2</strong>, 20 à 30 fois plus rapide.</p>
+</section>
+<section id="lire-les-scores-de-confiance" class="level3">
+<h3 class="anchored" data-anchor-id="lire-les-scores-de-confiance">2.3 Lire les scores de confiance</h3>
+<table class="table-striped caption-top table">
+<caption>Les scores de confiance d’AlphaFold</caption>
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Score</th>
+<th>Échelle</th>
+<th>Signification</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>pLDDT</strong></td>
+<td>0 – 100, <strong>par résidu</strong></td>
+<td>confiance locale : &gt; 90 très haute, 70-90 bonne, 50-70 faible, &lt; 50 très faible (souvent une <strong>région désordonnée</strong>)</td>
+</tr>
+<tr class="even">
+<td><strong>PAE</strong></td>
+<td>en Å, <strong>par paire</strong> de résidus</td>
+<td>erreur attendue sur la position du résidu <span class="math inline">\(j\)</span> quand on superpose sur le résidu <span class="math inline">\(i\)</span> : renseigne sur la position <strong>relative des domaines</strong></td>
+</tr>
+<tr class="odd">
+<td><strong>pTM</strong></td>
+<td>0 – 1, <strong>global</strong></td>
+<td>qualité estimée du repliement global (&gt; 0,5 : repliement probablement correct)</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Attention</span>Un score de confiance n’est pas une mesure
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Le pLDDT est une <strong>auto-évaluation</strong> du modèle. Un pLDDT faible peut signaler une vraie région <strong>intrinsèquement désordonnée</strong> (ce qui est une information biologique !) ou simplement un manque d’homologues dans le MSA.</p>
+</div>
+</div>
+</section>
+<section id="comparer-deux-structures-le-rmsd" class="level3">
+<h3 class="anchored" data-anchor-id="comparer-deux-structures-le-rmsd">2.4 Comparer deux structures : le RMSD</h3>
+<p>Le <strong>RMSD</strong> (<em>root-mean-square deviation</em>) mesure l’écart moyen entre les positions de <span class="math inline">\(N\)</span> atomes correspondants (en général les carbones α), <strong>après superposition optimale</strong> (algorithme de Kabsch) :</p>
+<p><span class="math display">\[
+\text{RMSD} = \sqrt{\frac{1}{N}\sum_{i=1}^{N} \left\lVert \mathbf{x}_i - \mathbf{y}_i \right\rVert^2}
+\]</span></p>
+<p>Ordres de grandeur : &lt; 1 Å quasi identique ; 1-2 Å très proche ; &gt; 4 Å repliements différents.</p>
+<div id="f61fcef3" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Code de la démonstration</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> kabsch_rmsd(P, Q):</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""RMSD après superposition optimale de Q sur P (centrage + rotation de Kabsch)."""</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    P, Q <span class="op">=</span> P <span class="op">-</span> P.mean(<span class="dv">0</span>), Q <span class="op">-</span> Q.mean(<span class="dv">0</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    U, _, Vt <span class="op">=</span> np.linalg.svd(Q.T <span class="op">@</span> P)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    d <span class="op">=</span> np.sign(np.linalg.det(U <span class="op">@</span> Vt))</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    R <span class="op">=</span> U <span class="op">@</span> np.diag([<span class="dv">1</span>, <span class="dv">1</span>, d]) <span class="op">@</span> Vt</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.sqrt(((Q <span class="op">@</span> R <span class="op">-</span> P) <span class="op">**</span> <span class="dv">2</span>).<span class="bu">sum</span>(<span class="dv">1</span>).mean())</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">0</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>P <span class="op">=</span> rng.normal(size<span class="op">=</span>(<span class="dv">56</span>, <span class="dv">3</span>)) <span class="op">*</span> <span class="dv">8</span>                       <span class="co"># 56 « carbones alpha »</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>angle <span class="op">=</span> np.deg2rad(<span class="dv">70</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>rotation <span class="op">=</span> np.array([[np.cos(angle), <span class="op">-</span>np.sin(angle), <span class="dv">0</span>], [np.sin(angle), np.cos(angle), <span class="dv">0</span>], [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>]])</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>Q <span class="op">=</span> P <span class="op">@</span> rotation.T <span class="op">+</span> [<span class="dv">10</span>, <span class="op">-</span><span class="dv">5</span>, <span class="dv">3</span>] <span class="op">+</span> rng.normal(scale<span class="op">=</span><span class="fl">0.5</span>, size<span class="op">=</span>P.shape)   <span class="co"># tournée, déplacée, bruitée</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>rmsd_brut <span class="op">=</span> np.sqrt(((P <span class="op">-</span> Q) <span class="op">**</span> <span class="dv">2</span>).<span class="bu">sum</span>(<span class="dv">1</span>).mean())</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"RMSD sans superposition : </span><span class="sc">{</span>rmsd_brut<span class="sc">:5.2f}</span><span class="ss"> Å"</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"RMSD après Kabsch      : </span><span class="sc">{</span>kabsch_rmsd(P, Q)<span class="sc">:5.2f}</span><span class="ss"> Å  (≈ le bruit ajouté)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>RMSD sans superposition : 18.16 Å
+RMSD après Kabsch      :  0.90 Å  (≈ le bruit ajouté)</code></pre>
+</div>
+</div>
+</section>
+<section id="mutations-notation-et-effets" class="level3">
+<h3 class="anchored" data-anchor-id="mutations-notation-et-effets">2.5 Mutations : notation et effets</h3>
+<ul>
+<li><strong>Notation</strong> : <code>W43A</code> = le tryptophane (W) en position 43 devient une alanine (A). En nomenclature clinique HGVS : <code>p.Trp43Ala</code>.</li>
+<li>⚠️ <strong>Numérotation</strong> : la mutation de la <strong>drépanocytose</strong> est historiquement notée <strong>E6V</strong> car la méthionine initiale est retirée de la protéine mature ; dans la séquence UniProt (qui commence par <code>M</code>), c’est la position <strong>7</strong> (<code>p.Glu7Val</code>).</li>
+<li><strong>Effet sur la stabilité</strong> : mesuré par <span class="math inline">\(\Delta\Delta G\)</span> (variation de l’énergie libre de dépliement). Les mutations du <strong>cœur hydrophobe</strong> et les <strong>prolines</strong> dans les hélices/feuillets sont souvent très déstabilisantes ; les mutations de <strong>surface</strong> sont souvent tolérées.</li>
+</ul>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>AlphaFold n’a pas été conçu pour prédire l’effet des mutations
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>AlphaFold 2 a appris à prédire la structure des <strong>protéines naturelles, repliées et stables</strong> de la PDB. Pour un mutant, il prédit très souvent <strong>le même repliement</strong> que la protéine sauvage, même si en réalité le mutant ne se replie plus. Plusieurs études ont montré que la structure prédite seule est un <strong>mauvais indicateur</strong> de la stabilité ou de la pathogénicité d’une mutation ponctuelle.</p>
+</div>
+</div>
+</section>
+<section id="prédire-leffet-dune-mutation-avec-un-modèle-de-langage" class="level3">
+<h3 class="anchored" data-anchor-id="prédire-leffet-dune-mutation-avec-un-modèle-de-langage">2.6 Prédire l’effet d’une mutation avec un modèle de langage</h3>
+<p>Les modèles de langage protéiques (séance 3) offrent un autre angle. Pour une mutation à la position <span class="math inline">\(i\)</span>, on masque cette position et on compare les probabilités prédites :</p>
+<p><span class="math display">\[
+\text{score}(i, \text{sauvage} \to \text{muté}) = \log P(x_i = \text{muté} \mid \text{contexte}) - \log P(x_i = \text{sauvage} \mid \text{contexte})
+\]</span></p>
+<p>Un score <strong>très négatif</strong> signifie que l’évolution n’a « jamais » accepté cet acide aminé à cet endroit : la mutation est probablement <strong>délétère</strong>. Ce score <strong>zéro-shot</strong> (aucun entraînement sur des données de mutations) est corrélé aux mesures expérimentales de <strong>balayage mutationnel profond</strong> (<em>deep mutational scanning</em>). <strong>AlphaMissense</strong> (DeepMind, 2023) combine ce type d’approche avec la structure pour estimer la <strong>pathogénicité</strong> de tous les variants faux-sens humains.</p>
+</section>
+<section id="lia-générative-pour-les-protéines" class="level3">
+<h3 class="anchored" data-anchor-id="lia-générative-pour-les-protéines">2.7 L’IA générative pour les protéines</h3>
+<table class="table-striped caption-top table">
+<caption>Panorama de l’IA générative pour les protéines</caption>
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Approche</th>
+<th>Principe</th>
+<th>Exemples</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Modèles de langage <strong>masqués</strong></td>
+<td>deviner / échantillonner des acides aminés</td>
+<td>ESM-2</td>
+</tr>
+<tr class="even">
+<td>Modèles de langage <strong>autorégressifs</strong></td>
+<td>écrire une séquence lettre par lettre, comme un chatbot</td>
+<td>ProtGPT2, ProGen</td>
+</tr>
+<tr class="odd">
+<td><strong>Repliement inverse</strong></td>
+<td>concevoir une séquence pour une structure donnée</td>
+<td>ProteinMPNN</td>
+</tr>
+<tr class="even">
+<td><strong>Diffusion</strong></td>
+<td>générer de nouveaux squelettes 3D à partir de bruit</td>
+<td>RFdiffusion</td>
+</tr>
+<tr class="odd">
+<td>Modèles <strong>multimodaux</strong></td>
+<td>séquence + structure + fonction, complexes avec ADN/ligands</td>
+<td>ESM3, AlphaFold 3</td>
+</tr>
+</tbody>
+</table>
+<p>Ces outils permettent de <strong>concevoir</strong> des protéines qui n’existent pas dans la nature (liants thérapeutiques, enzymes, vaccins). Les séquences générées doivent <strong>toujours</strong> être synthétisées et testées expérimentalement.</p>
+</section>
+<section id="les-limites-à-garder-en-tête" class="level3">
+<h3 class="anchored" data-anchor-id="les-limites-à-garder-en-tête">2.8 Les limites à garder en tête</h3>
+<ul>
+<li><strong>Biais des données</strong> : la PDB est enrichie en protéines solubles, stables, cristallisables ; les protéines sans homologues (MSA pauvre) sont moins bien prédites.</li>
+<li><strong>Une seule conformation statique</strong> : pas de dynamique, d’états multiples (ex. hémoglobine oxy/désoxy), d’environnement (membrane, pH, ligands, modifications post-traductionnelles) dans AlphaFold 2.</li>
+<li><strong>Boîte noire</strong> : le modèle ne « comprend » pas la physique, il reconnaît des motifs appris.</li>
+<li><strong>Validation expérimentale indispensable</strong> : stabilité thermique (DSF), dichroïsme circulaire, mesures d’activité, cristallographie…</li>
+</ul>
+</section>
+</section>
+<section id="déroulé-de-latelier" class="level2">
+<h2 class="anchored" data-anchor-id="déroulé-de-latelier">3. Déroulé de l’atelier</h2>
+<table class="table-striped table-hover deroule caption-top table">
+<caption>Déroulé indicatif (2h)</caption>
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Temps</th>
+<th>Partie du notebook</th>
+<th>Activité</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0:00 – 0:05</td>
+<td><strong>Lancer l’installation de ColabFold</strong> (§0), présentation du problème</td>
+<td><span class="pill pill-run">▶️ Exécuter</span></td>
+</tr>
+<tr class="even">
+<td>0:05 – 0:20</td>
+<td>§1 AlphaFold DB : hémoglobine β en 3D, profil pLDDT</td>
+<td><span class="pill pill-run">▶️ Exécuter</span> <span class="pill pill-think">🔎 Q1</span></td>
+</tr>
+<tr class="odd">
+<td>0:20 – 0:45</td>
+<td>§2 Prédiction de GB1 avec ColabFold, PAE, RMSD vs cristallographie, exercice MSA</td>
+<td><span class="pill pill-run">▶️ Exécuter</span> <span class="pill pill-think">🔎 Q2</span></td>
+</tr>
+<tr class="even">
+<td>0:45 – 1:05</td>
+<td>§3 Mutations : <code>muter()</code>, sauvage vs mutant, superposition 3D</td>
+<td><span class="pill pill-edit">✍️ Modifier</span> <span class="pill pill-think">🔎 Q3</span></td>
+</tr>
+<tr class="odd">
+<td>1:05 – 1:15</td>
+<td>§4 Paysage mutationnel ESM-2</td>
+<td><span class="pill pill-run">▶️ Exécuter</span> <span class="pill pill-think">🔎 Q4</span></td>
+</tr>
+<tr class="even">
+<td>1:15 – 1:45</td>
+<td>§5 <strong>Mini-projet en binôme</strong> : choix du sujet, prédictions, analyse, 3 diapositives</td>
+<td><span class="pill pill-edit">✍️ Modifier</span></td>
+</tr>
+<tr class="odd">
+<td>1:45 – 2:00</td>
+<td><strong>Présentations</strong> (3 min par binôme) et discussion des limites</td>
+<td><span class="pill pill-think">🔎 Discuter</span></td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Astuce</span>Plan B si ColabFold ne fonctionne pas
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Les mises à jour de Colab cassent parfois l’installation de ColabFold. Dans ce cas, choisissez <code>MOTEUR = "ESMFold (API, sans GPU)"</code> en haut du notebook : la prédiction passe par l’API publique d’<strong>ESMFold</strong> (Meta AI), qui prédit une structure en quelques secondes à partir d’un modèle de langage, sans MSA. Toutes les analyses (pLDDT, RMSD, mutations) fonctionnent de la même façon. Autre solution : utiliser le <a href="https://colab.research.google.com/github/sokrypton/ColabFold/blob/main/AlphaFold2.ipynb">notebook officiel ColabFold</a> et téléverser les fichiers PDB obtenus.</p>
+</div>
+</div>
+<section id="code-clé-à-retenir" class="level3">
+<h3 class="anchored" data-anchor-id="code-clé-à-retenir">Code clé à retenir</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Prédiction ColabFold en ligne de commande (dans Colab)</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>colabfold_batch <span class="op">--</span>num<span class="op">-</span>models <span class="dv">1</span> <span class="op">--</span>num<span class="op">-</span>recycle <span class="dv">3</span> gb1.fasta resultats<span class="op">/</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Lecture du pLDDT (colonne B-factor) et visualisation 3D</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> Bio.PDB <span class="im">import</span> PDBParser</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> py3Dmol</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> PDBParser(QUIET<span class="op">=</span><span class="va">True</span>).get_structure(<span class="st">"gb1"</span>, <span class="st">"resultats/gb1_unrelaxed_rank_001.pdb"</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>plddt <span class="op">=</span> [res[<span class="st">"CA"</span>].get_bfactor() <span class="cf">for</span> res <span class="kw">in</span> s.get_residues()]</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>vue <span class="op">=</span> py3Dmol.view(width<span class="op">=</span><span class="dv">600</span>, height<span class="op">=</span><span class="dv">400</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>vue.addModel(<span class="bu">open</span>(<span class="st">"resultats/gb1_unrelaxed_rank_001.pdb"</span>).read(), <span class="st">"pdb"</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>vue.setStyle({<span class="st">"cartoon"</span>: {<span class="st">"color"</span>: <span class="st">"spectrum"</span>}})</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>vue.zoomTo()<span class="op">;</span> vue.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="mini-projet-en-binôme-45-min" class="level2">
+<h2 class="anchored" data-anchor-id="mini-projet-en-binôme-45-min">4. Mini-projet en binôme (45 min)</h2>
+<div class="callout callout-style-default callout-important no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>🏁 Consigne
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Choisissez <strong>une protéine</strong> et <strong>1 à 3 mutations</strong>. Prédisez les structures <strong>sauvage</strong> et <strong>mutante</strong>, croisez avec le score <strong>ESM-2</strong> (et <strong>AlphaMissense</strong> pour une protéine humaine), puis présentez en <strong>3 minutes</strong> (3 diapositives maximum) :</p>
+<ol type="1">
+<li><strong>La question</strong> — la protéine, son rôle biologique, les mutations choisies et <strong>pourquoi</strong> ;</li>
+<li><strong>Les résultats</strong> — pLDDT sauvage vs mutant, RMSD, une capture 3D, score ESM-2 / AlphaMissense ;</li>
+<li><strong>L’interprétation et les limites</strong> — ce que l’on peut conclure, ce que l’on <strong>ne peut pas</strong> conclure, et l’expérience que vous proposeriez pour <strong>valider</strong> <em>in vitro</em>.</li>
+</ol>
+</div>
+</div>
+<table class="table-striped table-hover caption-top table">
+<caption>Sujets proposés</caption>
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Sujet</th>
+<th>Protéine</th>
+<th>Idées de mutations</th>
+<th>Ce qu’il faut discuter</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>A</strong></td>
+<td>GB1 (56 aa), protéine modèle d’ingénierie</td>
+<td>cœur <code>W43</code>, <code>F52</code>, <code>Y3</code> vs surface <code>K10</code>, <code>E19</code></td>
+<td>AlphaFold « voit »-il la déstabilisation du cœur ?</td>
+</tr>
+<tr class="even">
+<td><strong>B</strong></td>
+<td>Hémoglobine β (147 aa), drépanocytose</td>
+<td><code>E7V</code> (= E6V clinique)</td>
+<td>une mutation pathogène… sans changement de repliement</td>
+</tr>
+<tr class="odd">
+<td><strong>C</strong></td>
+<td>Ubiquitine (76 aa), signalisation cellulaire</td>
+<td><code>I44A</code> (surface d’interaction), <code>L67S</code> (cœur)</td>
+<td>fonction ≠ stabilité</td>
+</tr>
+<tr class="even">
+<td><strong>D</strong></td>
+<td>Votre protéine (&lt; 150 aa)</td>
+<td>à justifier</td>
+<td>pertinence biologique du choix</td>
+</tr>
+</tbody>
+</table>
+<p>La grille d’évaluation détaillée est dans l’annexe <a href="./evaluation.html">Évaluation et mini-projet</a>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Pistes d’analyse pour le sujet B (drépanocytose)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Valeurs obtenues lors d’un essai (ESMFold + ESM-2 150M) :</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: right;">sauvage</th>
+<th style="text-align: right;">mutant E7V</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>pLDDT moyen</td>
+<td style="text-align: right;">94,2</td>
+<td style="text-align: right;">94,3</td>
+</tr>
+<tr class="even">
+<td>RMSD mutant vs sauvage</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;"><strong>0,01 Å</strong></td>
+</tr>
+<tr class="odd">
+<td>score ESM-2</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">−1,4 (modéré)</td>
+</tr>
+<tr class="even">
+<td>AlphaMissense</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;"><strong>0,22</strong> (plutôt bénin)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>AlphaFold/ESMFold prédit un repliement <strong>strictement identique</strong> : la mutation est en <strong>surface</strong>.</li>
+<li>AlphaMissense la classe comme <strong>probablement bénigne</strong> et le score ESM-2 est <strong>modéré</strong> : ces modèles estiment surtout l’impact sur le <strong>repliement</strong> et la <strong>conservation évolutive</strong>.</li>
+<li>Or la maladie est réelle et grave : la valine hydrophobe exposée crée un « point collant » qui fait <strong>polymériser</strong> l’hémoglobine <strong>désoxygénée</strong> en fibres rigides, déformant les globules rouges en faucille.</li>
+<li><strong>Leçon</strong> : un mécanisme de <strong>gain de fonction</strong> impliquant plusieurs molécules (interactions intermoléculaires, état désoxy) est <strong>hors de portée</strong> d’un modèle qui prédit une seule chaîne dans un seul état. La validation expérimentale (et clinique) reste indispensable.</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="testez-vous" class="level2">
+<h2 class="anchored" data-anchor-id="testez-vous">5. Testez-vous</h2>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Astuce</span>Q1. Pourquoi AlphaFold a-t-il besoin d’un alignement multiple de séquences ?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Parce que les <strong>mutations corrélées</strong> entre positions au cours de l’évolution (coévolution) révèlent les résidus en <strong>contact</strong> dans la structure 3D. Sans MSA, la prédiction est en général bien moins bonne (sauf pour les modèles de langage comme ESMFold, qui ont « mémorisé » cette information évolutive).</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Astuce</span>Q2. Une région a un pLDDT de 35. Que peut-on en conclure ?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Le modèle a <strong>très peu confiance</strong> dans la position de cette région. Elle est souvent <strong>désordonnée</strong> (flexible, sans structure fixe) ; elle ne doit pas être interprétée comme une structure précise.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Astuce</span>Q3. Le mutant prédit a un RMSD de 0,3 Å par rapport à la protéine sauvage. La mutation est-elle sans effet ?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Non : AlphaFold tend à prédire le <strong>même repliement</strong> pour des séquences proches. Une mutation peut déstabiliser la protéine, abolir une interaction ou une activité catalytique sans que la structure <strong>prédite</strong> ne change. Il faut d’autres indicateurs et une <strong>validation expérimentale</strong>.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Astuce</span>Q4. Que signifie un score ESM-2 de −8 pour une mutation ?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Que l’acide aminé muté est environ <span class="math inline">\(e^{8} \approx 3\,000\)</span> fois <strong>moins probable</strong> que l’acide aminé sauvage à cette position selon le modèle : cette substitution est très rare dans l’évolution, donc probablement <strong>délétère</strong>.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Astuce</span>Q5. Citez trois limites d’AlphaFold 2.
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Par exemple : (1) une <strong>seule conformation statique</strong> ; (2) pas de ligands, d’ions, de membranes ni de modifications post-traductionnelles ; (3) mauvaise sensibilité aux <strong>mutations ponctuelles</strong> ; (4) dépendance à la profondeur du MSA ; (5) biais de la PDB ; (6) boîte noire.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="pour-aller-plus-loin" class="level2">
+<h2 class="anchored" data-anchor-id="pour-aller-plus-loin">6. Pour aller plus loin</h2>
+<ul>
+<li>Jumper J. <em>et al.</em> (2021). <em>Highly accurate protein structure prediction with AlphaFold.</em> <strong>Nature</strong>, 596, 583-589.</li>
+<li>Mirdita M. <em>et al.</em> (2022). <em>ColabFold: making protein folding accessible to all.</em> <strong>Nature Methods</strong>, 19, 679-682.</li>
+<li>Meier J. <em>et al.</em> (2021). <em>Language models enable zero-shot prediction of the effects of mutations on protein function.</em> <strong>NeurIPS</strong>.</li>
+<li>Cheng J. <em>et al.</em> (2023). <em>Accurate proteome-wide missense variant effect prediction with AlphaMissense.</em> <strong>Science</strong>, 381, eadg7492.</li>
+<li>Buel G. R. &amp; Walters K. J. (2022). <em>Can AlphaFold2 predict the impact of missense mutations on structure?</em> <strong>Nature Structural &amp; Molecular Biology</strong>, 29, 1-2.</li>
+<li>Ressources : <a href="https://alphafold.ebi.ac.uk">AlphaFold DB</a> · <a href="https://github.com/sokrypton/ColabFold">ColabFold</a> · <a href="https://www.rcsb.org/structure/1PGA">RCSB PDB — 1PGA</a> · <a href="https://pypi.org/project/py3Dmol/">py3Dmol</a></li>
+</ul>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const toggle = window.document.createElement('button');
+      toggle.type = "button";
+      toggle.setAttribute("role", "switch");
+      toggle.setAttribute("aria-checked", "false");
+      toggle.classList.add('top-right');
+      toggle.classList.add('quarto-color-scheme-toggle');
+      toggle.setAttribute("aria-label", "Toggle dark mode");
+      toggle.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      toggle.appendChild(i);
+      // Put the toggle in a landmark of its own, so that landmark navigation
+      // can reach it.
+      //
+      // The container is always a fresh direct child of body, and the toggle is
+      // never moved into page furniture that the theme or the author controls.
+      // The toggle is positioned against the page, so any ancestor that
+      // establishes a containing block captures it: a positioned element or a
+      // grid for position: absolute, and transform, filter, will-change or
+      // contain for position: fixed. A direct child of body has none of these
+      // to inherit, and the shift when one appears is silent and visual.
+      //
+      // ARIA says a document should have at most one banner, and axe reports a
+      // duplicate whether or not the banners carry distinct labels. So use a
+      // header when the page has no banner yet, and a named region otherwise.
+      //
+      // A header is a banner wherever it sits, unless it is inside sectioning
+      // content, so this cannot just look at the children of body: a custom
+      // page layout wraps the title block header in a plain div. An explicit
+      // role="banner" always counts.
+      const sectioning = 'article, aside, main, nav, section, [role="article"], [role="complementary"], [role="main"], [role="navigation"], [role="region"]';
+      const hasBanner = Array.from(
+        window.document.querySelectorAll('header:not([role]), [role="banner"]')
+      ).some(function(el) {
+        return el.hasAttribute("role") || el.closest(sectioning) === null;
+      });
+      const container = window.document.createElement(hasBanner ? "div" : "header");
+      if (hasBanner) {
+        container.setAttribute("role", "region");
+        container.setAttribute("aria-label", "Toggle dark mode");
+      }
+      container.classList.add('quarto-color-scheme-toggle-container');
+      container.appendChild(toggle);
+      window.document.body.appendChild(container);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const cellDetails = window.document.querySelectorAll(".cell details.code-fold");
+        for (let i=0; i<cellDetails.length; i++) {
+          const details = cellDetails[i];
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell div.sourceCode.cell-code");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/nevermind78\.github\.io\/IA_Biotech\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+          if (!link.classList.contains('no-external-icon')) {
+          }
+        }
+      }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
+          if (lineIds.length > 0) {
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            placeBand(gutterDiv, el, lastEl);
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+  <script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
+  </script>
+<nav class="page-navigation" aria-label="Page">
+  <div class="nav-page nav-page-previous">
+      <a href="./seance4.html" class="pagination-link" aria-label="Séance 4 : Vision par ordinateur pour l'imagerie cellulaire">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Séance 4 : Vision par ordinateur pour l’imagerie cellulaire</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./annexe-colab.html" class="pagination-link" aria-label="Prise en main de Google Colab et Python express">
+        <span class="nav-page-text"><span class="chapter-title">Prise en main de Google Colab et Python express</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Séance 5 : IA générative, repliement protéique et mini-projet</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>::: {.callout-note icon=false}</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">## Informations de la séance</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Type** : Atelier pratique + **mini-projet en binôme (45 min)** — **GPU T4 obligatoire** pour ColabFold</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Durée** : 2h</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Problème biologique** : prédire la structure 3D d'une protéine mutée et évaluer l'impact fonctionnel d'une mutation ponctuelle</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Données** : domaine GB1 de la protéine G (PDB 1PGA), hémoglobine β (UniProt P68871), AlphaFold DB, AlphaMissense</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Outils** : **ColabFold** (AlphaFold 2 + MMseqs2), py3Dmol, Biopython, ESM-2 (Hugging Face) ; plan B : ESMFold (API)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Livrable** : présentation de 3 minutes de l'impact observé d'une mutation et des limites du modèle</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>::: {.colab-launch}</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"https://colab.research.google.com/github/nevermind78/IA_Biotech/blob/main/notebooks/S5_alphafold_mutations.ipynb"</span><span class="ot"> target</span><span class="op">=</span><span class="st">"_blank"</span><span class="ot"> rel</span><span class="op">=</span><span class="st">"noopener"</span><span class="dt">&gt;&lt;</span><span class="kw">img</span><span class="ot"> src</span><span class="op">=</span><span class="st">"https://colab.research.google.com/assets/colab-badge.svg"</span><span class="ot"> alt</span><span class="op">=</span><span class="st">"Ouvrir dans Google Colab"</span><span class="dt">&gt;&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>**Notebook de l'atelier** — ouvrez-le dans Colab, activez le **GPU T4** et lancez **immédiatement** la section 0 (installation de ColabFold en arrière-plan, 3 à 5 min). Version téléchargeable : <span class="co">[</span><span class="ot">S5_alphafold_mutations.ipynb</span><span class="co">](notebooks/S5_alphafold_mutations.ipynb)</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="fu">## 1. Le problème biologique</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>La **fonction** d'une protéine découle de sa **forme 3D** : la poche active d'une enzyme, la surface</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>d'interaction d'un anticorps, le canal d'un transporteur. Une **mutation ponctuelle** (un seul acide</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>aminé changé) peut :</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**déstabiliser le repliement** (la protéine se déplie ou s'agrège) → perte de fonction, maladie génétique ;</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**modifier une surface** d'interaction ou un site actif sans changer le repliement ;</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**améliorer** une propriété : c'est la base de l'**ingénierie des protéines** (enzymes industrielles plus thermostables, anticorps plus affins).</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>Déterminer une structure expérimentalement (cristallographie aux rayons X, RMN, cryo-microscopie</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>électronique) prend des mois. **AlphaFold 2** la prédit en quelques minutes à partir de la séquence.</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="fu">## 2. Notions théoriques essentielles</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2.1 Du repliement à la structure</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Niveau <span class="pp">|</span> Description <span class="pp">|</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Primaire** <span class="pp">|</span> la séquence d'acides aminés <span class="pp">|</span></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Secondaire** <span class="pp">|</span> hélices α, feuillets β, boucles (liaisons H du squelette) <span class="pp">|</span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Tertiaire** <span class="pp">|</span> le repliement 3D d'une chaîne (cœur hydrophobe enfoui, surface polaire) <span class="pp">|</span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Quaternaire** <span class="pp">|</span> l'assemblage de plusieurs chaînes (ex. l'hémoglobine = 2 α + 2 β) <span class="pp">|</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>: Les niveaux de structure des protéines {.striped}</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>**Anfinsen** (prix Nobel 1972) a montré que la séquence contient l'information nécessaire au</span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>repliement. Mais le nombre de conformations possibles est astronomique (**paradoxe de Levinthal**) :</span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>prédire la structure à partir de la séquence est resté un grand défi pendant 50 ans. Depuis 1994, la</span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>compétition **CASP** évalue les méthodes à l'aveugle sur des structures non publiées.</span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2.2 AlphaFold 2 : les idées clés</span></span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>En 2020 (CASP14), **AlphaFold 2** (DeepMind) atteint une précision proche de l'expérience pour une</span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>grande partie des cibles. Demis Hassabis et John Jumper reçoivent le **prix Nobel de chimie 2024**</span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>(avec David Baker, pour la conception de protéines).</span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>**Idée n°1 — la coévolution.** Si deux résidus sont **en contact** dans la structure, une mutation de</span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>l'un est souvent **compensée** par une mutation de l'autre au cours de l'évolution. En alignant des</span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a>milliers de séquences **homologues** (un **MSA**, *multiple sequence alignment*), on voit apparaître ces</span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>**mutations corrélées** : elles trahissent les contacts 3D.</span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a>**Idée n°2 — une architecture qui raisonne en géométrie.** Le module **Evoformer** fait dialoguer une</span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a>représentation du MSA et une représentation des **paires de résidus** (distances, orientations), avec des</span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a>mises à jour « triangulaires » qui imposent une cohérence géométrique (si A est proche de B et B de C,</span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a>alors A et C ne peuvent pas être très loin). Le **module de structure** construit ensuite les</span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a>coordonnées 3D, et le tout est **recyclé** plusieurs fois.</span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a><span class="in">```{mermaid}</span></span>
+<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a>flowchart TB</span>
+<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a>    S[<span class="ot">"</span><span class="st">Séquence</span><span class="ot">"</span>] --&gt; M[<span class="ot">"</span><span class="st">Homologues (MSA)</span><span class="ot">"</span>]</span>
+<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a>    S --&gt; T[<span class="ot">"</span><span class="st">Modèles (optionnel)</span><span class="ot">"</span>]</span>
+<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a>    M --&gt; E[<span class="ot">"</span><span class="st">&lt;b&gt;Evoformer&lt;/b&gt;&lt;br/&gt;MSA ⇄ paires</span><span class="ot">"</span>]</span>
+<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a>    T --&gt; E</span>
+<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a>    E --&gt; SM[<span class="ot">"</span><span class="st">Module de structure</span><span class="ot">"</span>]</span>
+<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a>    SM --&gt;|<span class="ot">"</span><span class="st">recyclage × 3</span><span class="ot">"</span>| E</span>
+<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a>    SM --&gt; O[<span class="ot">"</span><span class="st">Structure + pLDDT + PAE</span><span class="ot">"</span>]</span>
+<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a>**ColabFold** (Mirdita *et al.*, 2022) rend AlphaFold 2 accessible dans Colab en remplaçant la recherche</span>
+<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a>d'homologues (des heures sur des bases de plusieurs téraoctets) par le serveur **MMseqs2**, 20 à 30 fois</span>
+<span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a>plus rapide.</span>
+<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2.3 Lire les scores de confiance</span></span>
+<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Score <span class="pp">|</span> Échelle <span class="pp">|</span> Signification <span class="pp">|</span></span>
+<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|</span></span>
+<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **pLDDT** | 0 – 100, **par résidu** | confiance locale : &gt; 90 très haute, 70-90 bonne, 50-70 faible, &lt; 50 très faible (souvent une **région désordonnée**) <span class="pp">|</span></span>
+<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **PAE** | en Å, **par paire** de résidus | erreur attendue sur la position du résidu $j$ quand on superpose sur le résidu $i$ : renseigne sur la position **relative des domaines** <span class="pp">|</span></span>
+<span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **pTM** | 0 – 1, **global** <span class="pp">|</span> qualité estimée du repliement global (&gt; 0,5 : repliement probablement correct) <span class="pp">|</span></span>
+<span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a>: Les scores de confiance d'AlphaFold {.striped}</span>
+<span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a>::: {.callout-warning}</span>
+<span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a><span class="fu">## Un score de confiance n'est pas une mesure</span></span>
+<span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a>Le pLDDT est une **auto-évaluation** du modèle. Un pLDDT faible peut signaler une vraie région</span>
+<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a>**intrinsèquement désordonnée** (ce qui est une information biologique !) ou simplement un manque</span>
+<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a>d'homologues dans le MSA.</span>
+<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2.4 Comparer deux structures : le RMSD</span></span>
+<span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-103"><a href="#cb4-103" aria-hidden="true" tabindex="-1"></a>Le **RMSD** (*root-mean-square deviation*) mesure l'écart moyen entre les positions de $N$ atomes</span>
+<span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a>correspondants (en général les carbones α), **après superposition optimale** (algorithme de Kabsch) :</span>
+<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-106"><a href="#cb4-106" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-107"><a href="#cb4-107" aria-hidden="true" tabindex="-1"></a>\text{RMSD} = \sqrt{\frac{1}{N}\sum_{i=1}^{N} \left\lVert \mathbf{x}_i - \mathbf{y}_i \right\rVert^2}</span>
+<span id="cb4-108"><a href="#cb4-108" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-109"><a href="#cb4-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-110"><a href="#cb4-110" aria-hidden="true" tabindex="-1"></a>Ordres de grandeur : &lt; 1 Å quasi identique ; 1-2 Å très proche ; &gt; 4 Å repliements différents.</span>
+<span id="cb4-111"><a href="#cb4-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-114"><a href="#cb4-114" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb4-115"><a href="#cb4-115" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb4-116"><a href="#cb4-116" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb4-117"><a href="#cb4-117" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Code de la démonstration"</span></span>
+<span id="cb4-118"><a href="#cb4-118" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb4-119"><a href="#cb4-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-120"><a href="#cb4-120" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> kabsch_rmsd(P, Q):</span>
+<span id="cb4-121"><a href="#cb4-121" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""RMSD après superposition optimale de Q sur P (centrage + rotation de Kabsch)."""</span></span>
+<span id="cb4-122"><a href="#cb4-122" aria-hidden="true" tabindex="-1"></a>    P, Q <span class="op">=</span> P <span class="op">-</span> P.mean(<span class="dv">0</span>), Q <span class="op">-</span> Q.mean(<span class="dv">0</span>)</span>
+<span id="cb4-123"><a href="#cb4-123" aria-hidden="true" tabindex="-1"></a>    U, _, Vt <span class="op">=</span> np.linalg.svd(Q.T <span class="op">@</span> P)</span>
+<span id="cb4-124"><a href="#cb4-124" aria-hidden="true" tabindex="-1"></a>    d <span class="op">=</span> np.sign(np.linalg.det(U <span class="op">@</span> Vt))</span>
+<span id="cb4-125"><a href="#cb4-125" aria-hidden="true" tabindex="-1"></a>    R <span class="op">=</span> U <span class="op">@</span> np.diag([<span class="dv">1</span>, <span class="dv">1</span>, d]) <span class="op">@</span> Vt</span>
+<span id="cb4-126"><a href="#cb4-126" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.sqrt(((Q <span class="op">@</span> R <span class="op">-</span> P) <span class="op">**</span> <span class="dv">2</span>).<span class="bu">sum</span>(<span class="dv">1</span>).mean())</span>
+<span id="cb4-127"><a href="#cb4-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-128"><a href="#cb4-128" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">0</span>)</span>
+<span id="cb4-129"><a href="#cb4-129" aria-hidden="true" tabindex="-1"></a>P <span class="op">=</span> rng.normal(size<span class="op">=</span>(<span class="dv">56</span>, <span class="dv">3</span>)) <span class="op">*</span> <span class="dv">8</span>                       <span class="co"># 56 « carbones alpha »</span></span>
+<span id="cb4-130"><a href="#cb4-130" aria-hidden="true" tabindex="-1"></a>angle <span class="op">=</span> np.deg2rad(<span class="dv">70</span>)</span>
+<span id="cb4-131"><a href="#cb4-131" aria-hidden="true" tabindex="-1"></a>rotation <span class="op">=</span> np.array([[np.cos(angle), <span class="op">-</span>np.sin(angle), <span class="dv">0</span>], [np.sin(angle), np.cos(angle), <span class="dv">0</span>], [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>]])</span>
+<span id="cb4-132"><a href="#cb4-132" aria-hidden="true" tabindex="-1"></a>Q <span class="op">=</span> P <span class="op">@</span> rotation.T <span class="op">+</span> [<span class="dv">10</span>, <span class="op">-</span><span class="dv">5</span>, <span class="dv">3</span>] <span class="op">+</span> rng.normal(scale<span class="op">=</span><span class="fl">0.5</span>, size<span class="op">=</span>P.shape)   <span class="co"># tournée, déplacée, bruitée</span></span>
+<span id="cb4-133"><a href="#cb4-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-134"><a href="#cb4-134" aria-hidden="true" tabindex="-1"></a>rmsd_brut <span class="op">=</span> np.sqrt(((P <span class="op">-</span> Q) <span class="op">**</span> <span class="dv">2</span>).<span class="bu">sum</span>(<span class="dv">1</span>).mean())</span>
+<span id="cb4-135"><a href="#cb4-135" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"RMSD sans superposition : </span><span class="sc">{</span>rmsd_brut<span class="sc">:5.2f}</span><span class="ss"> Å"</span>)</span>
+<span id="cb4-136"><a href="#cb4-136" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"RMSD après Kabsch      : </span><span class="sc">{</span>kabsch_rmsd(P, Q)<span class="sc">:5.2f}</span><span class="ss"> Å  (≈ le bruit ajouté)"</span>)</span>
+<span id="cb4-137"><a href="#cb4-137" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-138"><a href="#cb4-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-139"><a href="#cb4-139" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2.5 Mutations : notation et effets</span></span>
+<span id="cb4-140"><a href="#cb4-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-141"><a href="#cb4-141" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Notation** : <span class="in">`W43A`</span> = le tryptophane (W) en position 43 devient une alanine (A). En nomenclature</span>
+<span id="cb4-142"><a href="#cb4-142" aria-hidden="true" tabindex="-1"></a>  clinique HGVS : <span class="in">`p.Trp43Ala`</span>.</span>
+<span id="cb4-143"><a href="#cb4-143" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>⚠️ **Numérotation** : la mutation de la **drépanocytose** est historiquement notée **E6V** car la</span>
+<span id="cb4-144"><a href="#cb4-144" aria-hidden="true" tabindex="-1"></a>  méthionine initiale est retirée de la protéine mature ; dans la séquence UniProt (qui commence par</span>
+<span id="cb4-145"><a href="#cb4-145" aria-hidden="true" tabindex="-1"></a>  <span class="in">`M`</span>), c'est la position **7** (<span class="in">`p.Glu7Val`</span>).</span>
+<span id="cb4-146"><a href="#cb4-146" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Effet sur la stabilité** : mesuré par $\Delta\Delta G$ (variation de l'énergie libre de dépliement).</span>
+<span id="cb4-147"><a href="#cb4-147" aria-hidden="true" tabindex="-1"></a>  Les mutations du **cœur hydrophobe** et les **prolines** dans les hélices/feuillets sont souvent très</span>
+<span id="cb4-148"><a href="#cb4-148" aria-hidden="true" tabindex="-1"></a>  déstabilisantes ; les mutations de **surface** sont souvent tolérées.</span>
+<span id="cb4-149"><a href="#cb4-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-150"><a href="#cb4-150" aria-hidden="true" tabindex="-1"></a>::: {.callout-important}</span>
+<span id="cb4-151"><a href="#cb4-151" aria-hidden="true" tabindex="-1"></a><span class="fu">## AlphaFold n'a pas été conçu pour prédire l'effet des mutations</span></span>
+<span id="cb4-152"><a href="#cb4-152" aria-hidden="true" tabindex="-1"></a>AlphaFold 2 a appris à prédire la structure des **protéines naturelles, repliées et stables** de la PDB.</span>
+<span id="cb4-153"><a href="#cb4-153" aria-hidden="true" tabindex="-1"></a>Pour un mutant, il prédit très souvent **le même repliement** que la protéine sauvage, même si en</span>
+<span id="cb4-154"><a href="#cb4-154" aria-hidden="true" tabindex="-1"></a>réalité le mutant ne se replie plus. Plusieurs études ont montré que la structure prédite seule est un</span>
+<span id="cb4-155"><a href="#cb4-155" aria-hidden="true" tabindex="-1"></a>**mauvais indicateur** de la stabilité ou de la pathogénicité d'une mutation ponctuelle.</span>
+<span id="cb4-156"><a href="#cb4-156" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-157"><a href="#cb4-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-158"><a href="#cb4-158" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2.6 Prédire l'effet d'une mutation avec un modèle de langage</span></span>
+<span id="cb4-159"><a href="#cb4-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-160"><a href="#cb4-160" aria-hidden="true" tabindex="-1"></a>Les modèles de langage protéiques (séance 3) offrent un autre angle. Pour une mutation à la position</span>
+<span id="cb4-161"><a href="#cb4-161" aria-hidden="true" tabindex="-1"></a>$i$, on masque cette position et on compare les probabilités prédites :</span>
+<span id="cb4-162"><a href="#cb4-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-163"><a href="#cb4-163" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-164"><a href="#cb4-164" aria-hidden="true" tabindex="-1"></a>\text{score}(i, \text{sauvage} \to \text{muté}) = \log P(x_i = \text{muté} \mid \text{contexte}) - \log P(x_i = \text{sauvage} \mid \text{contexte})</span>
+<span id="cb4-165"><a href="#cb4-165" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-166"><a href="#cb4-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-167"><a href="#cb4-167" aria-hidden="true" tabindex="-1"></a>Un score **très négatif** signifie que l'évolution n'a « jamais » accepté cet acide aminé à cet endroit :</span>
+<span id="cb4-168"><a href="#cb4-168" aria-hidden="true" tabindex="-1"></a>la mutation est probablement **délétère**. Ce score **zéro-shot** (aucun entraînement sur des données</span>
+<span id="cb4-169"><a href="#cb4-169" aria-hidden="true" tabindex="-1"></a>de mutations) est corrélé aux mesures expérimentales de **balayage mutationnel profond** (*deep</span>
+<span id="cb4-170"><a href="#cb4-170" aria-hidden="true" tabindex="-1"></a>mutational scanning*). **AlphaMissense** (DeepMind, 2023) combine ce type d'approche avec la structure</span>
+<span id="cb4-171"><a href="#cb4-171" aria-hidden="true" tabindex="-1"></a>pour estimer la **pathogénicité** de tous les variants faux-sens humains.</span>
+<span id="cb4-172"><a href="#cb4-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-173"><a href="#cb4-173" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2.7 L'IA générative pour les protéines</span></span>
+<span id="cb4-174"><a href="#cb4-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-175"><a href="#cb4-175" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Approche <span class="pp">|</span> Principe <span class="pp">|</span> Exemples <span class="pp">|</span></span>
+<span id="cb4-176"><a href="#cb4-176" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|</span></span>
+<span id="cb4-177"><a href="#cb4-177" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Modèles de langage **masqués** <span class="pp">|</span> deviner / échantillonner des acides aminés <span class="pp">|</span> ESM-2 <span class="pp">|</span></span>
+<span id="cb4-178"><a href="#cb4-178" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Modèles de langage **autorégressifs** <span class="pp">|</span> écrire une séquence lettre par lettre, comme un chatbot <span class="pp">|</span> ProtGPT2, ProGen <span class="pp">|</span></span>
+<span id="cb4-179"><a href="#cb4-179" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Repliement inverse** <span class="pp">|</span> concevoir une séquence pour une structure donnée <span class="pp">|</span> ProteinMPNN <span class="pp">|</span></span>
+<span id="cb4-180"><a href="#cb4-180" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Diffusion** <span class="pp">|</span> générer de nouveaux squelettes 3D à partir de bruit <span class="pp">|</span> RFdiffusion <span class="pp">|</span></span>
+<span id="cb4-181"><a href="#cb4-181" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Modèles **multimodaux** <span class="pp">|</span> séquence + structure + fonction, complexes avec ADN/ligands <span class="pp">|</span> ESM3, AlphaFold 3 <span class="pp">|</span></span>
+<span id="cb4-182"><a href="#cb4-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-183"><a href="#cb4-183" aria-hidden="true" tabindex="-1"></a>: Panorama de l'IA générative pour les protéines {.striped}</span>
+<span id="cb4-184"><a href="#cb4-184" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-185"><a href="#cb4-185" aria-hidden="true" tabindex="-1"></a>Ces outils permettent de **concevoir** des protéines qui n'existent pas dans la nature (liants</span>
+<span id="cb4-186"><a href="#cb4-186" aria-hidden="true" tabindex="-1"></a>thérapeutiques, enzymes, vaccins). Les séquences générées doivent **toujours** être synthétisées et</span>
+<span id="cb4-187"><a href="#cb4-187" aria-hidden="true" tabindex="-1"></a>testées expérimentalement.</span>
+<span id="cb4-188"><a href="#cb4-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-189"><a href="#cb4-189" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2.8 Les limites à garder en tête</span></span>
+<span id="cb4-190"><a href="#cb4-190" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-191"><a href="#cb4-191" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Biais des données** : la PDB est enrichie en protéines solubles, stables, cristallisables ; les protéines sans homologues (MSA pauvre) sont moins bien prédites.</span>
+<span id="cb4-192"><a href="#cb4-192" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Une seule conformation statique** : pas de dynamique, d'états multiples (ex. hémoglobine oxy/désoxy), d'environnement (membrane, pH, ligands, modifications post-traductionnelles) dans AlphaFold 2.</span>
+<span id="cb4-193"><a href="#cb4-193" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Boîte noire** : le modèle ne « comprend » pas la physique, il reconnaît des motifs appris.</span>
+<span id="cb4-194"><a href="#cb4-194" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Validation expérimentale indispensable** : stabilité thermique (DSF), dichroïsme circulaire, mesures d'activité, cristallographie…</span>
+<span id="cb4-195"><a href="#cb4-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-196"><a href="#cb4-196" aria-hidden="true" tabindex="-1"></a><span class="fu">## 3. Déroulé de l'atelier</span></span>
+<span id="cb4-197"><a href="#cb4-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-198"><a href="#cb4-198" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Temps <span class="pp">|</span> Partie du notebook <span class="pp">|</span> Activité <span class="pp">|</span></span>
+<span id="cb4-199"><a href="#cb4-199" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|</span></span>
+<span id="cb4-200"><a href="#cb4-200" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 0:00 – 0:05 <span class="pp">|</span> **Lancer l'installation de ColabFold** (§0), présentation du problème <span class="pp">|</span> <span class="co">[</span><span class="ot">▶️ Exécuter</span><span class="co">]</span>{.pill .pill-run} <span class="pp">|</span></span>
+<span id="cb4-201"><a href="#cb4-201" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 0:05 – 0:20 <span class="pp">|</span> §1 AlphaFold DB : hémoglobine β en 3D, profil pLDDT <span class="pp">|</span> <span class="co">[</span><span class="ot">▶️ Exécuter</span><span class="co">]</span>{.pill .pill-run} <span class="co">[</span><span class="ot">🔎 Q1</span><span class="co">]</span>{.pill .pill-think} <span class="pp">|</span></span>
+<span id="cb4-202"><a href="#cb4-202" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 0:20 – 0:45 <span class="pp">|</span> §2 Prédiction de GB1 avec ColabFold, PAE, RMSD vs cristallographie, exercice MSA <span class="pp">|</span> <span class="co">[</span><span class="ot">▶️ Exécuter</span><span class="co">]</span>{.pill .pill-run} <span class="co">[</span><span class="ot">🔎 Q2</span><span class="co">]</span>{.pill .pill-think} <span class="pp">|</span></span>
+<span id="cb4-203"><a href="#cb4-203" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 0:45 – 1:05 <span class="pp">|</span> §3 Mutations : <span class="in">`muter()`</span>, sauvage vs mutant, superposition 3D <span class="pp">|</span> <span class="co">[</span><span class="ot">✍️ Modifier</span><span class="co">]</span>{.pill .pill-edit} <span class="co">[</span><span class="ot">🔎 Q3</span><span class="co">]</span>{.pill .pill-think} <span class="pp">|</span></span>
+<span id="cb4-204"><a href="#cb4-204" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 1:05 – 1:15 <span class="pp">|</span> §4 Paysage mutationnel ESM-2 <span class="pp">|</span> <span class="co">[</span><span class="ot">▶️ Exécuter</span><span class="co">]</span>{.pill .pill-run} <span class="co">[</span><span class="ot">🔎 Q4</span><span class="co">]</span>{.pill .pill-think} <span class="pp">|</span></span>
+<span id="cb4-205"><a href="#cb4-205" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 1:15 – 1:45 <span class="pp">|</span> §5 **Mini-projet en binôme** : choix du sujet, prédictions, analyse, 3 diapositives <span class="pp">|</span> <span class="co">[</span><span class="ot">✍️ Modifier</span><span class="co">]</span>{.pill .pill-edit} <span class="pp">|</span></span>
+<span id="cb4-206"><a href="#cb4-206" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 1:45 – 2:00 <span class="pp">|</span> **Présentations** (3 min par binôme) et discussion des limites <span class="pp">|</span> <span class="co">[</span><span class="ot">🔎 Discuter</span><span class="co">]</span>{.pill .pill-think} <span class="pp">|</span></span>
+<span id="cb4-207"><a href="#cb4-207" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-208"><a href="#cb4-208" aria-hidden="true" tabindex="-1"></a>: Déroulé indicatif (2h) {.striped .hover .deroule}</span>
+<span id="cb4-209"><a href="#cb4-209" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-210"><a href="#cb4-210" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
+<span id="cb4-211"><a href="#cb4-211" aria-hidden="true" tabindex="-1"></a><span class="fu">## Plan B si ColabFold ne fonctionne pas</span></span>
+<span id="cb4-212"><a href="#cb4-212" aria-hidden="true" tabindex="-1"></a>Les mises à jour de Colab cassent parfois l'installation de ColabFold. Dans ce cas, choisissez</span>
+<span id="cb4-213"><a href="#cb4-213" aria-hidden="true" tabindex="-1"></a><span class="in">`MOTEUR = "ESMFold (API, sans GPU)"`</span> en haut du notebook : la prédiction passe par l'API publique</span>
+<span id="cb4-214"><a href="#cb4-214" aria-hidden="true" tabindex="-1"></a>d'**ESMFold** (Meta AI), qui prédit une structure en quelques secondes à partir d'un modèle de langage,</span>
+<span id="cb4-215"><a href="#cb4-215" aria-hidden="true" tabindex="-1"></a>sans MSA. Toutes les analyses (pLDDT, RMSD, mutations) fonctionnent de la même façon. Autre solution :</span>
+<span id="cb4-216"><a href="#cb4-216" aria-hidden="true" tabindex="-1"></a>utiliser le <span class="co">[</span><span class="ot">notebook officiel ColabFold</span><span class="co">](https://colab.research.google.com/github/sokrypton/ColabFold/blob/main/AlphaFold2.ipynb)</span></span>
+<span id="cb4-217"><a href="#cb4-217" aria-hidden="true" tabindex="-1"></a>et téléverser les fichiers PDB obtenus.</span>
+<span id="cb4-218"><a href="#cb4-218" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-219"><a href="#cb4-219" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-220"><a href="#cb4-220" aria-hidden="true" tabindex="-1"></a><span class="fu">### Code clé à retenir</span></span>
+<span id="cb4-221"><a href="#cb4-221" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-222"><a href="#cb4-222" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb4-223"><a href="#cb4-223" aria-hidden="true" tabindex="-1"></a><span class="co"># Prédiction ColabFold en ligne de commande (dans Colab)</span></span>
+<span id="cb4-224"><a href="#cb4-224" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>colabfold_batch <span class="op">--</span>num<span class="op">-</span>models <span class="dv">1</span> <span class="op">--</span>num<span class="op">-</span>recycle <span class="dv">3</span> gb1.fasta resultats<span class="op">/</span></span>
+<span id="cb4-225"><a href="#cb4-225" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-226"><a href="#cb4-226" aria-hidden="true" tabindex="-1"></a><span class="co"># Lecture du pLDDT (colonne B-factor) et visualisation 3D</span></span>
+<span id="cb4-227"><a href="#cb4-227" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> Bio.PDB <span class="im">import</span> PDBParser</span>
+<span id="cb4-228"><a href="#cb4-228" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> py3Dmol</span>
+<span id="cb4-229"><a href="#cb4-229" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> PDBParser(QUIET<span class="op">=</span><span class="va">True</span>).get_structure(<span class="st">"gb1"</span>, <span class="st">"resultats/gb1_unrelaxed_rank_001.pdb"</span>)</span>
+<span id="cb4-230"><a href="#cb4-230" aria-hidden="true" tabindex="-1"></a>plddt <span class="op">=</span> [res[<span class="st">"CA"</span>].get_bfactor() <span class="cf">for</span> res <span class="kw">in</span> s.get_residues()]</span>
+<span id="cb4-231"><a href="#cb4-231" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-232"><a href="#cb4-232" aria-hidden="true" tabindex="-1"></a>vue <span class="op">=</span> py3Dmol.view(width<span class="op">=</span><span class="dv">600</span>, height<span class="op">=</span><span class="dv">400</span>)</span>
+<span id="cb4-233"><a href="#cb4-233" aria-hidden="true" tabindex="-1"></a>vue.addModel(<span class="bu">open</span>(<span class="st">"resultats/gb1_unrelaxed_rank_001.pdb"</span>).read(), <span class="st">"pdb"</span>)</span>
+<span id="cb4-234"><a href="#cb4-234" aria-hidden="true" tabindex="-1"></a>vue.setStyle({<span class="st">"cartoon"</span>: {<span class="st">"color"</span>: <span class="st">"spectrum"</span>}})</span>
+<span id="cb4-235"><a href="#cb4-235" aria-hidden="true" tabindex="-1"></a>vue.zoomTo()<span class="op">;</span> vue.show()</span>
+<span id="cb4-236"><a href="#cb4-236" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-237"><a href="#cb4-237" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-238"><a href="#cb4-238" aria-hidden="true" tabindex="-1"></a><span class="fu">## 4. Mini-projet en binôme (45 min)</span></span>
+<span id="cb4-239"><a href="#cb4-239" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-240"><a href="#cb4-240" aria-hidden="true" tabindex="-1"></a>::: {.callout-important icon=false}</span>
+<span id="cb4-241"><a href="#cb4-241" aria-hidden="true" tabindex="-1"></a><span class="fu">## 🏁 Consigne</span></span>
+<span id="cb4-242"><a href="#cb4-242" aria-hidden="true" tabindex="-1"></a>Choisissez **une protéine** et **1 à 3 mutations**. Prédisez les structures **sauvage** et **mutante**,</span>
+<span id="cb4-243"><a href="#cb4-243" aria-hidden="true" tabindex="-1"></a>croisez avec le score **ESM-2** (et **AlphaMissense** pour une protéine humaine), puis présentez en</span>
+<span id="cb4-244"><a href="#cb4-244" aria-hidden="true" tabindex="-1"></a>**3 minutes** (3 diapositives maximum) :</span>
+<span id="cb4-245"><a href="#cb4-245" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-246"><a href="#cb4-246" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**La question** — la protéine, son rôle biologique, les mutations choisies et **pourquoi** ;</span>
+<span id="cb4-247"><a href="#cb4-247" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Les résultats** — pLDDT sauvage vs mutant, RMSD, une capture 3D, score ESM-2 / AlphaMissense ;</span>
+<span id="cb4-248"><a href="#cb4-248" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**L'interprétation et les limites** — ce que l'on peut conclure, ce que l'on **ne peut pas**</span>
+<span id="cb4-249"><a href="#cb4-249" aria-hidden="true" tabindex="-1"></a>   conclure, et l'expérience que vous proposeriez pour **valider** *in vitro*.</span>
+<span id="cb4-250"><a href="#cb4-250" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-251"><a href="#cb4-251" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-252"><a href="#cb4-252" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Sujet <span class="pp">|</span> Protéine <span class="pp">|</span> Idées de mutations <span class="pp">|</span> Ce qu'il faut discuter <span class="pp">|</span></span>
+<span id="cb4-253"><a href="#cb4-253" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|---|</span></span>
+<span id="cb4-254"><a href="#cb4-254" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **A** <span class="pp">|</span> GB1 (56 aa), protéine modèle d'ingénierie <span class="pp">|</span> cœur <span class="in">`W43`</span>, <span class="in">`F52`</span>, <span class="in">`Y3`</span> vs surface <span class="in">`K10`</span>, <span class="in">`E19`</span> <span class="pp">|</span> AlphaFold « voit »-il la déstabilisation du cœur ? <span class="pp">|</span></span>
+<span id="cb4-255"><a href="#cb4-255" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **B** <span class="pp">|</span> Hémoglobine β (147 aa), drépanocytose <span class="pp">|</span> <span class="in">`E7V`</span> (= E6V clinique) <span class="pp">|</span> une mutation pathogène… sans changement de repliement <span class="pp">|</span></span>
+<span id="cb4-256"><a href="#cb4-256" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **C** <span class="pp">|</span> Ubiquitine (76 aa), signalisation cellulaire <span class="pp">|</span> <span class="in">`I44A`</span> (surface d'interaction), <span class="in">`L67S`</span> (cœur) <span class="pp">|</span> fonction ≠ stabilité <span class="pp">|</span></span>
+<span id="cb4-257"><a href="#cb4-257" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **D** <span class="pp">|</span> Votre protéine (&lt; 150 aa) <span class="pp">|</span> à justifier <span class="pp">|</span> pertinence biologique du choix <span class="pp">|</span></span>
+<span id="cb4-258"><a href="#cb4-258" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-259"><a href="#cb4-259" aria-hidden="true" tabindex="-1"></a>: Sujets proposés {.striped .hover}</span>
+<span id="cb4-260"><a href="#cb4-260" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-261"><a href="#cb4-261" aria-hidden="true" tabindex="-1"></a>La grille d'évaluation détaillée est dans l'annexe <span class="co">[</span><span class="ot">Évaluation et mini-projet</span><span class="co">](evaluation.qmd)</span>.</span>
+<span id="cb4-262"><a href="#cb4-262" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-263"><a href="#cb4-263" aria-hidden="true" tabindex="-1"></a>::: {.callout-note collapse="true"}</span>
+<span id="cb4-264"><a href="#cb4-264" aria-hidden="true" tabindex="-1"></a><span class="fu">## Pistes d'analyse pour le sujet B (drépanocytose)</span></span>
+<span id="cb4-265"><a href="#cb4-265" aria-hidden="true" tabindex="-1"></a>Valeurs obtenues lors d'un essai (ESMFold + ESM-2 150M) :</span>
+<span id="cb4-266"><a href="#cb4-266" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-267"><a href="#cb4-267" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="pp">|</span> sauvage <span class="pp">|</span> mutant E7V <span class="pp">|</span></span>
+<span id="cb4-268"><a href="#cb4-268" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---:|---:|</span></span>
+<span id="cb4-269"><a href="#cb4-269" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> pLDDT moyen <span class="pp">|</span> 94,2 <span class="pp">|</span> 94,3 <span class="pp">|</span></span>
+<span id="cb4-270"><a href="#cb4-270" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> RMSD mutant vs sauvage <span class="pp">|</span> — <span class="pp">|</span> **0,01 Å** <span class="pp">|</span></span>
+<span id="cb4-271"><a href="#cb4-271" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> score ESM-2 <span class="pp">|</span> — <span class="pp">|</span> −1,4 (modéré) <span class="pp">|</span></span>
+<span id="cb4-272"><a href="#cb4-272" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> AlphaMissense <span class="pp">|</span> — <span class="pp">|</span> **0,22** (plutôt bénin) <span class="pp">|</span></span>
+<span id="cb4-273"><a href="#cb4-273" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-274"><a href="#cb4-274" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>AlphaFold/ESMFold prédit un repliement **strictement identique** : la mutation est en **surface**.</span>
+<span id="cb4-275"><a href="#cb4-275" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>AlphaMissense la classe comme **probablement bénigne** et le score ESM-2 est **modéré** : ces modèles estiment surtout l'impact sur le **repliement** et la **conservation évolutive**.</span>
+<span id="cb4-276"><a href="#cb4-276" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Or la maladie est réelle et grave : la valine hydrophobe exposée crée un « point collant » qui fait **polymériser** l'hémoglobine **désoxygénée** en fibres rigides, déformant les globules rouges en faucille.</span>
+<span id="cb4-277"><a href="#cb4-277" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Leçon** : un mécanisme de **gain de fonction** impliquant plusieurs molécules (interactions intermoléculaires, état désoxy) est **hors de portée** d'un modèle qui prédit une seule chaîne dans un seul état. La validation expérimentale (et clinique) reste indispensable.</span>
+<span id="cb4-278"><a href="#cb4-278" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-279"><a href="#cb4-279" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-280"><a href="#cb4-280" aria-hidden="true" tabindex="-1"></a><span class="fu">## 5. Testez-vous</span></span>
+<span id="cb4-281"><a href="#cb4-281" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-282"><a href="#cb4-282" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip collapse="true"}</span>
+<span id="cb4-283"><a href="#cb4-283" aria-hidden="true" tabindex="-1"></a><span class="fu">## Q1. Pourquoi AlphaFold a-t-il besoin d'un alignement multiple de séquences ?</span></span>
+<span id="cb4-284"><a href="#cb4-284" aria-hidden="true" tabindex="-1"></a>Parce que les **mutations corrélées** entre positions au cours de l'évolution (coévolution) révèlent les</span>
+<span id="cb4-285"><a href="#cb4-285" aria-hidden="true" tabindex="-1"></a>résidus en **contact** dans la structure 3D. Sans MSA, la prédiction est en général bien moins bonne</span>
+<span id="cb4-286"><a href="#cb4-286" aria-hidden="true" tabindex="-1"></a>(sauf pour les modèles de langage comme ESMFold, qui ont « mémorisé » cette information évolutive).</span>
+<span id="cb4-287"><a href="#cb4-287" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-288"><a href="#cb4-288" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-289"><a href="#cb4-289" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip collapse="true"}</span>
+<span id="cb4-290"><a href="#cb4-290" aria-hidden="true" tabindex="-1"></a><span class="fu">## Q2. Une région a un pLDDT de 35. Que peut-on en conclure ?</span></span>
+<span id="cb4-291"><a href="#cb4-291" aria-hidden="true" tabindex="-1"></a>Le modèle a **très peu confiance** dans la position de cette région. Elle est souvent **désordonnée**</span>
+<span id="cb4-292"><a href="#cb4-292" aria-hidden="true" tabindex="-1"></a>(flexible, sans structure fixe) ; elle ne doit pas être interprétée comme une structure précise.</span>
+<span id="cb4-293"><a href="#cb4-293" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-294"><a href="#cb4-294" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-295"><a href="#cb4-295" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip collapse="true"}</span>
+<span id="cb4-296"><a href="#cb4-296" aria-hidden="true" tabindex="-1"></a><span class="fu">## Q3. Le mutant prédit a un RMSD de 0,3 Å par rapport à la protéine sauvage. La mutation est-elle sans effet ?</span></span>
+<span id="cb4-297"><a href="#cb4-297" aria-hidden="true" tabindex="-1"></a>Non : AlphaFold tend à prédire le **même repliement** pour des séquences proches. Une mutation peut</span>
+<span id="cb4-298"><a href="#cb4-298" aria-hidden="true" tabindex="-1"></a>déstabiliser la protéine, abolir une interaction ou une activité catalytique sans que la structure</span>
+<span id="cb4-299"><a href="#cb4-299" aria-hidden="true" tabindex="-1"></a>**prédite** ne change. Il faut d'autres indicateurs et une **validation expérimentale**.</span>
+<span id="cb4-300"><a href="#cb4-300" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-301"><a href="#cb4-301" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-302"><a href="#cb4-302" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip collapse="true"}</span>
+<span id="cb4-303"><a href="#cb4-303" aria-hidden="true" tabindex="-1"></a><span class="fu">## Q4. Que signifie un score ESM-2 de −8 pour une mutation ?</span></span>
+<span id="cb4-304"><a href="#cb4-304" aria-hidden="true" tabindex="-1"></a>Que l'acide aminé muté est environ $e^{8} \approx 3\,000$ fois **moins probable** que l'acide aminé</span>
+<span id="cb4-305"><a href="#cb4-305" aria-hidden="true" tabindex="-1"></a>sauvage à cette position selon le modèle : cette substitution est très rare dans l'évolution, donc</span>
+<span id="cb4-306"><a href="#cb4-306" aria-hidden="true" tabindex="-1"></a>probablement **délétère**.</span>
+<span id="cb4-307"><a href="#cb4-307" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-308"><a href="#cb4-308" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-309"><a href="#cb4-309" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip collapse="true"}</span>
+<span id="cb4-310"><a href="#cb4-310" aria-hidden="true" tabindex="-1"></a><span class="fu">## Q5. Citez trois limites d'AlphaFold 2.</span></span>
+<span id="cb4-311"><a href="#cb4-311" aria-hidden="true" tabindex="-1"></a>Par exemple : (1) une **seule conformation statique** ; (2) pas de ligands, d'ions, de membranes ni de</span>
+<span id="cb4-312"><a href="#cb4-312" aria-hidden="true" tabindex="-1"></a>modifications post-traductionnelles ; (3) mauvaise sensibilité aux **mutations ponctuelles** ;</span>
+<span id="cb4-313"><a href="#cb4-313" aria-hidden="true" tabindex="-1"></a>(4) dépendance à la profondeur du MSA ; (5) biais de la PDB ; (6) boîte noire.</span>
+<span id="cb4-314"><a href="#cb4-314" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-315"><a href="#cb4-315" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-316"><a href="#cb4-316" aria-hidden="true" tabindex="-1"></a><span class="fu">## 6. Pour aller plus loin</span></span>
+<span id="cb4-317"><a href="#cb4-317" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-318"><a href="#cb4-318" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Jumper J. *et al.* (2021). *Highly accurate protein structure prediction with AlphaFold.* **Nature**, 596, 583-589.</span>
+<span id="cb4-319"><a href="#cb4-319" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Mirdita M. *et al.* (2022). *ColabFold: making protein folding accessible to all.* **Nature Methods**, 19, 679-682.</span>
+<span id="cb4-320"><a href="#cb4-320" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Meier J. *et al.* (2021). *Language models enable zero-shot prediction of the effects of mutations on protein function.* **NeurIPS**.</span>
+<span id="cb4-321"><a href="#cb4-321" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Cheng J. *et al.* (2023). *Accurate proteome-wide missense variant effect prediction with AlphaMissense.* **Science**, 381, eadg7492.</span>
+<span id="cb4-322"><a href="#cb4-322" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Buel G. R. &amp; Walters K. J. (2022). *Can AlphaFold2 predict the impact of missense mutations on structure?* **Nature Structural &amp; Molecular Biology**, 29, 1-2.</span>
+<span id="cb4-323"><a href="#cb4-323" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Ressources : <span class="co">[</span><span class="ot">AlphaFold DB</span><span class="co">](https://alphafold.ebi.ac.uk)</span> · <span class="co">[</span><span class="ot">ColabFold</span><span class="co">](https://github.com/sokrypton/ColabFold)</span> · <span class="co">[</span><span class="ot">RCSB PDB — 1PGA</span><span class="co">](https://www.rcsb.org/structure/1PGA)</span> · <span class="co">[</span><span class="ot">py3Dmol</span><span class="co">](https://pypi.org/project/py3Dmol/)</span></span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

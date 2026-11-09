@@ -1,0 +1,2009 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.11.9">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Séance 4 : Vision par ordinateur pour l’imagerie cellulaire – Intelligence Artificielle et Biotechnologie</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./seance5.html" rel="next">
+<link href="./seance3.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-5de16f5e46225c21e2daa90d340bf64f.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-3218d7d29a29f08bc4fdf3802c3e3ca5.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-5de16f5e46225c21e2daa90d340bf64f.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-d29f24995af1e3397e5707c0c8660694.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-71b6201ca03046a2144629b9c7df8fe5.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-d29f24995af1e3397e5707c0c8660694.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+<!-- Google Translate Widget -->
+</head><body class="nav-sidebar floating quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          toggle.setAttribute("aria-checked", alternate ? "true" : "false");
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455).
+    // Not run on load: stylesheets are set before first paint there, and
+    // scrolling would undo the scroll to a URL fragment (#14973).
+    // The one pixel nudge keeps the reader where they were.
+    const refreshSafariScrollbar = () => {
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        const scrollY = window.scrollY;
+        window.scrollTo(0, scrollY > 0 ? scrollY - 1 : 1);
+        setTimeout(() => {
+          window.scrollTo(0, scrollY);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      refreshSafariScrollbar();
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script><div id="google_translate_element"></div>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'fr',
+    includedLanguages: 'fr,en',
+    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+    autoDisplay: false
+  }, 'google_translate_element');
+}
+</script>
+
+<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<style>
+#google_translate_element {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 9999;
+  background: white;
+  padding: 2px;
+  border-radius: 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  border: 1px solid #ddd;
+}
+.goog-te-gadget { font-size: 0 !important; }
+.goog-te-gadget-simple {
+  background-color: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+}
+.goog-te-menu-value span { color: #333 !important; font-size: 13px !important; }
+.goog-te-menu-value {
+  color: #333 !important;
+  border: none !important;
+  background: transparent !important;
+  padding: 4px 10px !important;
+  border-radius: 15px !important;
+}
+.goog-te-banner-frame.skiptranslate { display: none !important; }
+body { top: 0px !important; }
+</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+
+
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" aria-label="Toolbar">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./seance1.html">Ateliers pratiques (5 × 2h)</a></li><li class="breadcrumb-item"><a href="./seance4.html"><span class="chapter-title">Séance 4 : Vision par ordinateur pour l’imagerie cellulaire</span></a></li></ol></nav>
+        <a class="flex-grow-1" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto" aria-label="Site">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Intelligence Artificielle et Biotechnologie</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/nevermind78/IA_Biotech" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <button type="button" role="switch" aria-checked="false" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode" aria-label="Toggle dark mode"><i class="bi"></i></button>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Présentation du module</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-controls="quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-1-label">Ateliers pratiques (5 × 2h)</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-1" aria-labelledby="quarto-sidebar-section-1-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./seance1.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Séance 1 : Données biologiques et premier modèle prédictif</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./seance2.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Séance 2 : Apprentissage non supervisé et profilage d’expression génique</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./seance3.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Séance 3 : Séquences protéiques et modèles de langage biologique</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./seance4.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Séance 4 : Vision par ordinateur pour l’imagerie cellulaire</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./seance5.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Séance 5 : IA générative, repliement protéique et mini-projet</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-controls="quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-2-label">Appendices</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-2" aria-labelledby="quarto-sidebar-section-2-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./annexe-colab.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prise en main de Google Colab et Python express</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebooks.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Notebooks Colab et données</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./evaluation.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Évaluation et mini-projet</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./glossaire.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Glossaire IA ↔︎ Biologie</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./depannage.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Dépannage (FAQ)</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" aria-labelledby="toc-title" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#le-problème-biologique" id="toc-le-problème-biologique" class="nav-link active" data-scroll-target="#le-problème-biologique">1. Le problème biologique</a></li>
+  <li><a href="#notions-théoriques-essentielles" id="toc-notions-théoriques-essentielles" class="nav-link" data-scroll-target="#notions-théoriques-essentielles">2. Notions théoriques essentielles</a>
+  <ul class="collapse">
+  <li><a href="#une-image-est-une-matrice-de-nombres" id="toc-une-image-est-une-matrice-de-nombres" class="nav-link" data-scroll-target="#une-image-est-une-matrice-de-nombres">2.1 Une image est une matrice de nombres</a></li>
+  <li><a href="#les-filtres-de-convolution" id="toc-les-filtres-de-convolution" class="nav-link" data-scroll-target="#les-filtres-de-convolution">2.2 Les filtres de convolution</a></li>
+  <li><a href="#la-segmentation-classique" id="toc-la-segmentation-classique" class="nav-link" data-scroll-target="#la-segmentation-classique">2.3 La segmentation classique</a></li>
+  <li><a href="#les-réseaux-de-neurones-convolutifs-cnn" id="toc-les-réseaux-de-neurones-convolutifs-cnn" class="nav-link" data-scroll-target="#les-réseaux-de-neurones-convolutifs-cnn">2.4 Les réseaux de neurones convolutifs (CNN)</a></li>
+  <li><a href="#segmentation-par-deep-learning-u-net-et-cellpose" id="toc-segmentation-par-deep-learning-u-net-et-cellpose" class="nav-link" data-scroll-target="#segmentation-par-deep-learning-u-net-et-cellpose">2.5 Segmentation par deep learning : U-Net et Cellpose</a></li>
+  <li><a href="#lapprentissage-par-transfert-en-imagerie" id="toc-lapprentissage-par-transfert-en-imagerie" class="nav-link" data-scroll-target="#lapprentissage-par-transfert-en-imagerie">2.6 L’apprentissage par transfert en imagerie</a></li>
+  <li><a href="#évaluer-une-segmentation" id="toc-évaluer-une-segmentation" class="nav-link" data-scroll-target="#évaluer-une-segmentation">2.7 Évaluer une segmentation</a></li>
+  <li><a href="#de-la-segmentation-aux-mesures-et-détection-danomalies" id="toc-de-la-segmentation-aux-mesures-et-détection-danomalies" class="nav-link" data-scroll-target="#de-la-segmentation-aux-mesures-et-détection-danomalies">2.8 De la segmentation aux mesures, et détection d’anomalies</a></li>
+  </ul></li>
+  <li><a href="#déroulé-de-latelier" id="toc-déroulé-de-latelier" class="nav-link" data-scroll-target="#déroulé-de-latelier">3. Déroulé de l’atelier</a>
+  <ul class="collapse">
+  <li><a href="#code-clé-à-retenir" id="toc-code-clé-à-retenir" class="nav-link" data-scroll-target="#code-clé-à-retenir">Code clé à retenir</a></li>
+  </ul></li>
+  <li><a href="#exercices-et-défis" id="toc-exercices-et-défis" class="nav-link" data-scroll-target="#exercices-et-défis">4. Exercices et défis</a></li>
+  <li><a href="#livrable" id="toc-livrable" class="nav-link" data-scroll-target="#livrable">5. Livrable</a></li>
+  <li><a href="#testez-vous" id="toc-testez-vous" class="nav-link" data-scroll-target="#testez-vous">6. Testez-vous</a></li>
+  <li><a href="#limites-et-bonnes-pratiques" id="toc-limites-et-bonnes-pratiques" class="nav-link" data-scroll-target="#limites-et-bonnes-pratiques">7. Limites et bonnes pratiques</a></li>
+  <li><a href="#pour-aller-plus-loin" id="toc-pour-aller-plus-loin" class="nav-link" data-scroll-target="#pour-aller-plus-loin">8. Pour aller plus loin</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content" tabindex="-1">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./seance1.html">Ateliers pratiques (5 × 2h)</a></li><li class="breadcrumb-item"><a href="./seance4.html"><span class="chapter-title">Séance 4 : Vision par ordinateur pour l’imagerie cellulaire</span></a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-title">Séance 4 : Vision par ordinateur pour l’imagerie cellulaire</span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Informations de la séance
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Type</strong> : Atelier pratique (<em>learn by doing</em>) — <strong>GPU T4 recommandé</strong></li>
+<li><strong>Durée</strong> : 2h</li>
+<li><strong>Problème biologique</strong> : automatiser le comptage des cellules et la détection d’anomalies morphologiques sur une image de microscopie</li>
+<li><strong>Données</strong> : image de fluorescence de noyaux humains (marquage de l’ADN), dont certains en mitose ; bonus : 27 000 images de globules rouges (paludisme, NIH)</li>
+<li><strong>Outils</strong> : scikit-image, <strong>Cellpose</strong> (réseau de neurones pré-entraîné), Scikit-learn, PyTorch/torchvision (bonus)</li>
+<li><strong>Livrable</strong> : un script automatisé qui segmente les cellules, calcule leur surface moyenne et exporte un rapport quantitatif</li>
+</ul>
+</div>
+</div>
+<div class="colab-launch">
+<p><a href="https://colab.research.google.com/github/nevermind78/IA_Biotech/blob/main/notebooks/S4_imagerie_cellpose.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Ouvrir dans Google Colab"></a></p>
+<p><strong>Notebook de l’atelier</strong> — ouvrez-le dans Colab, activez le <strong>GPU T4</strong>, puis <code>Fichier → Enregistrer une copie dans Drive</code>. Version téléchargeable : <a href="notebooks/S4_imagerie_cellpose.ipynb">S4_imagerie_cellpose.ipynb</a></p>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Lancez la première cellule dès votre arrivée
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>L’installation de Cellpose (1 à 2 min) puis le téléchargement de ses poids pré-entraînés (<strong>≈ 1,2 Go</strong>, 1 à 2 min sur Colab) se font au premier lancement. Démarrez la section 0 <strong>avant</strong> de lire l’introduction : le téléchargement se fera pendant ce temps.</p>
+</div>
+</div>
+<section id="le-problème-biologique" class="level2">
+<h2 class="anchored" data-anchor-id="le-problème-biologique">1. Le problème biologique</h2>
+<p>L’imagerie est partout en biologie : numération en hématologie, anatomopathologie, suivi de cultures cellulaires en bioproduction, <strong>criblage à haut contenu</strong> (<em>high-content screening</em>) où des robots acquièrent des <strong>dizaines de milliers d’images</strong> par jour pour tester l’effet de molécules sur des cellules. Compter et mesurer à la main est <strong>lent, fatigant et subjectif</strong> (deux opérateurs ne trouvent pas le même nombre).</p>
+<p>L’objectif est de passer d’une <strong>image</strong> à des <strong>mesures</strong> :</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+
+<pre class="mermaid mermaid-js">flowchart TB
+    A["🔬 Image de microscopie"] --&gt; B["Pré-traitement"]
+    B --&gt; C["&lt;b&gt;Segmentation&lt;/b&gt;"]
+    C --&gt; D["Mesures morphologiques"]
+    D --&gt; E["Détection d'anomalies"]
+    E --&gt; F["📄 Rapport quantitatif"]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="notions-théoriques-essentielles" class="level2">
+<h2 class="anchored" data-anchor-id="notions-théoriques-essentielles">2. Notions théoriques essentielles</h2>
+<section id="une-image-est-une-matrice-de-nombres" class="level3">
+<h3 class="anchored" data-anchor-id="une-image-est-une-matrice-de-nombres">2.1 Une image est une matrice de nombres</h3>
+<p>Une image numérique en niveaux de gris est un tableau 2D : chaque case (<strong>pixel</strong>) contient une <strong>intensité</strong>. En microscopie de fluorescence, l’intensité est proportionnelle à la quantité de fluorophore (ex. <strong>DAPI</strong> ou <strong>Hoechst</strong>, qui se fixent à l’ADN et marquent les noyaux).</p>
+<table class="table-striped caption-top table">
+<caption>Vocabulaire de l’image numérique</caption>
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Notion</th>
+<th>Signification</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Profondeur</strong></td>
+<td>8 bits → valeurs de 0 à 255 ; 16 bits → 0 à 65 535 (fréquent en microscopie)</td>
+</tr>
+<tr class="even">
+<td><strong>Canaux</strong></td>
+<td>une image par fluorophore (ex. noyaux en bleu, membrane en vert)</td>
+</tr>
+<tr class="odd">
+<td><strong>Taille du pixel</strong></td>
+<td>en µm/pixel, donnée par le microscope : indispensable pour convertir les surfaces</td>
+</tr>
+<tr class="even">
+<td><strong>Histogramme</strong></td>
+<td>distribution des intensités : fond sombre (pic) vs objets lumineux</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="les-filtres-de-convolution" class="level3">
+<h3 class="anchored" data-anchor-id="les-filtres-de-convolution">2.2 Les filtres de convolution</h3>
+<p>Filtrer une image consiste à faire glisser un petit <strong>noyau</strong> (<em>kernel</em>, ex. 3 × 3) sur l’image et à calculer en chaque pixel une <strong>somme pondérée</strong> des voisins :</p>
+<p><span class="math display">\[
+(I * K)(i, j) = \sum_{m} \sum_{n} I(i + m,\, j + n)\, K(m, n)
+\]</span></p>
+<p>Un noyau de <strong>moyenne</strong> lisse le bruit ; un noyau de <strong>Sobel</strong> détecte les <strong>contours</strong>. Retenez bien cette opération : c’est la brique de base des <strong>réseaux de neurones convolutifs</strong>.</p>
+<div id="3072660f" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Code de la figure</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> ndimage <span class="im">as</span> ndi</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> skimage <span class="im">import</span> filters</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">3</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>img <span class="op">=</span> np.zeros((<span class="dv">200</span>, <span class="dv">200</span>))</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>yy, xx <span class="op">=</span> np.mgrid[:<span class="dv">200</span>, :<span class="dv">200</span>]</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">25</span>):                                   <span class="co"># 25 « noyaux » elliptiques</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    cy, cx <span class="op">=</span> rng.uniform(<span class="dv">15</span>, <span class="dv">185</span>, <span class="dv">2</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    a, b <span class="op">=</span> rng.uniform(<span class="dv">6</span>, <span class="dv">11</span>, <span class="dv">2</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    img <span class="op">+=</span> <span class="dv">120</span> <span class="op">*</span> (((yy <span class="op">-</span> cy) <span class="op">/</span> a) <span class="op">**</span> <span class="dv">2</span> <span class="op">+</span> ((xx <span class="op">-</span> cx) <span class="op">/</span> b) <span class="op">**</span> <span class="dv">2</span> <span class="op">&lt;=</span> <span class="dv">1</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>img <span class="op">=</span> ndi.gaussian_filter(np.clip(img, <span class="dv">0</span>, <span class="dv">180</span>), <span class="fl">1.5</span>) <span class="op">+</span> rng.normal(<span class="dv">20</span>, <span class="dv">8</span>, img.shape)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>seuil <span class="op">=</span> filters.threshold_otsu(img)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">4</span>, figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="fl">3.6</span>))</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].imshow(img, cmap<span class="op">=</span><span class="st">"gray"</span>)<span class="op">;</span> axes[<span class="dv">0</span>].set_title(<span class="st">"Image (bruitée)"</span>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].hist(img.ravel(), bins<span class="op">=</span><span class="dv">80</span>, color<span class="op">=</span><span class="st">"tab:purple"</span>)<span class="op">;</span> axes[<span class="dv">1</span>].axvline(seuil, c<span class="op">=</span><span class="st">"r"</span>, ls<span class="op">=</span><span class="st">"--"</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="ss">f"Histogramme, seuil d'Otsu = </span><span class="sc">{</span>seuil<span class="sc">:.0f}</span><span class="ss">"</span>)<span class="op">;</span> axes[<span class="dv">1</span>].set_yscale(<span class="st">"log"</span>)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].imshow(filters.gaussian(img, sigma<span class="op">=</span><span class="dv">2</span>), cmap<span class="op">=</span><span class="st">"gray"</span>)<span class="op">;</span> axes[<span class="dv">2</span>].set_title(<span class="st">"Convolution : lissage"</span>)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">3</span>].imshow(filters.sobel(img), cmap<span class="op">=</span><span class="st">"magma"</span>)<span class="op">;</span> axes[<span class="dv">3</span>].set_title(<span class="st">"Convolution : contours (Sobel)"</span>)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax <span class="kw">in</span> [axes[<span class="dv">0</span>], axes[<span class="dv">2</span>], axes[<span class="dv">3</span>]]:</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    ax.axis(<span class="st">"off"</span>)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="seance4_files/figure-html/cell-2-output-1.png" width="1387" height="337" class="figure-img"></p>
+<figcaption>Une image synthétique de noyaux, son histogramme avec le seuil d’Otsu, et deux convolutions (lissage gaussien, détection de contours par Sobel).</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="la-segmentation-classique" class="level3">
+<h3 class="anchored" data-anchor-id="la-segmentation-classique">2.3 La segmentation classique</h3>
+<ol type="1">
+<li><strong>Seuillage d’Otsu</strong> : choisit automatiquement le seuil <span class="math inline">\(t\)</span> qui maximise la <strong>variance inter-classes</strong> entre le fond (proportion <span class="math inline">\(\omega_0\)</span>, moyenne <span class="math inline">\(\mu_0\)</span>) et les objets (<span class="math inline">\(\omega_1\)</span>, <span class="math inline">\(\mu_1\)</span>) : <span class="math display">\[\sigma_B^2(t) = \omega_0(t)\,\omega_1(t)\,\big[\mu_0(t) - \mu_1(t)\big]^2\]</span></li>
+<li><strong>Morphologie mathématique</strong> : retirer les petits objets (bruit), boucher les trous.</li>
+<li><strong>Étiquetage</strong> des composantes connexes : chaque « tache » reçoit un numéro.</li>
+<li><strong>Watershed</strong> (ligne de partage des eaux) : on calcule pour chaque pixel sa <strong>distance au fond</strong> ; les maxima locaux servent de « sources », et l’on « inonde » la carte pour <strong>séparer les noyaux qui se touchent</strong>.</li>
+</ol>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Attention</span>Les limites de l’approche classique
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Chaque paramètre (lissage, taille minimale, distance entre maxima) est <strong>réglé à la main</strong> pour une image donnée. Avec un éclairage inégal, des cellules collées ou de formes variées, il n’existe souvent <strong>pas de réglage qui fonctionne partout</strong>.</p>
+</div>
+</div>
+</section>
+<section id="les-réseaux-de-neurones-convolutifs-cnn" class="level3">
+<h3 class="anchored" data-anchor-id="les-réseaux-de-neurones-convolutifs-cnn">2.4 Les réseaux de neurones convolutifs (CNN)</h3>
+<p>Un <strong>CNN</strong> empile des couches de convolution dont les <strong>noyaux ne sont plus choisis par l’humain mais appris</strong> à partir d’exemples annotés. Chaque couche est suivie d’une non-linéarité (ReLU : <span class="math inline">\(\max(0, x)\)</span>) et parfois d’un <strong>sous-échantillonnage</strong> (<em>pooling</em>). Les premières couches apprennent des <strong>contours</strong>, les suivantes des <strong>textures</strong>, puis des <strong>formes</strong> de plus en plus abstraites.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+
+<pre class="mermaid mermaid-js">flowchart TB
+    I["Image 512 × 512"] --&gt; C1["Convolution → contours"]
+    C1 --&gt; P1["Pooling → 256 × 256"]
+    P1 --&gt; C2["Convolution → textures"]
+    C2 --&gt; P2["Pooling → 128 × 128"]
+    P2 --&gt; C3["Convolution → formes"]
+    C3 --&gt; O["Sortie"]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>L’apprentissage ajuste les millions de poids des noyaux par <strong>descente de gradient</strong> pour minimiser l’erreur entre la prédiction et l’annotation (rétropropagation du gradient).</p>
+</section>
+<section id="segmentation-par-deep-learning-u-net-et-cellpose" class="level3">
+<h3 class="anchored" data-anchor-id="segmentation-par-deep-learning-u-net-et-cellpose">2.5 Segmentation par deep learning : U-Net et Cellpose</h3>
+<table class="table-striped caption-top table">
+<caption>Les tâches de vision par ordinateur</caption>
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Tâche</th>
+<th>Question</th>
+<th>Exemple</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Classification</strong></td>
+<td>que contient l’image ?</td>
+<td>« globule infecté / sain »</td>
+</tr>
+<tr class="even">
+<td><strong>Segmentation sémantique</strong></td>
+<td>quelle classe pour chaque pixel ?</td>
+<td>« noyau / fond »</td>
+</tr>
+<tr class="odd">
+<td><strong>Segmentation d’instances</strong></td>
+<td>à quel <strong>objet</strong> appartient chaque pixel ?</td>
+<td>« noyau n°17 » ← <em>notre besoin</em></td>
+</tr>
+</tbody>
+</table>
+<p>Le <strong>U-Net</strong> (Ronneberger <em>et al.</em>, 2015), conçu pour l’imagerie biomédicale, est un réseau en « U » : un <strong>encodeur</strong> réduit l’image pour comprendre le contexte, un <strong>décodeur</strong> la remet à pleine résolution, et des <strong>connexions directes</strong> (<em>skip connections</em>) transmettent les détails fins.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+
+<pre class="mermaid mermaid-js">flowchart TB
+    subgraph E["Encodeur (contexte)"]
+        E1["512²"] --&gt; E2["256²"] --&gt; E3["128²"]
+    end
+    subgraph D["Décodeur (localisation)"]
+        D3["128²"] --&gt; D2["256²"] --&gt; D1["512²"]
+    end
+    E3 --&gt; B["Goulot&lt;br/&gt;64²"] --&gt; D3
+    E2 -.-&gt;|"skip"| D2
+    E1 -.-&gt;|"skip"| D1
+    D1 --&gt; S["Carte de sortie&lt;br/&gt;par pixel"]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p><strong>Cellpose</strong> (Stringer <em>et al.</em>, 2021) est un réseau de type U-Net entraîné sur des milliers d’images variées. Pour chaque pixel, il prédit : (1) la <strong>probabilité d’être dans une cellule</strong> et (2) un <strong>champ de flux</strong> — des vecteurs qui pointent vers le <strong>centre</strong> de la cellule. En suivant ces flux, les pixels d’une même cellule convergent vers le même point : les cellules qui se touchent sont séparées naturellement. <strong>Cellpose-SAM</strong> (version 4, 2025) remplace l’encodeur par celui du modèle de vision généraliste <em>Segment Anything</em> pour généraliser encore mieux.</p>
+</section>
+<section id="lapprentissage-par-transfert-en-imagerie" class="level3">
+<h3 class="anchored" data-anchor-id="lapprentissage-par-transfert-en-imagerie">2.6 L’apprentissage par transfert en imagerie</h3>
+<p>Entraîner un CNN de zéro demande des dizaines de milliers d’images annotées. On réutilise donc un modèle <strong>pré-entraîné</strong> :</p>
+<ul>
+<li><strong>utilisation directe</strong> : Cellpose segmente nos noyaux <strong>sans ré-entraînement</strong> ;</li>
+<li><strong>extraction de caractéristiques</strong> : un CNN entraîné sur <strong>ImageNet</strong> (1,2 million de photos du quotidien) transforme chaque image en vecteur ; un petit classifieur apprend la tâche (bonus paludisme) ;</li>
+<li><strong>affinage</strong> (<em>fine-tuning</em>) : on ré-entraîne les dernières couches sur quelques centaines d’images annotées (Cellpose le permet aussi, avec annotation interactive).</li>
+</ul>
+<p>Pourquoi ça marche ? Les premières couches d’un CNN (contours, textures) sont <strong>génériques</strong> : elles servent aussi bien pour des chats que pour des cellules.</p>
+</section>
+<section id="évaluer-une-segmentation" class="level3">
+<h3 class="anchored" data-anchor-id="évaluer-une-segmentation">2.7 Évaluer une segmentation</h3>
+<p>Si l’on dispose d’une annotation de référence (masque <span class="math inline">\(B\)</span>) et d’une prédiction (masque <span class="math inline">\(A\)</span>) :</p>
+<p><span class="math display">\[
+\text{IoU} = \frac{|A \cap B|}{|A \cup B|} \qquad\qquad \text{Dice} = \frac{2\,|A \cap B|}{|A| + |B|}
+\]</span></p>
+<p>Pour la segmentation d’instances, on apparie chaque cellule prédite à une cellule réelle (IoU &gt; 0,5) et on calcule précision, rappel et <strong>précision moyenne</strong> (<em>average precision</em>). Sans annotation (notre cas), on se contente d’une <strong>inspection visuelle</strong> et de la <strong>cohérence des comptages</strong>.</p>
+</section>
+<section id="de-la-segmentation-aux-mesures-et-détection-danomalies" class="level3">
+<h3 class="anchored" data-anchor-id="de-la-segmentation-aux-mesures-et-détection-danomalies">2.8 De la segmentation aux mesures, et détection d’anomalies</h3>
+<table class="table-striped caption-top table">
+<caption>Descripteurs morphologiques</caption>
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Mesure (<code>regionprops</code>)</th>
+<th>Définition</th>
+<th>Intérêt biologique</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>area</code></td>
+<td>nombre de pixels × (taille du pixel)²</td>
+<td>taille du noyau (ploïdie, cycle cellulaire)</td>
+</tr>
+<tr class="even">
+<td><code>eccentricity</code></td>
+<td>0 = cercle, → 1 = allongé</td>
+<td>déformation, migration</td>
+</tr>
+<tr class="odd">
+<td><code>solidity</code></td>
+<td>surface / surface de l’enveloppe convexe</td>
+<td>noyaux lobés, fragmentés (apoptose)</td>
+</tr>
+<tr class="even">
+<td>circularité</td>
+<td><span class="math inline">\(4\pi A / P^2\)</span></td>
+<td>régularité du contour</td>
+</tr>
+<tr class="odd">
+<td><code>intensity_mean</code></td>
+<td>intensité moyenne dans l’objet</td>
+<td>condensation de l’ADN (mitose, apoptose)</td>
+</tr>
+</tbody>
+</table>
+<p>Pour repérer les cellules <strong>atypiques</strong> sans étiquette, on utilise l’<strong>Isolation Forest</strong> : des arbres coupent l’espace des mesures <strong>au hasard</strong> ; une cellule anormale (très différente des autres) est <strong>isolée en très peu de coupes</strong>. Le paramètre <code>contamination</code> fixe la proportion attendue d’anomalies.</p>
+</section>
+</section>
+<section id="déroulé-de-latelier" class="level2">
+<h2 class="anchored" data-anchor-id="déroulé-de-latelier">3. Déroulé de l’atelier</h2>
+<table class="table-striped table-hover deroule caption-top table">
+<caption>Déroulé indicatif (2h)</caption>
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Temps</th>
+<th>Partie du notebook</th>
+<th>Activité</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0:00 – 0:10</td>
+<td>Présentation du problème et de la théorie</td>
+<td>🔎</td>
+</tr>
+<tr class="even">
+<td>0:10 – 0:20</td>
+<td>§0-1 Installation de Cellpose (en premier !), l’image comme matrice</td>
+<td><span class="pill pill-run">▶️ Exécuter</span> <span class="pill pill-think">🔎 Q1</span></td>
+</tr>
+<tr class="odd">
+<td>0:20 – 0:45</td>
+<td>§2 Segmentation classique : Otsu, watershed, réglage des paramètres</td>
+<td><span class="pill pill-edit">✍️ Modifier</span> <span class="pill pill-think">🔎 Q2</span></td>
+</tr>
+<tr class="even">
+<td>0:45 – 1:05</td>
+<td>§3 Cellpose : segmentation pré-entraînée, comparaison</td>
+<td><span class="pill pill-run">▶️ Exécuter</span> <span class="pill pill-think">🔎 Q3</span></td>
+</tr>
+<tr class="odd">
+<td>1:05 – 1:20</td>
+<td>§4 Mesures <code>regionprops</code>, conversion en µm²</td>
+<td><span class="pill pill-edit">✍️ Modifier</span></td>
+</tr>
+<tr class="even">
+<td>1:20 – 1:35</td>
+<td>§5 Détection d’anomalies (Isolation Forest)</td>
+<td><span class="pill pill-edit">✍️ Modifier</span> <span class="pill pill-think">🔎 Q4</span></td>
+</tr>
+<tr class="odd">
+<td>1:35 – 1:50</td>
+<td>§6 Script automatisé sur 4 champs + export du rapport</td>
+<td><span class="pill pill-run">▶️ Exécuter</span></td>
+</tr>
+<tr class="even">
+<td>1:50 – 2:00</td>
+<td>Défi (votre image) ou bonus <em>transfer learning</em> paludisme</td>
+<td><span class="pill pill-edit">✍️ Modifier</span></td>
+</tr>
+</tbody>
+</table>
+<section id="code-clé-à-retenir" class="level3">
+<h3 class="anchored" data-anchor-id="code-clé-à-retenir">Code clé à retenir</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cellpose <span class="im">import</span> models</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> skimage <span class="im">import</span> measure</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>modele <span class="op">=</span> models.CellposeModel(gpu<span class="op">=</span><span class="va">True</span>)                 <span class="co"># Cellpose-SAM pré-entraîné</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>masques <span class="op">=</span> modele.<span class="bu">eval</span>(image)[<span class="dv">0</span>]                          <span class="co"># 0 = fond, 1..N = une cellule</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>mesures <span class="op">=</span> measure.regionprops_table(</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    masques, intensity_image<span class="op">=</span>image,</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    properties<span class="op">=</span>[<span class="st">"label"</span>, <span class="st">"area"</span>, <span class="st">"eccentricity"</span>, <span class="st">"solidity"</span>, <span class="st">"intensity_mean"</span>])</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>masques<span class="sc">.</span><span class="bu">max</span>()<span class="sc">}</span><span class="ss"> cellules — surface moyenne : </span><span class="sc">{</span>mesures[<span class="st">'area'</span>]<span class="sc">.</span>mean() <span class="op">*</span> <span class="fl">0.5</span><span class="op">**</span><span class="dv">2</span><span class="sc">:.1f}</span><span class="ss"> µm²"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="exercices-et-défis" class="level2">
+<h2 class="anchored" data-anchor-id="exercices-et-défis">4. Exercices et défis</h2>
+<ol type="1">
+<li><strong>Réglage de la méthode classique</strong> : faire varier <code>SIGMA</code>, <code>TAILLE_MIN</code>, <code>DISTANCE_MIN</code> et observer sur- et sous-segmentation.</li>
+<li><strong>Comparaison classique vs Cellpose</strong> : nombre de noyaux, qualité de séparation des noyaux collés, noyaux en mitose.</li>
+<li><strong>Anomalies</strong> : faire varier <code>CONTAMINATION</code> ; les anomalies détectées sont-elles des mitoses ?</li>
+<li><strong>Défi</strong> : analyser votre propre image (ex. BBBC039) avec <code>analyser_image</code>.</li>
+<li><strong>Bonus</strong> : <em>transfer learning</em> ResNet-18 + régression logistique pour détecter les globules rouges infectés par <em>Plasmodium</em>.</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Éléments de correction
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Méthode classique</strong> : avec les réglages par défaut, Otsu trouve 269 objets que le watershed découpe en <strong>312 noyaux</strong>. <code>DISTANCE_MIN</code> trop petit → <strong>sur-segmentation</strong> (un noyau coupé en plusieurs) ; trop grand → <strong>sous-segmentation</strong> (noyaux collés fusionnés). Le meilleur réglage varie d’une zone à l’autre de l’image.</li>
+<li><strong>Cellpose</strong> détecte <strong>333 noyaux</strong> (en ~1 s sur GPU). Le signe le plus parlant est la <strong>taille des plus gros objets</strong> : aire maximale de 307 px pour la méthode classique contre 202 px pour Cellpose, et <strong>8 objets de plus du double de l’aire médiane contre 2</strong> — ces gros objets sont des <strong>noyaux accolés fusionnés</strong> (sous-segmentation). Attention toutefois : <code>remove_small_objects</code> filtre d’office les petits objets de la méthode classique, ce qui lui donne une fausse apparence de propreté tout en pouvant effacer de vrais petits noyaux. Prix du deep learning : installation, 1,2 Go de poids, GPU conseillé, modèle peu explicable.</li>
+<li><strong>Anomalies</strong> : avec <code>CONTAMINATION = 0,05</code>, on obtient ≈ 17 cellules sur 333. Les noyaux mitotiques (ADN condensé) sont <strong>petits et très lumineux</strong> : ils ressortent en tête de l’Isolation Forest. Les faux positifs typiques sont des noyaux coupés au bord de l’image (d’où <code>clear_border</code>) ou deux noyaux fusionnés (très grands).</li>
+<li><strong>Rapport</strong> : sur les 4 champs, le nombre de cellules varie fortement (≈ 40 à 140) alors que la <strong>surface moyenne reste stable</strong> (≈ 22 à 25 µm²) — c’est le signe d’une segmentation cohérente malgré des densités cellulaires différentes.</li>
+<li><strong>Bonus paludisme</strong> : l’extraction de caractéristiques ResNet-18 + régression logistique atteint <strong>≈ 93 % d’exactitude</strong> avec seulement 750 images d’apprentissage, sans ré-entraîner le CNN.</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="livrable" class="level2">
+<h2 class="anchored" data-anchor-id="livrable">5. Livrable</h2>
+<div class="callout callout-style-default callout-important no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>🏁 À rendre
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>L’archive <code>rapport_imagerie.zip</code> contenant :</p>
+<ul>
+<li><code>rapport_global.csv</code> : par image, nombre de cellules, <strong>surface moyenne ± écart-type (µm²)</strong>, intensité moyenne, nombre et % d’anomalies ;</li>
+<li>un fichier CSV <strong>par cellule</strong> pour chaque image ;</li>
+<li>les figures de segmentation (contours bleus, anomalies en rouge) ;</li>
+</ul>
+<p>et vos réponses aux questions 🔎 1 à 4.</p>
+</div>
+</div>
+</section>
+<section id="testez-vous" class="level2">
+<h2 class="anchored" data-anchor-id="testez-vous">6. Testez-vous</h2>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Astuce</span>Q1. Quelle est la différence entre segmentation sémantique et segmentation d’instances ?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>La segmentation <strong>sémantique</strong> attribue une classe à chaque pixel (noyau / fond) ; la segmentation d’<strong>instances</strong> distingue en plus chaque objet (noyau n°1, n°2…). Pour <strong>compter</strong>, il faut des instances.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Astuce</span>Q2. Quel est le lien entre un filtre de convolution et un CNN ?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Un CNN est un empilement de convolutions dont les <strong>noyaux sont appris</strong> par l’entraînement au lieu d’être choisis à la main (comme le lissage gaussien ou le filtre de Sobel).</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Astuce</span>Q3. Pourquoi Cellpose fonctionne-t-il sur nos images sans ré-entraînement ?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Parce qu’il a été pré-entraîné sur un jeu <strong>très varié</strong> d’images de cellules et de noyaux : il a appris des caractéristiques <strong>génériques</strong> de ce qu’est une cellule. C’est de l’apprentissage par transfert.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Astuce</span>Q4. Pourquoi faut-il connaître la taille du pixel ?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Les mesures sont calculées en <strong>pixels</strong>. Pour comparer des expériences (autre microscope, autre grossissement) ou interpréter biologiquement une surface, il faut convertir en <strong>µm²</strong> : surface (µm²) = nombre de pixels × (taille du pixel en µm)².</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Astuce</span>Q5. Que mesure l’IoU ?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Le recouvrement entre une segmentation prédite et une segmentation de référence : l’aire de l’intersection divisée par l’aire de l’union (1 = superposition parfaite, 0 = aucun recouvrement).</p>
+</div>
+</div>
+</div>
+</section>
+<section id="limites-et-bonnes-pratiques" class="level2">
+<h2 class="anchored" data-anchor-id="limites-et-bonnes-pratiques">7. Limites et bonnes pratiques</h2>
+<ul>
+<li><strong>Toujours regarder les images</strong> : une métrique globale peut cacher des erreurs systématiques.</li>
+<li>Les conditions d’acquisition (exposition, mise au point, marquage) doivent être <strong>identiques</strong> entre conditions comparées.</li>
+<li>Un modèle pré-entraîné peut échouer sur un <strong>type d’image non représenté</strong> dans ses données (autre marquage, tissu épais, histologie) : il faut alors l’affiner sur quelques images annotées.</li>
+<li>Pour un usage diagnostique, un outil d’IA doit être <strong>validé cliniquement</strong> et répondre à la réglementation des dispositifs médicaux.</li>
+</ul>
+</section>
+<section id="pour-aller-plus-loin" class="level2">
+<h2 class="anchored" data-anchor-id="pour-aller-plus-loin">8. Pour aller plus loin</h2>
+<ul>
+<li>Stringer C., Wang T., Michaelos M. &amp; Pachitariu M. (2021). <em>Cellpose: a generalist algorithm for cellular segmentation.</em> <strong>Nature Methods</strong>, 18, 100-106.</li>
+<li>Pachitariu M., Rariden M. &amp; Stringer C. (2025). <em>Cellpose-SAM: superhuman generalization for cellular segmentation.</em> bioRxiv.</li>
+<li>Ronneberger O., Fischer P. &amp; Brox T. (2015). <em>U-Net: Convolutional networks for biomedical image segmentation.</em> <strong>MICCAI</strong>.</li>
+<li>Rajaraman S. <em>et al.</em> (2018). <em>Pre-trained convolutional neural networks as feature extractors toward improved malaria parasite detection in thin blood smear images.</em> <strong>PeerJ</strong>, 6, e4568.</li>
+<li>Ressources : <a href="https://www.cellpose.org">Cellpose</a> · <a href="https://scikit-image.org/docs/stable/auto_examples/">scikit-image — exemples</a> · <a href="https://bbbc.broadinstitute.org">BBBC</a></li>
+</ul>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const toggle = window.document.createElement('button');
+      toggle.type = "button";
+      toggle.setAttribute("role", "switch");
+      toggle.setAttribute("aria-checked", "false");
+      toggle.classList.add('top-right');
+      toggle.classList.add('quarto-color-scheme-toggle');
+      toggle.setAttribute("aria-label", "Toggle dark mode");
+      toggle.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      toggle.appendChild(i);
+      // Put the toggle in a landmark of its own, so that landmark navigation
+      // can reach it.
+      //
+      // The container is always a fresh direct child of body, and the toggle is
+      // never moved into page furniture that the theme or the author controls.
+      // The toggle is positioned against the page, so any ancestor that
+      // establishes a containing block captures it: a positioned element or a
+      // grid for position: absolute, and transform, filter, will-change or
+      // contain for position: fixed. A direct child of body has none of these
+      // to inherit, and the shift when one appears is silent and visual.
+      //
+      // ARIA says a document should have at most one banner, and axe reports a
+      // duplicate whether or not the banners carry distinct labels. So use a
+      // header when the page has no banner yet, and a named region otherwise.
+      //
+      // A header is a banner wherever it sits, unless it is inside sectioning
+      // content, so this cannot just look at the children of body: a custom
+      // page layout wraps the title block header in a plain div. An explicit
+      // role="banner" always counts.
+      const sectioning = 'article, aside, main, nav, section, [role="article"], [role="complementary"], [role="main"], [role="navigation"], [role="region"]';
+      const hasBanner = Array.from(
+        window.document.querySelectorAll('header:not([role]), [role="banner"]')
+      ).some(function(el) {
+        return el.hasAttribute("role") || el.closest(sectioning) === null;
+      });
+      const container = window.document.createElement(hasBanner ? "div" : "header");
+      if (hasBanner) {
+        container.setAttribute("role", "region");
+        container.setAttribute("aria-label", "Toggle dark mode");
+      }
+      container.classList.add('quarto-color-scheme-toggle-container');
+      container.appendChild(toggle);
+      window.document.body.appendChild(container);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const cellDetails = window.document.querySelectorAll(".cell details.code-fold");
+        for (let i=0; i<cellDetails.length; i++) {
+          const details = cellDetails[i];
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell div.sourceCode.cell-code");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/nevermind78\.github\.io\/IA_Biotech\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+          if (!link.classList.contains('no-external-icon')) {
+          }
+        }
+      }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
+          if (lineIds.length > 0) {
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            placeBand(gutterDiv, el, lastEl);
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+  <script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
+  </script>
+<nav class="page-navigation" aria-label="Page">
+  <div class="nav-page nav-page-previous">
+      <a href="./seance3.html" class="pagination-link" aria-label="Séance 3 : Séquences protéiques et modèles de langage biologique">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Séance 3 : Séquences protéiques et modèles de langage biologique</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./seance5.html" class="pagination-link" aria-label="Séance 5 : IA générative, repliement protéique et mini-projet">
+        <span class="nav-page-text"><span class="chapter-title">Séance 5 : IA générative, repliement protéique et mini-projet</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Séance 4 : Vision par ordinateur pour l'imagerie cellulaire</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>::: {.callout-note icon=false}</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">## Informations de la séance</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Type** : Atelier pratique (*learn by doing*) — **GPU T4 recommandé**</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Durée** : 2h</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Problème biologique** : automatiser le comptage des cellules et la détection d'anomalies morphologiques sur une image de microscopie</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Données** : image de fluorescence de noyaux humains (marquage de l'ADN), dont certains en mitose ; bonus : 27 000 images de globules rouges (paludisme, NIH)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Outils** : scikit-image, **Cellpose** (réseau de neurones pré-entraîné), Scikit-learn, PyTorch/torchvision (bonus)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Livrable** : un script automatisé qui segmente les cellules, calcule leur surface moyenne et exporte un rapport quantitatif</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>::: {.colab-launch}</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"https://colab.research.google.com/github/nevermind78/IA_Biotech/blob/main/notebooks/S4_imagerie_cellpose.ipynb"</span><span class="ot"> target</span><span class="op">=</span><span class="st">"_blank"</span><span class="ot"> rel</span><span class="op">=</span><span class="st">"noopener"</span><span class="dt">&gt;&lt;</span><span class="kw">img</span><span class="ot"> src</span><span class="op">=</span><span class="st">"https://colab.research.google.com/assets/colab-badge.svg"</span><span class="ot"> alt</span><span class="op">=</span><span class="st">"Ouvrir dans Google Colab"</span><span class="dt">&gt;&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>**Notebook de l'atelier** — ouvrez-le dans Colab, activez le **GPU T4**, puis <span class="in">`Fichier → Enregistrer une copie dans Drive`</span>. Version téléchargeable : <span class="co">[</span><span class="ot">S4_imagerie_cellpose.ipynb</span><span class="co">](notebooks/S4_imagerie_cellpose.ipynb)</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>::: {.callout-important}</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="fu">## Lancez la première cellule dès votre arrivée</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>L'installation de Cellpose (1 à 2 min) puis le téléchargement de ses poids pré-entraînés</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>(**≈ 1,2 Go**, 1 à 2 min sur Colab) se font au premier lancement. Démarrez la section 0 **avant** de</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>lire l'introduction : le téléchargement se fera pendant ce temps.</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="fu">## 1. Le problème biologique</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>L'imagerie est partout en biologie : numération en hématologie, anatomopathologie, suivi de cultures</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>cellulaires en bioproduction, **criblage à haut contenu** (*high-content screening*) où des robots</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>acquièrent des **dizaines de milliers d'images** par jour pour tester l'effet de molécules sur des</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>cellules. Compter et mesurer à la main est **lent, fatigant et subjectif** (deux opérateurs ne trouvent</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>pas le même nombre).</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>L'objectif est de passer d'une **image** à des **mesures** :</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="in">```{mermaid}</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>flowchart TB</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>    A[<span class="ot">"</span><span class="st">🔬 Image de microscopie</span><span class="ot">"</span>] --&gt; B[<span class="ot">"</span><span class="st">Pré-traitement</span><span class="ot">"</span>]</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>    B --&gt; C[<span class="ot">"</span><span class="st">&lt;b&gt;Segmentation&lt;/b&gt;</span><span class="ot">"</span>]</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>    C --&gt; D[<span class="ot">"</span><span class="st">Mesures morphologiques</span><span class="ot">"</span>]</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>    D --&gt; E[<span class="ot">"</span><span class="st">Détection d'anomalies</span><span class="ot">"</span>]</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>    E --&gt; F[<span class="ot">"</span><span class="st">📄 Rapport quantitatif</span><span class="ot">"</span>]</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a><span class="fu">## 2. Notions théoriques essentielles</span></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2.1 Une image est une matrice de nombres</span></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>Une image numérique en niveaux de gris est un tableau 2D : chaque case (**pixel**) contient une</span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>**intensité**. En microscopie de fluorescence, l'intensité est proportionnelle à la quantité de</span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>fluorophore (ex. **DAPI** ou **Hoechst**, qui se fixent à l'ADN et marquent les noyaux).</span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Notion <span class="pp">|</span> Signification <span class="pp">|</span></span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|</span></span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Profondeur** <span class="pp">|</span> 8 bits → valeurs de 0 à 255 ; 16 bits → 0 à 65 535 (fréquent en microscopie) <span class="pp">|</span></span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Canaux** <span class="pp">|</span> une image par fluorophore (ex. noyaux en bleu, membrane en vert) <span class="pp">|</span></span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Taille du pixel** <span class="pp">|</span> en µm/pixel, donnée par le microscope : indispensable pour convertir les surfaces <span class="pp">|</span></span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Histogramme** <span class="pp">|</span> distribution des intensités : fond sombre (pic) vs objets lumineux <span class="pp">|</span></span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a>: Vocabulaire de l'image numérique {.striped}</span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2.2 Les filtres de convolution</span></span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a>Filtrer une image consiste à faire glisser un petit **noyau** (*kernel*, ex. 3 × 3) sur l'image et à</span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>calculer en chaque pixel une **somme pondérée** des voisins :</span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>(I * K)(i, j) = \sum_{m} \sum_{n} I(i + m,\, j + n)\, K(m, n)</span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a>Un noyau de **moyenne** lisse le bruit ; un noyau de **Sobel** détecte les **contours**. Retenez bien</span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a>cette opération : c'est la brique de base des **réseaux de neurones convolutifs**.</span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Code de la figure"</span></span>
+<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Une image synthétique de noyaux, son histogramme avec le seuil d'Otsu, et deux convolutions (lissage gaussien, détection de contours par Sobel)."</span></span>
+<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> ndimage <span class="im">as</span> ndi</span>
+<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> skimage <span class="im">import</span> filters</span>
+<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">3</span>)</span>
+<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a>img <span class="op">=</span> np.zeros((<span class="dv">200</span>, <span class="dv">200</span>))</span>
+<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a>yy, xx <span class="op">=</span> np.mgrid[:<span class="dv">200</span>, :<span class="dv">200</span>]</span>
+<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">25</span>):                                   <span class="co"># 25 « noyaux » elliptiques</span></span>
+<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a>    cy, cx <span class="op">=</span> rng.uniform(<span class="dv">15</span>, <span class="dv">185</span>, <span class="dv">2</span>)</span>
+<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a>    a, b <span class="op">=</span> rng.uniform(<span class="dv">6</span>, <span class="dv">11</span>, <span class="dv">2</span>)</span>
+<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a>    img <span class="op">+=</span> <span class="dv">120</span> <span class="op">*</span> (((yy <span class="op">-</span> cy) <span class="op">/</span> a) <span class="op">**</span> <span class="dv">2</span> <span class="op">+</span> ((xx <span class="op">-</span> cx) <span class="op">/</span> b) <span class="op">**</span> <span class="dv">2</span> <span class="op">&lt;=</span> <span class="dv">1</span>)</span>
+<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a>img <span class="op">=</span> ndi.gaussian_filter(np.clip(img, <span class="dv">0</span>, <span class="dv">180</span>), <span class="fl">1.5</span>) <span class="op">+</span> rng.normal(<span class="dv">20</span>, <span class="dv">8</span>, img.shape)</span>
+<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a>seuil <span class="op">=</span> filters.threshold_otsu(img)</span>
+<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">4</span>, figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="fl">3.6</span>))</span>
+<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].imshow(img, cmap<span class="op">=</span><span class="st">"gray"</span>)<span class="op">;</span> axes[<span class="dv">0</span>].set_title(<span class="st">"Image (bruitée)"</span>)</span>
+<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].hist(img.ravel(), bins<span class="op">=</span><span class="dv">80</span>, color<span class="op">=</span><span class="st">"tab:purple"</span>)<span class="op">;</span> axes[<span class="dv">1</span>].axvline(seuil, c<span class="op">=</span><span class="st">"r"</span>, ls<span class="op">=</span><span class="st">"--"</span>)</span>
+<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="ss">f"Histogramme, seuil d'Otsu = </span><span class="sc">{</span>seuil<span class="sc">:.0f}</span><span class="ss">"</span>)<span class="op">;</span> axes[<span class="dv">1</span>].set_yscale(<span class="st">"log"</span>)</span>
+<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].imshow(filters.gaussian(img, sigma<span class="op">=</span><span class="dv">2</span>), cmap<span class="op">=</span><span class="st">"gray"</span>)<span class="op">;</span> axes[<span class="dv">2</span>].set_title(<span class="st">"Convolution : lissage"</span>)</span>
+<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">3</span>].imshow(filters.sobel(img), cmap<span class="op">=</span><span class="st">"magma"</span>)<span class="op">;</span> axes[<span class="dv">3</span>].set_title(<span class="st">"Convolution : contours (Sobel)"</span>)</span>
+<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax <span class="kw">in</span> [axes[<span class="dv">0</span>], axes[<span class="dv">2</span>], axes[<span class="dv">3</span>]]:</span>
+<span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a>    ax.axis(<span class="st">"off"</span>)</span>
+<span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2.3 La segmentation classique</span></span>
+<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Seuillage d'Otsu** : choisit automatiquement le seuil $t$ qui maximise la **variance inter-classes**</span>
+<span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a>   entre le fond (proportion $\omega_0$, moyenne $\mu_0$) et les objets ($\omega_1$, $\mu_1$) :</span>
+<span id="cb3-114"><a href="#cb3-114" aria-hidden="true" tabindex="-1"></a>   $$\sigma_B^2(t) = \omega_0(t)\,\omega_1(t)\,\big<span class="co">[</span><span class="ot">\mu_0(t) - \mu_1(t)\big</span><span class="co">]</span>^2$$</span>
+<span id="cb3-115"><a href="#cb3-115" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Morphologie mathématique** : retirer les petits objets (bruit), boucher les trous.</span>
+<span id="cb3-116"><a href="#cb3-116" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Étiquetage** des composantes connexes : chaque « tache » reçoit un numéro.</span>
+<span id="cb3-117"><a href="#cb3-117" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>**Watershed** (ligne de partage des eaux) : on calcule pour chaque pixel sa **distance au fond** ; les</span>
+<span id="cb3-118"><a href="#cb3-118" aria-hidden="true" tabindex="-1"></a>   maxima locaux servent de « sources », et l'on « inonde » la carte pour **séparer les noyaux qui se</span>
+<span id="cb3-119"><a href="#cb3-119" aria-hidden="true" tabindex="-1"></a>   touchent**.</span>
+<span id="cb3-120"><a href="#cb3-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-121"><a href="#cb3-121" aria-hidden="true" tabindex="-1"></a>::: {.callout-warning}</span>
+<span id="cb3-122"><a href="#cb3-122" aria-hidden="true" tabindex="-1"></a><span class="fu">## Les limites de l'approche classique</span></span>
+<span id="cb3-123"><a href="#cb3-123" aria-hidden="true" tabindex="-1"></a>Chaque paramètre (lissage, taille minimale, distance entre maxima) est **réglé à la main** pour une</span>
+<span id="cb3-124"><a href="#cb3-124" aria-hidden="true" tabindex="-1"></a>image donnée. Avec un éclairage inégal, des cellules collées ou de formes variées, il n'existe souvent</span>
+<span id="cb3-125"><a href="#cb3-125" aria-hidden="true" tabindex="-1"></a>**pas de réglage qui fonctionne partout**.</span>
+<span id="cb3-126"><a href="#cb3-126" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb3-127"><a href="#cb3-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-128"><a href="#cb3-128" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2.4 Les réseaux de neurones convolutifs (CNN)</span></span>
+<span id="cb3-129"><a href="#cb3-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-130"><a href="#cb3-130" aria-hidden="true" tabindex="-1"></a>Un **CNN** empile des couches de convolution dont les **noyaux ne sont plus choisis par l'humain mais</span>
+<span id="cb3-131"><a href="#cb3-131" aria-hidden="true" tabindex="-1"></a>appris** à partir d'exemples annotés. Chaque couche est suivie d'une non-linéarité (ReLU :</span>
+<span id="cb3-132"><a href="#cb3-132" aria-hidden="true" tabindex="-1"></a>$\max(0, x)$) et parfois d'un **sous-échantillonnage** (*pooling*). Les premières couches apprennent des</span>
+<span id="cb3-133"><a href="#cb3-133" aria-hidden="true" tabindex="-1"></a>**contours**, les suivantes des **textures**, puis des **formes** de plus en plus abstraites.</span>
+<span id="cb3-134"><a href="#cb3-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-137"><a href="#cb3-137" aria-hidden="true" tabindex="-1"></a><span class="in">```{mermaid}</span></span>
+<span id="cb3-138"><a href="#cb3-138" aria-hidden="true" tabindex="-1"></a>flowchart TB</span>
+<span id="cb3-139"><a href="#cb3-139" aria-hidden="true" tabindex="-1"></a>    I[<span class="ot">"</span><span class="st">Image 512 × 512</span><span class="ot">"</span>] --&gt; C1[<span class="ot">"</span><span class="st">Convolution → contours</span><span class="ot">"</span>]</span>
+<span id="cb3-140"><a href="#cb3-140" aria-hidden="true" tabindex="-1"></a>    C1 --&gt; P1[<span class="ot">"</span><span class="st">Pooling → 256 × 256</span><span class="ot">"</span>]</span>
+<span id="cb3-141"><a href="#cb3-141" aria-hidden="true" tabindex="-1"></a>    P1 --&gt; C2[<span class="ot">"</span><span class="st">Convolution → textures</span><span class="ot">"</span>]</span>
+<span id="cb3-142"><a href="#cb3-142" aria-hidden="true" tabindex="-1"></a>    C2 --&gt; P2[<span class="ot">"</span><span class="st">Pooling → 128 × 128</span><span class="ot">"</span>]</span>
+<span id="cb3-143"><a href="#cb3-143" aria-hidden="true" tabindex="-1"></a>    P2 --&gt; C3[<span class="ot">"</span><span class="st">Convolution → formes</span><span class="ot">"</span>]</span>
+<span id="cb3-144"><a href="#cb3-144" aria-hidden="true" tabindex="-1"></a>    C3 --&gt; O[<span class="ot">"</span><span class="st">Sortie</span><span class="ot">"</span>]</span>
+<span id="cb3-145"><a href="#cb3-145" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-146"><a href="#cb3-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-147"><a href="#cb3-147" aria-hidden="true" tabindex="-1"></a>L'apprentissage ajuste les millions de poids des noyaux par **descente de gradient** pour minimiser</span>
+<span id="cb3-148"><a href="#cb3-148" aria-hidden="true" tabindex="-1"></a>l'erreur entre la prédiction et l'annotation (rétropropagation du gradient).</span>
+<span id="cb3-149"><a href="#cb3-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-150"><a href="#cb3-150" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2.5 Segmentation par deep learning : U-Net et Cellpose</span></span>
+<span id="cb3-151"><a href="#cb3-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-152"><a href="#cb3-152" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Tâche <span class="pp">|</span> Question <span class="pp">|</span> Exemple <span class="pp">|</span></span>
+<span id="cb3-153"><a href="#cb3-153" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|</span></span>
+<span id="cb3-154"><a href="#cb3-154" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Classification** <span class="pp">|</span> que contient l'image ? <span class="pp">|</span> « globule infecté / sain » <span class="pp">|</span></span>
+<span id="cb3-155"><a href="#cb3-155" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Segmentation sémantique** <span class="pp">|</span> quelle classe pour chaque pixel ? <span class="pp">|</span> « noyau / fond » <span class="pp">|</span></span>
+<span id="cb3-156"><a href="#cb3-156" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Segmentation d'instances** | à quel **objet** appartient chaque pixel ? <span class="pp">|</span> « noyau n°17 » ← *notre besoin* <span class="pp">|</span></span>
+<span id="cb3-157"><a href="#cb3-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-158"><a href="#cb3-158" aria-hidden="true" tabindex="-1"></a>: Les tâches de vision par ordinateur {.striped}</span>
+<span id="cb3-159"><a href="#cb3-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-160"><a href="#cb3-160" aria-hidden="true" tabindex="-1"></a>Le **U-Net** (Ronneberger *et al.*, 2015), conçu pour l'imagerie biomédicale, est un réseau en « U » :</span>
+<span id="cb3-161"><a href="#cb3-161" aria-hidden="true" tabindex="-1"></a>un **encodeur** réduit l'image pour comprendre le contexte, un **décodeur** la remet à pleine résolution,</span>
+<span id="cb3-162"><a href="#cb3-162" aria-hidden="true" tabindex="-1"></a>et des **connexions directes** (*skip connections*) transmettent les détails fins.</span>
+<span id="cb3-163"><a href="#cb3-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-166"><a href="#cb3-166" aria-hidden="true" tabindex="-1"></a><span class="in">```{mermaid}</span></span>
+<span id="cb3-167"><a href="#cb3-167" aria-hidden="true" tabindex="-1"></a>flowchart TB</span>
+<span id="cb3-168"><a href="#cb3-168" aria-hidden="true" tabindex="-1"></a>    subgraph E[<span class="ot">"</span><span class="st">Encodeur (contexte)</span><span class="ot">"</span>]</span>
+<span id="cb3-169"><a href="#cb3-169" aria-hidden="true" tabindex="-1"></a>        E1[<span class="ot">"</span><span class="st">512²</span><span class="ot">"</span>] --&gt; E2[<span class="ot">"</span><span class="st">256²</span><span class="ot">"</span>] --&gt; E3[<span class="ot">"</span><span class="st">128²</span><span class="ot">"</span>]</span>
+<span id="cb3-170"><a href="#cb3-170" aria-hidden="true" tabindex="-1"></a>    end</span>
+<span id="cb3-171"><a href="#cb3-171" aria-hidden="true" tabindex="-1"></a>    subgraph D[<span class="ot">"</span><span class="st">Décodeur (localisation)</span><span class="ot">"</span>]</span>
+<span id="cb3-172"><a href="#cb3-172" aria-hidden="true" tabindex="-1"></a>        D3[<span class="ot">"</span><span class="st">128²</span><span class="ot">"</span>] --&gt; D2[<span class="ot">"</span><span class="st">256²</span><span class="ot">"</span>] --&gt; D1[<span class="ot">"</span><span class="st">512²</span><span class="ot">"</span>]</span>
+<span id="cb3-173"><a href="#cb3-173" aria-hidden="true" tabindex="-1"></a>    end</span>
+<span id="cb3-174"><a href="#cb3-174" aria-hidden="true" tabindex="-1"></a>    E3 --&gt; B[<span class="ot">"</span><span class="st">Goulot&lt;br/&gt;64²</span><span class="ot">"</span>] --&gt; D3</span>
+<span id="cb3-175"><a href="#cb3-175" aria-hidden="true" tabindex="-1"></a>    E2 -.-&gt;|<span class="ot">"</span><span class="st">skip</span><span class="ot">"</span>| D2</span>
+<span id="cb3-176"><a href="#cb3-176" aria-hidden="true" tabindex="-1"></a>    E1 -.-&gt;|<span class="ot">"</span><span class="st">skip</span><span class="ot">"</span>| D1</span>
+<span id="cb3-177"><a href="#cb3-177" aria-hidden="true" tabindex="-1"></a>    D1 --&gt; S[<span class="ot">"</span><span class="st">Carte de sortie&lt;br/&gt;par pixel</span><span class="ot">"</span>]</span>
+<span id="cb3-178"><a href="#cb3-178" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-179"><a href="#cb3-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-180"><a href="#cb3-180" aria-hidden="true" tabindex="-1"></a>**Cellpose** (Stringer *et al.*, 2021) est un réseau de type U-Net entraîné sur des milliers d'images</span>
+<span id="cb3-181"><a href="#cb3-181" aria-hidden="true" tabindex="-1"></a>variées. Pour chaque pixel, il prédit : (1) la **probabilité d'être dans une cellule** et (2) un</span>
+<span id="cb3-182"><a href="#cb3-182" aria-hidden="true" tabindex="-1"></a>**champ de flux** — des vecteurs qui pointent vers le **centre** de la cellule. En suivant ces flux, les</span>
+<span id="cb3-183"><a href="#cb3-183" aria-hidden="true" tabindex="-1"></a>pixels d'une même cellule convergent vers le même point : les cellules qui se touchent sont séparées</span>
+<span id="cb3-184"><a href="#cb3-184" aria-hidden="true" tabindex="-1"></a>naturellement. **Cellpose-SAM** (version 4, 2025) remplace l'encodeur par celui du modèle de vision</span>
+<span id="cb3-185"><a href="#cb3-185" aria-hidden="true" tabindex="-1"></a>généraliste *Segment Anything* pour généraliser encore mieux.</span>
+<span id="cb3-186"><a href="#cb3-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-187"><a href="#cb3-187" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2.6 L'apprentissage par transfert en imagerie</span></span>
+<span id="cb3-188"><a href="#cb3-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-189"><a href="#cb3-189" aria-hidden="true" tabindex="-1"></a>Entraîner un CNN de zéro demande des dizaines de milliers d'images annotées. On réutilise donc un modèle</span>
+<span id="cb3-190"><a href="#cb3-190" aria-hidden="true" tabindex="-1"></a>**pré-entraîné** :</span>
+<span id="cb3-191"><a href="#cb3-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-192"><a href="#cb3-192" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**utilisation directe** : Cellpose segmente nos noyaux **sans ré-entraînement** ;</span>
+<span id="cb3-193"><a href="#cb3-193" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**extraction de caractéristiques** : un CNN entraîné sur **ImageNet** (1,2 million de photos du</span>
+<span id="cb3-194"><a href="#cb3-194" aria-hidden="true" tabindex="-1"></a>  quotidien) transforme chaque image en vecteur ; un petit classifieur apprend la tâche (bonus</span>
+<span id="cb3-195"><a href="#cb3-195" aria-hidden="true" tabindex="-1"></a>  paludisme) ;</span>
+<span id="cb3-196"><a href="#cb3-196" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**affinage** (*fine-tuning*) : on ré-entraîne les dernières couches sur quelques centaines d'images</span>
+<span id="cb3-197"><a href="#cb3-197" aria-hidden="true" tabindex="-1"></a>  annotées (Cellpose le permet aussi, avec annotation interactive).</span>
+<span id="cb3-198"><a href="#cb3-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-199"><a href="#cb3-199" aria-hidden="true" tabindex="-1"></a>Pourquoi ça marche ? Les premières couches d'un CNN (contours, textures) sont **génériques** : elles</span>
+<span id="cb3-200"><a href="#cb3-200" aria-hidden="true" tabindex="-1"></a>servent aussi bien pour des chats que pour des cellules.</span>
+<span id="cb3-201"><a href="#cb3-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-202"><a href="#cb3-202" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2.7 Évaluer une segmentation</span></span>
+<span id="cb3-203"><a href="#cb3-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-204"><a href="#cb3-204" aria-hidden="true" tabindex="-1"></a>Si l'on dispose d'une annotation de référence (masque $B$) et d'une prédiction (masque $A$) :</span>
+<span id="cb3-205"><a href="#cb3-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-206"><a href="#cb3-206" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-207"><a href="#cb3-207" aria-hidden="true" tabindex="-1"></a>\text{IoU} = \frac{|A \cap B|}{|A \cup B|} \qquad\qquad \text{Dice} = \frac{2\,|A \cap B|}{|A| + |B|}</span>
+<span id="cb3-208"><a href="#cb3-208" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-209"><a href="#cb3-209" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-210"><a href="#cb3-210" aria-hidden="true" tabindex="-1"></a>Pour la segmentation d'instances, on apparie chaque cellule prédite à une cellule réelle (IoU &gt; 0,5) et</span>
+<span id="cb3-211"><a href="#cb3-211" aria-hidden="true" tabindex="-1"></a>on calcule précision, rappel et **précision moyenne** (*average precision*). Sans annotation (notre</span>
+<span id="cb3-212"><a href="#cb3-212" aria-hidden="true" tabindex="-1"></a>cas), on se contente d'une **inspection visuelle** et de la **cohérence des comptages**.</span>
+<span id="cb3-213"><a href="#cb3-213" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-214"><a href="#cb3-214" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2.8 De la segmentation aux mesures, et détection d'anomalies</span></span>
+<span id="cb3-215"><a href="#cb3-215" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-216"><a href="#cb3-216" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Mesure (<span class="in">`regionprops`</span>) <span class="pp">|</span> Définition <span class="pp">|</span> Intérêt biologique <span class="pp">|</span></span>
+<span id="cb3-217"><a href="#cb3-217" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|</span></span>
+<span id="cb3-218"><a href="#cb3-218" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`area`</span> <span class="pp">|</span> nombre de pixels × (taille du pixel)² <span class="pp">|</span> taille du noyau (ploïdie, cycle cellulaire) <span class="pp">|</span></span>
+<span id="cb3-219"><a href="#cb3-219" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`eccentricity`</span> <span class="pp">|</span> 0 = cercle, → 1 = allongé <span class="pp">|</span> déformation, migration <span class="pp">|</span></span>
+<span id="cb3-220"><a href="#cb3-220" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`solidity`</span> <span class="pp">|</span> surface / surface de l'enveloppe convexe <span class="pp">|</span> noyaux lobés, fragmentés (apoptose) <span class="pp">|</span></span>
+<span id="cb3-221"><a href="#cb3-221" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> circularité <span class="pp">|</span> $4\pi A / P^2$ <span class="pp">|</span> régularité du contour <span class="pp">|</span></span>
+<span id="cb3-222"><a href="#cb3-222" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`intensity_mean`</span> <span class="pp">|</span> intensité moyenne dans l'objet <span class="pp">|</span> condensation de l'ADN (mitose, apoptose) <span class="pp">|</span></span>
+<span id="cb3-223"><a href="#cb3-223" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-224"><a href="#cb3-224" aria-hidden="true" tabindex="-1"></a>: Descripteurs morphologiques {.striped}</span>
+<span id="cb3-225"><a href="#cb3-225" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-226"><a href="#cb3-226" aria-hidden="true" tabindex="-1"></a>Pour repérer les cellules **atypiques** sans étiquette, on utilise l'**Isolation Forest** : des arbres</span>
+<span id="cb3-227"><a href="#cb3-227" aria-hidden="true" tabindex="-1"></a>coupent l'espace des mesures **au hasard** ; une cellule anormale (très différente des autres) est</span>
+<span id="cb3-228"><a href="#cb3-228" aria-hidden="true" tabindex="-1"></a>**isolée en très peu de coupes**. Le paramètre <span class="in">`contamination`</span> fixe la proportion attendue d'anomalies.</span>
+<span id="cb3-229"><a href="#cb3-229" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-230"><a href="#cb3-230" aria-hidden="true" tabindex="-1"></a><span class="fu">## 3. Déroulé de l'atelier</span></span>
+<span id="cb3-231"><a href="#cb3-231" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-232"><a href="#cb3-232" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Temps <span class="pp">|</span> Partie du notebook <span class="pp">|</span> Activité <span class="pp">|</span></span>
+<span id="cb3-233"><a href="#cb3-233" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|</span></span>
+<span id="cb3-234"><a href="#cb3-234" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 0:00 – 0:10 <span class="pp">|</span> Présentation du problème et de la théorie <span class="pp">|</span> 🔎 <span class="pp">|</span></span>
+<span id="cb3-235"><a href="#cb3-235" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 0:10 – 0:20 <span class="pp">|</span> §0-1 Installation de Cellpose (en premier !), l'image comme matrice <span class="pp">|</span> <span class="co">[</span><span class="ot">▶️ Exécuter</span><span class="co">]</span>{.pill .pill-run} <span class="co">[</span><span class="ot">🔎 Q1</span><span class="co">]</span>{.pill .pill-think} <span class="pp">|</span></span>
+<span id="cb3-236"><a href="#cb3-236" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 0:20 – 0:45 <span class="pp">|</span> §2 Segmentation classique : Otsu, watershed, réglage des paramètres <span class="pp">|</span> <span class="co">[</span><span class="ot">✍️ Modifier</span><span class="co">]</span>{.pill .pill-edit} <span class="co">[</span><span class="ot">🔎 Q2</span><span class="co">]</span>{.pill .pill-think} <span class="pp">|</span></span>
+<span id="cb3-237"><a href="#cb3-237" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 0:45 – 1:05 <span class="pp">|</span> §3 Cellpose : segmentation pré-entraînée, comparaison <span class="pp">|</span> <span class="co">[</span><span class="ot">▶️ Exécuter</span><span class="co">]</span>{.pill .pill-run} <span class="co">[</span><span class="ot">🔎 Q3</span><span class="co">]</span>{.pill .pill-think} <span class="pp">|</span></span>
+<span id="cb3-238"><a href="#cb3-238" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 1:05 – 1:20 <span class="pp">|</span> §4 Mesures <span class="in">`regionprops`</span>, conversion en µm² <span class="pp">|</span> <span class="co">[</span><span class="ot">✍️ Modifier</span><span class="co">]</span>{.pill .pill-edit} <span class="pp">|</span></span>
+<span id="cb3-239"><a href="#cb3-239" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 1:20 – 1:35 <span class="pp">|</span> §5 Détection d'anomalies (Isolation Forest) <span class="pp">|</span> <span class="co">[</span><span class="ot">✍️ Modifier</span><span class="co">]</span>{.pill .pill-edit} <span class="co">[</span><span class="ot">🔎 Q4</span><span class="co">]</span>{.pill .pill-think} <span class="pp">|</span></span>
+<span id="cb3-240"><a href="#cb3-240" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 1:35 – 1:50 <span class="pp">|</span> §6 Script automatisé sur 4 champs + export du rapport <span class="pp">|</span> <span class="co">[</span><span class="ot">▶️ Exécuter</span><span class="co">]</span>{.pill .pill-run} <span class="pp">|</span></span>
+<span id="cb3-241"><a href="#cb3-241" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 1:50 – 2:00 <span class="pp">|</span> Défi (votre image) ou bonus *transfer learning* paludisme <span class="pp">|</span> <span class="co">[</span><span class="ot">✍️ Modifier</span><span class="co">]</span>{.pill .pill-edit} <span class="pp">|</span></span>
+<span id="cb3-242"><a href="#cb3-242" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-243"><a href="#cb3-243" aria-hidden="true" tabindex="-1"></a>: Déroulé indicatif (2h) {.striped .hover .deroule}</span>
+<span id="cb3-244"><a href="#cb3-244" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-245"><a href="#cb3-245" aria-hidden="true" tabindex="-1"></a><span class="fu">### Code clé à retenir</span></span>
+<span id="cb3-246"><a href="#cb3-246" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-247"><a href="#cb3-247" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb3-248"><a href="#cb3-248" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cellpose <span class="im">import</span> models</span>
+<span id="cb3-249"><a href="#cb3-249" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> skimage <span class="im">import</span> measure</span>
+<span id="cb3-250"><a href="#cb3-250" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-251"><a href="#cb3-251" aria-hidden="true" tabindex="-1"></a>modele <span class="op">=</span> models.CellposeModel(gpu<span class="op">=</span><span class="va">True</span>)                 <span class="co"># Cellpose-SAM pré-entraîné</span></span>
+<span id="cb3-252"><a href="#cb3-252" aria-hidden="true" tabindex="-1"></a>masques <span class="op">=</span> modele.<span class="bu">eval</span>(image)[<span class="dv">0</span>]                          <span class="co"># 0 = fond, 1..N = une cellule</span></span>
+<span id="cb3-253"><a href="#cb3-253" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-254"><a href="#cb3-254" aria-hidden="true" tabindex="-1"></a>mesures <span class="op">=</span> measure.regionprops_table(</span>
+<span id="cb3-255"><a href="#cb3-255" aria-hidden="true" tabindex="-1"></a>    masques, intensity_image<span class="op">=</span>image,</span>
+<span id="cb3-256"><a href="#cb3-256" aria-hidden="true" tabindex="-1"></a>    properties<span class="op">=</span>[<span class="st">"label"</span>, <span class="st">"area"</span>, <span class="st">"eccentricity"</span>, <span class="st">"solidity"</span>, <span class="st">"intensity_mean"</span>])</span>
+<span id="cb3-257"><a href="#cb3-257" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>masques<span class="sc">.</span><span class="bu">max</span>()<span class="sc">}</span><span class="ss"> cellules — surface moyenne : </span><span class="sc">{</span>mesures[<span class="st">'area'</span>]<span class="sc">.</span>mean() <span class="op">*</span> <span class="fl">0.5</span><span class="op">**</span><span class="dv">2</span><span class="sc">:.1f}</span><span class="ss"> µm²"</span>)</span>
+<span id="cb3-258"><a href="#cb3-258" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-259"><a href="#cb3-259" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-260"><a href="#cb3-260" aria-hidden="true" tabindex="-1"></a><span class="fu">## 4. Exercices et défis</span></span>
+<span id="cb3-261"><a href="#cb3-261" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-262"><a href="#cb3-262" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Réglage de la méthode classique** : faire varier <span class="in">`SIGMA`</span>, <span class="in">`TAILLE_MIN`</span>, <span class="in">`DISTANCE_MIN`</span> et observer sur- et sous-segmentation.</span>
+<span id="cb3-263"><a href="#cb3-263" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Comparaison classique vs Cellpose** : nombre de noyaux, qualité de séparation des noyaux collés, noyaux en mitose.</span>
+<span id="cb3-264"><a href="#cb3-264" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Anomalies** : faire varier <span class="in">`CONTAMINATION`</span> ; les anomalies détectées sont-elles des mitoses ?</span>
+<span id="cb3-265"><a href="#cb3-265" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>**Défi** : analyser votre propre image (ex. BBBC039) avec <span class="in">`analyser_image`</span>.</span>
+<span id="cb3-266"><a href="#cb3-266" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>**Bonus** : *transfer learning* ResNet-18 + régression logistique pour détecter les globules rouges infectés par *Plasmodium*.</span>
+<span id="cb3-267"><a href="#cb3-267" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-268"><a href="#cb3-268" aria-hidden="true" tabindex="-1"></a>::: {.callout-note collapse="true"}</span>
+<span id="cb3-269"><a href="#cb3-269" aria-hidden="true" tabindex="-1"></a><span class="fu">## Éléments de correction</span></span>
+<span id="cb3-270"><a href="#cb3-270" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-271"><a href="#cb3-271" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Méthode classique** : avec les réglages par défaut, Otsu trouve 269 objets que le watershed découpe en **312 noyaux**. `DISTANCE_MIN` trop petit → **sur-segmentation** (un noyau coupé en plusieurs) ; trop grand → **sous-segmentation** (noyaux collés fusionnés). Le meilleur réglage varie d'une zone à l'autre de l'image.</span>
+<span id="cb3-272"><a href="#cb3-272" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Cellpose** détecte **333 noyaux** (en ~1 s sur GPU). Le signe le plus parlant est la **taille des plus gros objets** : aire maximale de 307 px pour la méthode classique contre 202 px pour Cellpose, et **8 objets de plus du double de l'aire médiane contre 2** — ces gros objets sont des **noyaux accolés fusionnés** (sous-segmentation). Attention toutefois : <span class="in">`remove_small_objects`</span> filtre d'office les petits objets de la méthode classique, ce qui lui donne une fausse apparence de propreté tout en pouvant effacer de vrais petits noyaux. Prix du deep learning : installation, 1,2 Go de poids, GPU conseillé, modèle peu explicable.</span>
+<span id="cb3-273"><a href="#cb3-273" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Anomalies** : avec `CONTAMINATION = 0,05`, on obtient ≈ 17 cellules sur 333. Les noyaux mitotiques (ADN condensé) sont **petits et très lumineux** : ils ressortent en tête de l'Isolation Forest. Les faux positifs typiques sont des noyaux coupés au bord de l'image (d'où <span class="in">`clear_border`</span>) ou deux noyaux fusionnés (très grands).</span>
+<span id="cb3-274"><a href="#cb3-274" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Rapport** : sur les 4 champs, le nombre de cellules varie fortement (≈ 40 à 140) alors que la **surface moyenne reste stable** (≈ 22 à 25 µm²) — c'est le signe d'une segmentation cohérente malgré des densités cellulaires différentes.</span>
+<span id="cb3-275"><a href="#cb3-275" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Bonus paludisme** : l'extraction de caractéristiques ResNet-18 + régression logistique atteint **≈ 93 % d'exactitude** avec seulement 750 images d'apprentissage, sans ré-entraîner le CNN.</span>
+<span id="cb3-276"><a href="#cb3-276" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb3-277"><a href="#cb3-277" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-278"><a href="#cb3-278" aria-hidden="true" tabindex="-1"></a><span class="fu">## 5. Livrable</span></span>
+<span id="cb3-279"><a href="#cb3-279" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-280"><a href="#cb3-280" aria-hidden="true" tabindex="-1"></a>::: {.callout-important icon=false}</span>
+<span id="cb3-281"><a href="#cb3-281" aria-hidden="true" tabindex="-1"></a><span class="fu">## 🏁 À rendre</span></span>
+<span id="cb3-282"><a href="#cb3-282" aria-hidden="true" tabindex="-1"></a>L'archive <span class="in">`rapport_imagerie.zip`</span> contenant :</span>
+<span id="cb3-283"><a href="#cb3-283" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-284"><a href="#cb3-284" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`rapport_global.csv`</span> : par image, nombre de cellules, **surface moyenne ± écart-type (µm²)**, intensité moyenne, nombre et % d'anomalies ;</span>
+<span id="cb3-285"><a href="#cb3-285" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>un fichier CSV **par cellule** pour chaque image ;</span>
+<span id="cb3-286"><a href="#cb3-286" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>les figures de segmentation (contours bleus, anomalies en rouge) ;</span>
+<span id="cb3-287"><a href="#cb3-287" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-288"><a href="#cb3-288" aria-hidden="true" tabindex="-1"></a>et vos réponses aux questions 🔎 1 à 4.</span>
+<span id="cb3-289"><a href="#cb3-289" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb3-290"><a href="#cb3-290" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-291"><a href="#cb3-291" aria-hidden="true" tabindex="-1"></a><span class="fu">## 6. Testez-vous</span></span>
+<span id="cb3-292"><a href="#cb3-292" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-293"><a href="#cb3-293" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip collapse="true"}</span>
+<span id="cb3-294"><a href="#cb3-294" aria-hidden="true" tabindex="-1"></a><span class="fu">## Q1. Quelle est la différence entre segmentation sémantique et segmentation d'instances ?</span></span>
+<span id="cb3-295"><a href="#cb3-295" aria-hidden="true" tabindex="-1"></a>La segmentation **sémantique** attribue une classe à chaque pixel (noyau / fond) ; la segmentation</span>
+<span id="cb3-296"><a href="#cb3-296" aria-hidden="true" tabindex="-1"></a>d'**instances** distingue en plus chaque objet (noyau n°1, n°2…). Pour **compter**, il faut des instances.</span>
+<span id="cb3-297"><a href="#cb3-297" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb3-298"><a href="#cb3-298" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-299"><a href="#cb3-299" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip collapse="true"}</span>
+<span id="cb3-300"><a href="#cb3-300" aria-hidden="true" tabindex="-1"></a><span class="fu">## Q2. Quel est le lien entre un filtre de convolution et un CNN ?</span></span>
+<span id="cb3-301"><a href="#cb3-301" aria-hidden="true" tabindex="-1"></a>Un CNN est un empilement de convolutions dont les **noyaux sont appris** par l'entraînement au lieu</span>
+<span id="cb3-302"><a href="#cb3-302" aria-hidden="true" tabindex="-1"></a>d'être choisis à la main (comme le lissage gaussien ou le filtre de Sobel).</span>
+<span id="cb3-303"><a href="#cb3-303" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb3-304"><a href="#cb3-304" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-305"><a href="#cb3-305" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip collapse="true"}</span>
+<span id="cb3-306"><a href="#cb3-306" aria-hidden="true" tabindex="-1"></a><span class="fu">## Q3. Pourquoi Cellpose fonctionne-t-il sur nos images sans ré-entraînement ?</span></span>
+<span id="cb3-307"><a href="#cb3-307" aria-hidden="true" tabindex="-1"></a>Parce qu'il a été pré-entraîné sur un jeu **très varié** d'images de cellules et de noyaux : il a appris</span>
+<span id="cb3-308"><a href="#cb3-308" aria-hidden="true" tabindex="-1"></a>des caractéristiques **génériques** de ce qu'est une cellule. C'est de l'apprentissage par transfert.</span>
+<span id="cb3-309"><a href="#cb3-309" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb3-310"><a href="#cb3-310" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-311"><a href="#cb3-311" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip collapse="true"}</span>
+<span id="cb3-312"><a href="#cb3-312" aria-hidden="true" tabindex="-1"></a><span class="fu">## Q4. Pourquoi faut-il connaître la taille du pixel ?</span></span>
+<span id="cb3-313"><a href="#cb3-313" aria-hidden="true" tabindex="-1"></a>Les mesures sont calculées en **pixels**. Pour comparer des expériences (autre microscope, autre</span>
+<span id="cb3-314"><a href="#cb3-314" aria-hidden="true" tabindex="-1"></a>grossissement) ou interpréter biologiquement une surface, il faut convertir en **µm²** :</span>
+<span id="cb3-315"><a href="#cb3-315" aria-hidden="true" tabindex="-1"></a>surface (µm²) = nombre de pixels × (taille du pixel en µm)².</span>
+<span id="cb3-316"><a href="#cb3-316" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb3-317"><a href="#cb3-317" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-318"><a href="#cb3-318" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip collapse="true"}</span>
+<span id="cb3-319"><a href="#cb3-319" aria-hidden="true" tabindex="-1"></a><span class="fu">## Q5. Que mesure l'IoU ?</span></span>
+<span id="cb3-320"><a href="#cb3-320" aria-hidden="true" tabindex="-1"></a>Le recouvrement entre une segmentation prédite et une segmentation de référence : l'aire de</span>
+<span id="cb3-321"><a href="#cb3-321" aria-hidden="true" tabindex="-1"></a>l'intersection divisée par l'aire de l'union (1 = superposition parfaite, 0 = aucun recouvrement).</span>
+<span id="cb3-322"><a href="#cb3-322" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb3-323"><a href="#cb3-323" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-324"><a href="#cb3-324" aria-hidden="true" tabindex="-1"></a><span class="fu">## 7. Limites et bonnes pratiques</span></span>
+<span id="cb3-325"><a href="#cb3-325" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-326"><a href="#cb3-326" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Toujours regarder les images** : une métrique globale peut cacher des erreurs systématiques.</span>
+<span id="cb3-327"><a href="#cb3-327" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Les conditions d'acquisition (exposition, mise au point, marquage) doivent être **identiques** entre conditions comparées.</span>
+<span id="cb3-328"><a href="#cb3-328" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Un modèle pré-entraîné peut échouer sur un **type d'image non représenté** dans ses données (autre marquage, tissu épais, histologie) : il faut alors l'affiner sur quelques images annotées.</span>
+<span id="cb3-329"><a href="#cb3-329" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Pour un usage diagnostique, un outil d'IA doit être **validé cliniquement** et répondre à la réglementation des dispositifs médicaux.</span>
+<span id="cb3-330"><a href="#cb3-330" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-331"><a href="#cb3-331" aria-hidden="true" tabindex="-1"></a><span class="fu">## 8. Pour aller plus loin</span></span>
+<span id="cb3-332"><a href="#cb3-332" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-333"><a href="#cb3-333" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Stringer C., Wang T., Michaelos M. &amp; Pachitariu M. (2021). *Cellpose: a generalist algorithm for cellular segmentation.* **Nature Methods**, 18, 100-106.</span>
+<span id="cb3-334"><a href="#cb3-334" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Pachitariu M., Rariden M. &amp; Stringer C. (2025). *Cellpose-SAM: superhuman generalization for cellular segmentation.* bioRxiv.</span>
+<span id="cb3-335"><a href="#cb3-335" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Ronneberger O., Fischer P. &amp; Brox T. (2015). *U-Net: Convolutional networks for biomedical image segmentation.* **MICCAI**.</span>
+<span id="cb3-336"><a href="#cb3-336" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Rajaraman S. *et al.* (2018). *Pre-trained convolutional neural networks as feature extractors toward improved malaria parasite detection in thin blood smear images.* **PeerJ**, 6, e4568.</span>
+<span id="cb3-337"><a href="#cb3-337" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Ressources : <span class="co">[</span><span class="ot">Cellpose</span><span class="co">](https://www.cellpose.org)</span> · <span class="co">[</span><span class="ot">scikit-image — exemples</span><span class="co">](https://scikit-image.org/docs/stable/auto_examples/)</span> · <span class="co">[</span><span class="ot">BBBC</span><span class="co">](https://bbbc.broadinstitute.org)</span></span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

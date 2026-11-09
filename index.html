@@ -1,0 +1,1627 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.11.9">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Abdallah Khemais">
+<meta name="dcterms.date" content="2026-09-11">
+
+<title>Intelligence Artificielle et Biotechnologie</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./seance1.html" rel="next">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-5de16f5e46225c21e2daa90d340bf64f.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-3218d7d29a29f08bc4fdf3802c3e3ca5.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-5de16f5e46225c21e2daa90d340bf64f.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-d29f24995af1e3397e5707c0c8660694.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-71b6201ca03046a2144629b9c7df8fe5.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-d29f24995af1e3397e5707c0c8660694.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+<!-- Google Translate Widget -->
+</head><body class="nav-sidebar floating quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          toggle.setAttribute("aria-checked", alternate ? "true" : "false");
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455).
+    // Not run on load: stylesheets are set before first paint there, and
+    // scrolling would undo the scroll to a URL fragment (#14973).
+    // The one pixel nudge keeps the reader where they were.
+    const refreshSafariScrollbar = () => {
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        const scrollY = window.scrollY;
+        window.scrollTo(0, scrollY > 0 ? scrollY - 1 : 1);
+        setTimeout(() => {
+          window.scrollTo(0, scrollY);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      refreshSafariScrollbar();
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script><div id="google_translate_element"></div>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'fr',
+    includedLanguages: 'fr,en',
+    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+    autoDisplay: false
+  }, 'google_translate_element');
+}
+</script>
+
+<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<style>
+#google_translate_element {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 9999;
+  background: white;
+  padding: 2px;
+  border-radius: 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  border: 1px solid #ddd;
+}
+.goog-te-gadget { font-size: 0 !important; }
+.goog-te-gadget-simple {
+  background-color: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+}
+.goog-te-menu-value span { color: #333 !important; font-size: 13px !important; }
+.goog-te-menu-value {
+  color: #333 !important;
+  border: none !important;
+  background: transparent !important;
+  padding: 4px 10px !important;
+  border-radius: 15px !important;
+}
+.goog-te-banner-frame.skiptranslate { display: none !important; }
+body { top: 0px !important; }
+</style>
+
+
+<link rel="stylesheet" href="styles.css">
+
+
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" aria-label="Toolbar">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Présentation du module</a></li></ol></nav>
+        <a class="flex-grow-1" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto" aria-label="Site">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Intelligence Artificielle et Biotechnologie</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/nevermind78/IA_Biotech" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <button type="button" role="switch" aria-checked="false" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode" aria-label="Toggle dark mode"><i class="bi"></i></button>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Présentation du module</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-controls="quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-1-label">Ateliers pratiques (5 × 2h)</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-1" aria-labelledby="quarto-sidebar-section-1-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./seance1.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Séance 1 : Données biologiques et premier modèle prédictif</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./seance2.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Séance 2 : Apprentissage non supervisé et profilage d’expression génique</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./seance3.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Séance 3 : Séquences protéiques et modèles de langage biologique</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./seance4.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Séance 4 : Vision par ordinateur pour l’imagerie cellulaire</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./seance5.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Séance 5 : IA générative, repliement protéique et mini-projet</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-controls="quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-2-label">Appendices</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-2" aria-labelledby="quarto-sidebar-section-2-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./annexe-colab.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prise en main de Google Colab et Python express</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebooks.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Notebooks Colab et données</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./evaluation.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Évaluation et mini-projet</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./glossaire.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Glossaire IA ↔︎ Biologie</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./depannage.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Dépannage (FAQ)</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" aria-labelledby="toc-title" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#présentation-du-module" id="toc-présentation-du-module" class="nav-link active" data-scroll-target="#présentation-du-module">Présentation du module</a>
+  <ul class="collapse">
+  <li><a href="#informations-générales" id="toc-informations-générales" class="nav-link" data-scroll-target="#informations-générales">Informations générales</a></li>
+  <li><a href="#lapproche-apprendre-en-faisant" id="toc-lapproche-apprendre-en-faisant" class="nav-link" data-scroll-target="#lapproche-apprendre-en-faisant">L’approche : apprendre en faisant</a></li>
+  <li><a href="#objectifs-dapprentissage" id="toc-objectifs-dapprentissage" class="nav-link" data-scroll-target="#objectifs-dapprentissage">Objectifs d’apprentissage</a></li>
+  <li><a href="#programme-des-5-ateliers" id="toc-programme-des-5-ateliers" class="nav-link" data-scroll-target="#programme-des-5-ateliers">Programme des 5 ateliers</a></li>
+  <li><a href="#organisation-pratique" id="toc-organisation-pratique" class="nav-link" data-scroll-target="#organisation-pratique">Organisation pratique</a></li>
+  <li><a href="#évaluation" id="toc-évaluation" class="nav-link" data-scroll-target="#évaluation">Évaluation</a></li>
+  <li><a href="#stack-technique" id="toc-stack-technique" class="nav-link" data-scroll-target="#stack-technique">Stack technique</a></li>
+  <li><a href="#ressources" id="toc-ressources" class="nav-link" data-scroll-target="#ressources">Ressources</a>
+  <ul class="collapse">
+  <li><a href="#ouvrages-de-référence" id="toc-ouvrages-de-référence" class="nav-link" data-scroll-target="#ouvrages-de-référence">Ouvrages de référence</a></li>
+  <li><a href="#bases-de-données-utilisées" id="toc-bases-de-données-utilisées" class="nav-link" data-scroll-target="#bases-de-données-utilisées">Bases de données utilisées</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content" tabindex="-1">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Intelligence Artificielle et Biotechnologie</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<p class="subtitle lead">Module pratique de 10h — Learn by doing sur Google Colab</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Abdallah Khemais </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Dernière mise à jour</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">09/11/2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="présentation-du-module" class="level1 unnumbered">
+<h1 class="unnumbered">Présentation du module</h1>
+<section id="informations-générales" class="level2">
+<h2 class="anchored" data-anchor-id="informations-générales">Informations générales</h2>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Détails du module
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Intitulé</strong> : Intelligence Artificielle et Biotechnologie</li>
+<li><strong>Public</strong> : élèves ingénieurs (biotechnologie, génie biologique, agroalimentaire, procédés…) <strong>non spécialistes en informatique</strong></li>
+<li><strong>Prérequis</strong> : bases de Python (variables, listes, fonctions) — une <a href="./annexe-colab.html">remise à niveau</a> est fournie</li>
+<li><strong>Volume horaire</strong> : <strong>10h</strong> = 5 ateliers pratiques de 2h</li>
+<li><strong>Format</strong> : 100 % <em>learn by doing</em>, sur <strong>Google Colab</strong> (rien à installer : un navigateur et un compte Google suffisent)</li>
+<li><strong>Enseignant</strong> : Abdallah Khemais</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="lapproche-apprendre-en-faisant" class="level2">
+<h2 class="anchored" data-anchor-id="lapproche-apprendre-en-faisant">L’approche : apprendre en faisant</h2>
+<p>Chaque atelier suit le <strong>même fil rouge</strong> : on part d’un <strong>problème biologique concret</strong>, on charge un <strong>jeu de données réel</strong>, on <strong>entraîne ou interroge un modèle d’IA</strong>, puis on <strong>interprète les résultats avec un regard de biologiste</strong>.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+
+<pre class="mermaid mermaid-js">flowchart TB
+    A["🧬 Problème biologique"] --&gt; B["📂 Données réelles"]
+    B --&gt; C["🤖 Modèle d'IA"]
+    C --&gt; D["📊 Évaluation"]
+    D --&gt; E["🔬 Interprétation"]
+    E -.-&gt;|"nouvelle question"| A
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>Les notebooks Colab sont <strong>pré-remplis</strong> :</p>
+<ul>
+<li><strong>≈ 70 % de code fourni</strong> que vous exécutez, lisez et analysez ;</li>
+<li><strong>≈ 30 % de code à modifier</strong> : paramètres (curseurs, menus) ou petites fonctions à compléter.</li>
+</ul>
+<table class="table-striped caption-top table">
+<caption>Légende utilisée dans tous les notebooks</caption>
+<colgroup>
+<col style="width: 45%">
+<col style="width: 27%">
+<col style="width: 27%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Pictogramme</th>
+<th>Activité</th>
+<th>Ce que vous faites</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">▶️</td>
+<td><span class="pill pill-run">Exécuter</span></td>
+<td>lancer une cellule de code fournie et lire le résultat</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">✍️</td>
+<td><span class="pill pill-edit">Modifier</span></td>
+<td>changer un paramètre, compléter quelques lignes</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">🔎</td>
+<td><span class="pill pill-think">Interpréter</span></td>
+<td>répondre à une question biologique ou méthodologique</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">💡</td>
+<td>Solution</td>
+<td>cellule masquée (double-clic pour l’afficher)</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Astuce</span>Pas besoin d’être informaticien·ne
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>L’objectif n’est <strong>pas</strong> de devenir développeur, mais de savoir <strong>utiliser, évaluer et critiquer</strong> des outils d’IA appliqués à la biologie : choisir une méthode, vérifier qu’un modèle est fiable, et reconnaître ses limites.</p>
+</div>
+</div>
+</section>
+<section id="objectifs-dapprentissage" class="level2">
+<h2 class="anchored" data-anchor-id="objectifs-dapprentissage">Objectifs d’apprentissage</h2>
+<p>Au terme de ce module, vous serez capable de :</p>
+<ol type="1">
+<li><strong>Préparer</strong> un jeu de données biologiques réel (nettoyage, normalisation, encodage) avec Pandas ;</li>
+<li><strong>Entraîner et évaluer</strong> un modèle supervisé en choisissant les bonnes métriques (matrice de confusion, ROC-AUC, validation croisée) ;</li>
+<li><strong>Explorer</strong> des données de grande dimension sans étiquettes (ACP, UMAP, clustering) et en extraire des biomarqueurs ;</li>
+<li><strong>Utiliser des modèles pré-entraînés</strong> (ESM-2, Cellpose, AlphaFold 2) par apprentissage par transfert ;</li>
+<li><strong>Interpréter</strong> biologiquement les sorties d’un modèle et en <strong>identifier les limites</strong> (biais, sur-apprentissage, boîte noire, besoin de validation expérimentale).</li>
+</ol>
+</section>
+<section id="programme-des-5-ateliers" class="level2">
+<h2 class="anchored" data-anchor-id="programme-des-5-ateliers">Programme des 5 ateliers</h2>
+<table class="table-striped table-hover caption-top table">
+<caption>Vue d’ensemble du module</caption>
+<thead>
+<tr class="header">
+<th>Séance</th>
+<th>Problème biologique</th>
+<th>Données réelles</th>
+<th>Méthodes d’IA</th>
+<th>Livrable</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="./seance1.html"><strong>1</strong></a> · Premier modèle prédictif</td>
+<td>Une molécule est-elle toxique ?</td>
+<td>Tox21 (~8 000 molécules)</td>
+<td>Pandas, descripteurs RDKit, <strong>Random Forest</strong></td>
+<td>pipeline + matrice de confusion + importance des variables</td>
+</tr>
+<tr class="even">
+<td><a href="./seance2.html"><strong>2</strong></a> · Non supervisé &amp; transcriptomique</td>
+<td>Quels types de cellules dans un échantillon ?</td>
+<td>RNA-seq single-cell PBMC 3k (2 700 cellules × 33 000 gènes)</td>
+<td><strong>ACP, UMAP, K-Means</strong></td>
+<td>carte interactive des clusters + biomarqueurs</td>
+</tr>
+<tr class="odd">
+<td><a href="./seance3.html"><strong>3</strong></a> · Séquences &amp; modèles de langage</td>
+<td>Où va une protéine dans la cellule ?</td>
+<td>600 protéines humaines Swiss-Prot (FASTA)</td>
+<td>k-mers, <strong>ESM-2</strong> (Hugging Face), régression logistique</td>
+<td>comparateur k-mers vs ESM-2</td>
+</tr>
+<tr class="even">
+<td><a href="./seance4.html"><strong>4</strong></a> · Vision par ordinateur</td>
+<td>Compter et mesurer des cellules</td>
+<td>Microscopie en fluorescence (noyaux)</td>
+<td>Otsu/watershed, <strong>Cellpose (CNN)</strong>, transfer learning</td>
+<td>script de segmentation + rapport quantitatif</td>
+</tr>
+<tr class="odd">
+<td><a href="./seance5.html"><strong>5</strong></a> · Structure &amp; IA générative</td>
+<td>Quel est l’impact d’une mutation ?</td>
+<td>GB1, hémoglobine β, AlphaFold DB, PDB</td>
+<td><strong>ColabFold (AlphaFold 2)</strong>, py3Dmol, ESM-2</td>
+<td>mini-projet en binôme (présentation 3 min)</td>
+</tr>
+</tbody>
+</table>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+
+<pre class="mermaid mermaid-js">flowchart LR
+    T["📋 Tableaux de descripteurs"] --&gt; S1["&lt;b&gt;S1&lt;/b&gt; · Random Forest"]
+    M["🧫 Matrices d'expression"] --&gt; S2["&lt;b&gt;S2&lt;/b&gt; · ACP / UMAP / K-Means"]
+    Q["🔤 Séquences ADN / protéines"] --&gt; S3["&lt;b&gt;S3&lt;/b&gt; · ESM-2"]
+    I["🔬 Images de microscopie"] --&gt; S4["&lt;b&gt;S4&lt;/b&gt; · Cellpose"]
+    P["🧩 Structures 3D"] --&gt; S5["&lt;b&gt;S5&lt;/b&gt; · AlphaFold 2"]
+    S3 -.-&gt;|"embeddings"| S5
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="organisation-pratique" class="level2">
+<h2 class="anchored" data-anchor-id="organisation-pratique">Organisation pratique</h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Avant la séance 1</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Pendant chaque séance</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">Après chaque séance</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<ol type="1">
+<li>Créez (ou vérifiez) votre <strong>compte Google</strong>.</li>
+<li>Faites le notebook d’auto-formation <strong><a href="./annexe-colab.html">Prise en main de Colab et Python</a></strong> (45 min).</li>
+<li>Testez l’ouverture d’un notebook via un badge <a href="https://colab.research.google.com/github/nevermind78/IA_Biotech/blob/main/notebooks/S0_prise_en_main_colab.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid" alt="Open In Colab"></a>.</li>
+</ol>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<ol type="1">
+<li>Ouvrez la page de la séance sur ce site et <strong>lisez l’encadré théorique</strong> (≈ 10 min, présenté par l’enseignant).</li>
+<li>Cliquez sur le badge <strong>Open in Colab</strong>, puis <code>Fichier → Enregistrer une copie dans Drive</code>.</li>
+<li>Pour les séances 3, 4 et 5 : <code>Exécution → Modifier le type d'exécution → GPU T4</code>.</li>
+<li>Avancez dans le notebook en suivant les pictogrammes ▶️ ✍️ 🔎.</li>
+</ol>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<ol type="1">
+<li>Vérifiez que toutes les cellules ont été exécutées et que les questions 🔎 ont une réponse.</li>
+<li>Déposez le <strong>livrable</strong> demandé (notebook partagé ou fichiers exportés) sur la plateforme du cours.</li>
+<li>Faites le petit <strong>quiz « Testez-vous »</strong> en fin de page.</li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+<section id="évaluation" class="level2">
+<h2 class="anchored" data-anchor-id="évaluation">Évaluation</h2>
+<table class="table-striped caption-top table">
+<caption>Modalités d’évaluation</caption>
+<colgroup>
+<col style="width: 27%">
+<col style="width: 45%">
+<col style="width: 27%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Composante</th>
+<th style="text-align: center;">Poids</th>
+<th>Détails</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Livrables des séances 1 à 4</strong></td>
+<td style="text-align: center;">40 %</td>
+<td>4 × 10 % : notebook exécuté + réponses aux questions 🔎</td>
+</tr>
+<tr class="even">
+<td><strong>Mini-projet (séance 5)</strong></td>
+<td style="text-align: center;">40 %</td>
+<td>présentation de 3 min en binôme + notebook</td>
+</tr>
+<tr class="odd">
+<td><strong>Participation et quiz</strong></td>
+<td style="text-align: center;">20 %</td>
+<td>quiz « Testez-vous » et implication en atelier</td>
+</tr>
+</tbody>
+</table>
+<p>La grille détaillée est disponible dans l’annexe <a href="./evaluation.html">Évaluation et mini-projet</a>.</p>
+</section>
+<section id="stack-technique" class="level2">
+<h2 class="anchored" data-anchor-id="stack-technique">Stack technique</h2>
+<table class="table-striped caption-top table">
+<caption>Bibliothèques utilisées</caption>
+<colgroup>
+<col style="width: 27%">
+<col style="width: 27%">
+<col style="width: 45%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Outil</th>
+<th>Rôle dans le module</th>
+<th style="text-align: center;">Séances</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Google Colab</strong></td>
+<td>environnement d’exécution gratuit (CPU/GPU) dans le navigateur</td>
+<td style="text-align: center;">1 – 5</td>
+</tr>
+<tr class="even">
+<td><strong>Pandas / NumPy</strong></td>
+<td>manipulation de tableaux de données</td>
+<td style="text-align: center;">1 – 5</td>
+</tr>
+<tr class="odd">
+<td><strong>Matplotlib / Seaborn / Plotly</strong></td>
+<td>visualisation (statique et interactive)</td>
+<td style="text-align: center;">1 – 5</td>
+</tr>
+<tr class="even">
+<td><strong>Scikit-learn</strong></td>
+<td>modèles classiques d’apprentissage automatique</td>
+<td style="text-align: center;">1 – 4</td>
+</tr>
+<tr class="odd">
+<td><strong>RDKit</strong></td>
+<td>chimie-informatique (molécules, descripteurs)</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td><strong>Scanpy / UMAP</strong></td>
+<td>analyse single-cell, réduction de dimension</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="odd">
+<td><strong>Biopython</strong></td>
+<td>lecture de séquences (FASTA) et de structures (PDB)</td>
+<td style="text-align: center;">3, 5</td>
+</tr>
+<tr class="even">
+<td><strong>Hugging Face Transformers</strong></td>
+<td>modèles de langage protéiques pré-entraînés (ESM-2)</td>
+<td style="text-align: center;">3, 5</td>
+</tr>
+<tr class="odd">
+<td><strong>scikit-image / Cellpose</strong></td>
+<td>traitement et segmentation d’images</td>
+<td style="text-align: center;">4</td>
+</tr>
+<tr class="even">
+<td><strong>ColabFold / py3Dmol</strong></td>
+<td>prédiction (AlphaFold 2) et visualisation 3D de structures</td>
+<td style="text-align: center;">5</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="ressources" class="level2">
+<h2 class="anchored" data-anchor-id="ressources">Ressources</h2>
+<section id="ouvrages-de-référence" class="level3">
+<h3 class="anchored" data-anchor-id="ouvrages-de-référence">Ouvrages de référence</h3>
+<ol type="1">
+<li><strong>Ramsundar B., Eastman P., Walters P., Pande V. (2019)</strong> — <em>Deep Learning for the Life Sciences</em>, O’Reilly.</li>
+<li><strong>Géron A. (2022)</strong> — <em>Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow</em>, 3<sup>e</sup> édition, O’Reilly.</li>
+<li><strong>Antao T. (2022)</strong> — <em>Bioinformatics with Python Cookbook</em>, 3<sup>e</sup> édition, Packt.</li>
+</ol>
+</section>
+<section id="bases-de-données-utilisées" class="level3">
+<h3 class="anchored" data-anchor-id="bases-de-données-utilisées">Bases de données utilisées</h3>
+<ul>
+<li><a href="https://moleculenet.org">Tox21 / MoleculeNet</a> — toxicologie ; <a href="https://www.ebi.ac.uk/chembl/">ChEMBL</a> — bioactivité des molécules</li>
+<li><a href="https://www.10xgenomics.com/datasets">10x Genomics datasets</a> — RNA-seq single-cell</li>
+<li><a href="https://www.uniprot.org">UniProt</a> — séquences et annotations de protéines</li>
+<li><a href="https://bbbc.broadinstitute.org">Broad Bioimage Benchmark Collection</a> — images de microscopie</li>
+<li><a href="https://www.rcsb.org">RCSB PDB</a> et <a href="https://alphafold.ebi.ac.uk">AlphaFold DB</a> — structures 3D expérimentales et prédites</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Astuce</span>Code source du cours
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Tous les supports (pages, notebooks, données de secours) sont disponibles sur <a href="https://github.com/nevermind78/IA_Biotech">GitHub</a>. Les notebooks peuvent aussi être <a href="./notebooks.html">téléchargés</a> pour être exécutés avec Jupyter en local.</p>
+</div>
+</div>
+
+
+<!-- -->
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const toggle = window.document.createElement('button');
+      toggle.type = "button";
+      toggle.setAttribute("role", "switch");
+      toggle.setAttribute("aria-checked", "false");
+      toggle.classList.add('top-right');
+      toggle.classList.add('quarto-color-scheme-toggle');
+      toggle.setAttribute("aria-label", "Toggle dark mode");
+      toggle.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      toggle.appendChild(i);
+      // Put the toggle in a landmark of its own, so that landmark navigation
+      // can reach it.
+      //
+      // The container is always a fresh direct child of body, and the toggle is
+      // never moved into page furniture that the theme or the author controls.
+      // The toggle is positioned against the page, so any ancestor that
+      // establishes a containing block captures it: a positioned element or a
+      // grid for position: absolute, and transform, filter, will-change or
+      // contain for position: fixed. A direct child of body has none of these
+      // to inherit, and the shift when one appears is silent and visual.
+      //
+      // ARIA says a document should have at most one banner, and axe reports a
+      // duplicate whether or not the banners carry distinct labels. So use a
+      // header when the page has no banner yet, and a named region otherwise.
+      //
+      // A header is a banner wherever it sits, unless it is inside sectioning
+      // content, so this cannot just look at the children of body: a custom
+      // page layout wraps the title block header in a plain div. An explicit
+      // role="banner" always counts.
+      const sectioning = 'article, aside, main, nav, section, [role="article"], [role="complementary"], [role="main"], [role="navigation"], [role="region"]';
+      const hasBanner = Array.from(
+        window.document.querySelectorAll('header:not([role]), [role="banner"]')
+      ).some(function(el) {
+        return el.hasAttribute("role") || el.closest(sectioning) === null;
+      });
+      const container = window.document.createElement(hasBanner ? "div" : "header");
+      if (hasBanner) {
+        container.setAttribute("role", "region");
+        container.setAttribute("aria-label", "Toggle dark mode");
+      }
+      container.classList.add('quarto-color-scheme-toggle-container');
+      container.appendChild(toggle);
+      window.document.body.appendChild(container);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const cellDetails = window.document.querySelectorAll(".cell details.code-fold");
+        for (let i=0; i<cellDetails.length; i++) {
+          const details = cellDetails[i];
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell div.sourceCode.cell-code");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/nevermind78\.github\.io\/IA_Biotech\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+          if (!link.classList.contains('no-external-icon')) {
+          }
+        }
+      }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
+          if (lineIds.length > 0) {
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            placeBand(gutterDiv, el, lastEl);
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+  <script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
+  </script>
+<nav class="page-navigation" aria-label="Page">
+  <div class="nav-page nav-page-previous">
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./seance1.html" class="pagination-link" aria-label="Séance 1 : Données biologiques et premier modèle prédictif">
+        <span class="nav-page-text"><span class="chapter-title">Séance 1 : Données biologiques et premier modèle prédictif</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Présentation du module {.unnumbered}</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## Informations générales</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>::: {.callout-note icon=false}</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">## Détails du module</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Intitulé** : Intelligence Artificielle et Biotechnologie</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Public** : élèves ingénieurs (biotechnologie, génie biologique, agroalimentaire, procédés…) **non spécialistes en informatique**</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Prérequis** : bases de Python (variables, listes, fonctions) — une <span class="co">[</span><span class="ot">remise à niveau</span><span class="co">](annexe-colab.qmd)</span> est fournie</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Volume horaire** : **10h** = 5 ateliers pratiques de 2h</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Format** : 100 % *learn by doing*, sur **Google Colab** (rien à installer : un navigateur et un compte Google suffisent)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Enseignant** : Abdallah Khemais</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">## L'approche : apprendre en faisant</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>Chaque atelier suit le **même fil rouge** : on part d'un **problème biologique concret**, on charge un</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>**jeu de données réel**, on **entraîne ou interroge un modèle d'IA**, puis on **interprète les résultats</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>avec un regard de biologiste**.</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="in">```{mermaid}</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>flowchart TB</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    A[<span class="ot">"</span><span class="st">🧬 Problème biologique</span><span class="ot">"</span>] --&gt; B[<span class="ot">"</span><span class="st">📂 Données réelles</span><span class="ot">"</span>]</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    B --&gt; C[<span class="ot">"</span><span class="st">🤖 Modèle d'IA</span><span class="ot">"</span>]</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    C --&gt; D[<span class="ot">"</span><span class="st">📊 Évaluation</span><span class="ot">"</span>]</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    D --&gt; E[<span class="ot">"</span><span class="st">🔬 Interprétation</span><span class="ot">"</span>]</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    E -.-&gt;|<span class="ot">"</span><span class="st">nouvelle question</span><span class="ot">"</span>| A</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>Les notebooks Colab sont **pré-remplis** :</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**≈ 70 % de code fourni** que vous exécutez, lisez et analysez ;</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**≈ 30 % de code à modifier** : paramètres (curseurs, menus) ou petites fonctions à compléter.</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Pictogramme <span class="pp">|</span> Activité <span class="pp">|</span> Ce que vous faites <span class="pp">|</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="pp">|:---:|---|---|</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ▶️ <span class="pp">|</span> <span class="co">[</span><span class="ot">Exécuter</span><span class="co">]</span>{.pill .pill-run} <span class="pp">|</span> lancer une cellule de code fournie et lire le résultat <span class="pp">|</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ✍️ <span class="pp">|</span> <span class="co">[</span><span class="ot">Modifier</span><span class="co">]</span>{.pill .pill-edit} <span class="pp">|</span> changer un paramètre, compléter quelques lignes <span class="pp">|</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 🔎 <span class="pp">|</span> <span class="co">[</span><span class="ot">Interpréter</span><span class="co">]</span>{.pill .pill-think} <span class="pp">|</span> répondre à une question biologique ou méthodologique <span class="pp">|</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 💡 <span class="pp">|</span> Solution <span class="pp">|</span> cellule masquée (double-clic pour l'afficher) <span class="pp">|</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>: Légende utilisée dans tous les notebooks {.striped}</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="fu">## Pas besoin d'être informaticien·ne</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>L'objectif n'est **pas** de devenir développeur, mais de savoir **utiliser, évaluer et critiquer** des</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>outils d'IA appliqués à la biologie : choisir une méthode, vérifier qu'un modèle est fiable, et</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>reconnaître ses limites.</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="fu">## Objectifs d'apprentissage</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>Au terme de ce module, vous serez capable de :</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Préparer** un jeu de données biologiques réel (nettoyage, normalisation, encodage) avec Pandas ;</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Entraîner et évaluer** un modèle supervisé en choisissant les bonnes métriques (matrice de confusion, ROC-AUC, validation croisée) ;</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Explorer** des données de grande dimension sans étiquettes (ACP, UMAP, clustering) et en extraire des biomarqueurs ;</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>**Utiliser des modèles pré-entraînés** (ESM-2, Cellpose, AlphaFold 2) par apprentissage par transfert ;</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>**Interpréter** biologiquement les sorties d'un modèle et en **identifier les limites** (biais, sur-apprentissage, boîte noire, besoin de validation expérimentale).</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="fu">## Programme des 5 ateliers</span></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Séance <span class="pp">|</span> Problème biologique <span class="pp">|</span> Données réelles <span class="pp">|</span> Méthodes d'IA <span class="pp">|</span> Livrable <span class="pp">|</span></span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|---|---|</span></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">**1**</span><span class="co">](seance1.qmd)</span> · Premier modèle prédictif <span class="pp">|</span> Une molécule est-elle toxique ? <span class="pp">|</span> Tox21 (~8 000 molécules) <span class="pp">|</span> Pandas, descripteurs RDKit, **Random Forest** <span class="pp">|</span> pipeline + matrice de confusion + importance des variables <span class="pp">|</span></span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">**2**</span><span class="co">](seance2.qmd)</span> · Non supervisé &amp; transcriptomique <span class="pp">|</span> Quels types de cellules dans un échantillon ? <span class="pp">|</span> RNA-seq single-cell PBMC 3k (2 700 cellules × 33 000 gènes) <span class="pp">|</span> **ACP, UMAP, K-Means** <span class="pp">|</span> carte interactive des clusters + biomarqueurs <span class="pp">|</span></span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">**3**</span><span class="co">](seance3.qmd)</span> · Séquences &amp; modèles de langage <span class="pp">|</span> Où va une protéine dans la cellule ? <span class="pp">|</span> 600 protéines humaines Swiss-Prot (FASTA) <span class="pp">|</span> k-mers, **ESM-2** (Hugging Face), régression logistique <span class="pp">|</span> comparateur k-mers vs ESM-2 <span class="pp">|</span></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">**4**</span><span class="co">](seance4.qmd)</span> · Vision par ordinateur <span class="pp">|</span> Compter et mesurer des cellules <span class="pp">|</span> Microscopie en fluorescence (noyaux) <span class="pp">|</span> Otsu/watershed, **Cellpose (CNN)**, transfer learning <span class="pp">|</span> script de segmentation + rapport quantitatif <span class="pp">|</span></span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">**5**</span><span class="co">](seance5.qmd)</span> · Structure &amp; IA générative <span class="pp">|</span> Quel est l'impact d'une mutation ? <span class="pp">|</span> GB1, hémoglobine β, AlphaFold DB, PDB <span class="pp">|</span> **ColabFold (AlphaFold 2)**, py3Dmol, ESM-2 <span class="pp">|</span> mini-projet en binôme (présentation 3 min) <span class="pp">|</span></span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>: Vue d'ensemble du module {.striped .hover}</span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a><span class="in">```{mermaid}</span></span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a>flowchart LR</span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a>    T[<span class="ot">"</span><span class="st">📋 Tableaux de descripteurs</span><span class="ot">"</span>] --&gt; S1[<span class="ot">"</span><span class="st">&lt;b&gt;S1&lt;/b&gt; · Random Forest</span><span class="ot">"</span>]</span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a>    M[<span class="ot">"</span><span class="st">🧫 Matrices d'expression</span><span class="ot">"</span>] --&gt; S2[<span class="ot">"</span><span class="st">&lt;b&gt;S2&lt;/b&gt; · ACP / UMAP / K-Means</span><span class="ot">"</span>]</span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a>    Q[<span class="ot">"</span><span class="st">🔤 Séquences ADN / protéines</span><span class="ot">"</span>] --&gt; S3[<span class="ot">"</span><span class="st">&lt;b&gt;S3&lt;/b&gt; · ESM-2</span><span class="ot">"</span>]</span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a>    I[<span class="ot">"</span><span class="st">🔬 Images de microscopie</span><span class="ot">"</span>] --&gt; S4[<span class="ot">"</span><span class="st">&lt;b&gt;S4&lt;/b&gt; · Cellpose</span><span class="ot">"</span>]</span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a>    P[<span class="ot">"</span><span class="st">🧩 Structures 3D</span><span class="ot">"</span>] --&gt; S5[<span class="ot">"</span><span class="st">&lt;b&gt;S5&lt;/b&gt; · AlphaFold 2</span><span class="ot">"</span>]</span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a>    S3 -.-&gt;|<span class="ot">"</span><span class="st">embeddings</span><span class="ot">"</span>| S5</span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a><span class="fu">## Organisation pratique</span></span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset}</span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a><span class="fu">## Avant la séance 1</span></span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Créez (ou vérifiez) votre **compte Google**.</span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Faites le notebook d'auto-formation **[Prise en main de Colab et Python](annexe-colab.qmd)** (45 min).</span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Testez l'ouverture d'un notebook via un badge <span class="co">[</span><span class="al">![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)</span><span class="co">](https://colab.research.google.com/github/nevermind78/IA_Biotech/blob/main/notebooks/S0_prise_en_main_colab.ipynb)</span>.</span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a><span class="fu">## Pendant chaque séance</span></span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Ouvrez la page de la séance sur ce site et **lisez l'encadré théorique** (≈ 10 min, présenté par l'enseignant).</span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Cliquez sur le badge **Open in Colab**, puis <span class="in">`Fichier → Enregistrer une copie dans Drive`</span>.</span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Pour les séances 3, 4 et 5 : <span class="in">`Exécution → Modifier le type d'exécution → GPU T4`</span>.</span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Avancez dans le notebook en suivant les pictogrammes ▶️ ✍️ 🔎.</span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a><span class="fu">## Après chaque séance</span></span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Vérifiez que toutes les cellules ont été exécutées et que les questions 🔎 ont une réponse.</span>
+<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Déposez le **livrable** demandé (notebook partagé ou fichiers exportés) sur la plateforme du cours.</span>
+<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Faites le petit **quiz « Testez-vous »** en fin de page.</span>
+<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a><span class="fu">## Évaluation</span></span>
+<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Composante <span class="pp">|</span> Poids <span class="pp">|</span> Détails <span class="pp">|</span></span>
+<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|:---:|---|</span></span>
+<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Livrables des séances 1 à 4** <span class="pp">|</span> 40 % <span class="pp">|</span> 4 × 10 % : notebook exécuté + réponses aux questions 🔎 <span class="pp">|</span></span>
+<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Mini-projet (séance 5)** <span class="pp">|</span> 40 % <span class="pp">|</span> présentation de 3 min en binôme + notebook <span class="pp">|</span></span>
+<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Participation et quiz** <span class="pp">|</span> 20 % <span class="pp">|</span> quiz « Testez-vous » et implication en atelier <span class="pp">|</span></span>
+<span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a>: Modalités d'évaluation {.striped}</span>
+<span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a>La grille détaillée est disponible dans l'annexe <span class="co">[</span><span class="ot">Évaluation et mini-projet</span><span class="co">](evaluation.qmd)</span>.</span>
+<span id="cb1-124"><a href="#cb1-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-125"><a href="#cb1-125" aria-hidden="true" tabindex="-1"></a><span class="fu">## Stack technique</span></span>
+<span id="cb1-126"><a href="#cb1-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-127"><a href="#cb1-127" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Outil <span class="pp">|</span> Rôle dans le module <span class="pp">|</span> Séances <span class="pp">|</span></span>
+<span id="cb1-128"><a href="#cb1-128" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|:---:|</span></span>
+<span id="cb1-129"><a href="#cb1-129" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Google Colab** <span class="pp">|</span> environnement d'exécution gratuit (CPU/GPU) dans le navigateur <span class="pp">|</span> 1 – 5 <span class="pp">|</span></span>
+<span id="cb1-130"><a href="#cb1-130" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Pandas / NumPy** <span class="pp">|</span> manipulation de tableaux de données <span class="pp">|</span> 1 – 5 <span class="pp">|</span></span>
+<span id="cb1-131"><a href="#cb1-131" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Matplotlib / Seaborn / Plotly** <span class="pp">|</span> visualisation (statique et interactive) <span class="pp">|</span> 1 – 5 <span class="pp">|</span></span>
+<span id="cb1-132"><a href="#cb1-132" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Scikit-learn** <span class="pp">|</span> modèles classiques d'apprentissage automatique <span class="pp">|</span> 1 – 4 <span class="pp">|</span></span>
+<span id="cb1-133"><a href="#cb1-133" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **RDKit** <span class="pp">|</span> chimie-informatique (molécules, descripteurs) <span class="pp">|</span> 1 <span class="pp">|</span></span>
+<span id="cb1-134"><a href="#cb1-134" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Scanpy / UMAP** <span class="pp">|</span> analyse single-cell, réduction de dimension <span class="pp">|</span> 2 <span class="pp">|</span></span>
+<span id="cb1-135"><a href="#cb1-135" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Biopython** <span class="pp">|</span> lecture de séquences (FASTA) et de structures (PDB) <span class="pp">|</span> 3, 5 <span class="pp">|</span></span>
+<span id="cb1-136"><a href="#cb1-136" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Hugging Face Transformers** <span class="pp">|</span> modèles de langage protéiques pré-entraînés (ESM-2) <span class="pp">|</span> 3, 5 <span class="pp">|</span></span>
+<span id="cb1-137"><a href="#cb1-137" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **scikit-image / Cellpose** <span class="pp">|</span> traitement et segmentation d'images <span class="pp">|</span> 4 <span class="pp">|</span></span>
+<span id="cb1-138"><a href="#cb1-138" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **ColabFold / py3Dmol** <span class="pp">|</span> prédiction (AlphaFold 2) et visualisation 3D de structures <span class="pp">|</span> 5 <span class="pp">|</span></span>
+<span id="cb1-139"><a href="#cb1-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-140"><a href="#cb1-140" aria-hidden="true" tabindex="-1"></a>: Bibliothèques utilisées {.striped}</span>
+<span id="cb1-141"><a href="#cb1-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-142"><a href="#cb1-142" aria-hidden="true" tabindex="-1"></a><span class="fu">## Ressources</span></span>
+<span id="cb1-143"><a href="#cb1-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-144"><a href="#cb1-144" aria-hidden="true" tabindex="-1"></a><span class="fu">### Ouvrages de référence</span></span>
+<span id="cb1-145"><a href="#cb1-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-146"><a href="#cb1-146" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Ramsundar B., Eastman P., Walters P., Pande V. (2019)** — *Deep Learning for the Life Sciences*, O'Reilly.</span>
+<span id="cb1-147"><a href="#cb1-147" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Géron A. (2022)** — *Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow*, 3^e^ édition, O'Reilly.</span>
+<span id="cb1-148"><a href="#cb1-148" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Antao T. (2022)** — *Bioinformatics with Python Cookbook*, 3^e^ édition, Packt.</span>
+<span id="cb1-149"><a href="#cb1-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-150"><a href="#cb1-150" aria-hidden="true" tabindex="-1"></a><span class="fu">### Bases de données utilisées</span></span>
+<span id="cb1-151"><a href="#cb1-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-152"><a href="#cb1-152" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Tox21 / MoleculeNet</span><span class="co">](https://moleculenet.org)</span> — toxicologie ; <span class="co">[</span><span class="ot">ChEMBL</span><span class="co">](https://www.ebi.ac.uk/chembl/)</span> — bioactivité des molécules</span>
+<span id="cb1-153"><a href="#cb1-153" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">10x Genomics datasets</span><span class="co">](https://www.10xgenomics.com/datasets)</span> — RNA-seq single-cell</span>
+<span id="cb1-154"><a href="#cb1-154" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">UniProt</span><span class="co">](https://www.uniprot.org)</span> — séquences et annotations de protéines</span>
+<span id="cb1-155"><a href="#cb1-155" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Broad Bioimage Benchmark Collection</span><span class="co">](https://bbbc.broadinstitute.org)</span> — images de microscopie</span>
+<span id="cb1-156"><a href="#cb1-156" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">RCSB PDB</span><span class="co">](https://www.rcsb.org)</span> et <span class="co">[</span><span class="ot">AlphaFold DB</span><span class="co">](https://alphafold.ebi.ac.uk)</span> — structures 3D expérimentales et prédites</span>
+<span id="cb1-157"><a href="#cb1-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-158"><a href="#cb1-158" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
+<span id="cb1-159"><a href="#cb1-159" aria-hidden="true" tabindex="-1"></a><span class="fu">## Code source du cours</span></span>
+<span id="cb1-160"><a href="#cb1-160" aria-hidden="true" tabindex="-1"></a>Tous les supports (pages, notebooks, données de secours) sont disponibles sur</span>
+<span id="cb1-161"><a href="#cb1-161" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">GitHub</span><span class="co">](https://github.com/nevermind78/IA_Biotech)</span>. Les notebooks peuvent aussi être</span>
+<span id="cb1-162"><a href="#cb1-162" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">téléchargés</span><span class="co">](notebooks.qmd)</span> pour être exécutés avec Jupyter en local.</span>
+<span id="cb1-163"><a href="#cb1-163" aria-hidden="true" tabindex="-1"></a>:::</span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
